@@ -1,0 +1,40 @@
+/* Our Pandits Page Styles */
+.pandits-page {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+}
+
+.pandits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.pandit-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.pandit-card:hover {
+    transform: translateY(-5px);
+}
+
+.pandit-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.pandit-card h3 {
+    margin: 1rem 0 0.5rem;
+    color: var(--primary-color);
+}
+
+.pandit-card p {
+    color: var(--text-secondary);
+}

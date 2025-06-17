@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Date & Time - Book Pandit</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <a href="index.html" class="logo-text">Book<span>Pandit</span></a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="calendar-page">
+        <div class="container">
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <h1>Select Date & Time</h1>
+                    <p>Choose your preferred date and time for the ceremony</p>
+                </div>
+
+                <div class="calendar-content">
+                    <div class="calendar-sidebar">
+                        <div class="service-summary">
+                            <h3>Service Summary</h3>
+                            <div class="summary-details">
+                                <p><strong>Service Type:</strong> <span id="service-type">Wedding Ceremony</span></p>
+                                <p><strong>Sub-Type:</strong> <span id="service-subtype">Full Wedding</span></p>
+                                <p><strong>Duration:</strong> <span id="service-duration">4-6 hours</span></p>
+                                <p><strong>Price:</strong> <span id="service-price">₹15,000</span></p>
+                            </div>
+                        </div>
+
+                        <div class="available-pandits">
+                            <h3>Available Pandits</h3>
+                            <div class="pandit-list">
+                                <div class="pandit-card selected">
+                                    <img src="images/pandit1.jpg" alt="Pandit Name">
+                                    <div class="pandit-info">
+                                        <h4>Pandit Ramesh Sharma</h4>
+                                        <p>15+ years experience</p>
+                                        <div class="pandit-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(4.5)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pandit-card">
+                                    <img src="images/pandit2.jpg" alt="Pandit Name">
+                                    <div class="pandit-info">
+                                        <h4>Pandit Amit Kumar</h4>
+                                        <p>10+ years experience</p>
+                                        <div class="pandit-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <span>(4.0)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calendar-main">
+                        <div class="calendar-navigation">
+                            <button class="prev-month"><i class="fas fa-chevron-left"></i></button>
+                            <h2 id="current-month">March 2024</h2>
+                            <button class="next-month"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+
+                        <div class="calendar-grid">
+                            <div class="calendar-weekdays">
+                                <div>Sun</div>
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                            </div>
+                            <div class="calendar-days" id="calendar-days">
+                                <!-- Calendar days will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <div class="time-selection">
+                            <h3>Available Time Slots</h3>
+                            <div class="time-slots">
+                                <button class="time-slot">9:00 AM</button>
+                                <button class="time-slot">10:00 AM</button>
+                                <button class="time-slot">11:00 AM</button>
+                                <button class="time-slot">12:00 PM</button>
+                                <button class="time-slot">2:00 PM</button>
+                                <button class="time-slot">3:00 PM</button>
+                                <button class="time-slot">4:00 PM</button>
+                                <button class="time-slot">5:00 PM</button>
+                            </div>
+                        </div>
+
+                        <div class="calendar-actions">
+                            <button class="btn btn-secondary" onclick="window.history.back()">Back</button>
+                            <button class="btn btn-primary" id="proceed-to-payment">Continue to Payment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Book Pandit</h3>
+                    <p>Your trusted platform for booking pandits for all religious ceremonies and events.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@bookpandit.com</li>
+                        <li><i class="fas fa-phone"></i> +91 1234567890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Temple Street, City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Book Pandit. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/calendar.js"></script>
+    <script>
+        document.getElementById('proceed-to-payment').addEventListener('click', function() {
+            const selectedDate = document.querySelector('.calendar-day.selected');
+            const selectedTime = document.querySelector('.time-slot.selected');
+            const selectedPandit = document.querySelector('.pandit-card.selected');
+            
+            if (!selectedDate || !selectedTime || !selectedPandit) {
+                alert('Please select a date, time, and pandit before proceeding');
+                return;
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const service = urlParams.get('service');
+            const type = urlParams.get('type');
+            
+            const date = new Date();
+            date.setMonth(document.getElementById('current-month').textContent.split(' ')[0]);
+            date.setDate(selectedDate.textContent);
+            
+            const time = selectedTime.textContent;
+            const pandit = selectedPandit.querySelector('h4').textContent;
+            
+            window.location.href = `payment.html?service=${service}&type=${type}&date=${date.toISOString()}&time=${time}&pandit=${encodeURIComponent(pandit)}`;
+        });
+    </script>
+</body>
+</html> 

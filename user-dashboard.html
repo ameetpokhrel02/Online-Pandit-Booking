@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Book Pandit</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <a href="index.html" class="logo-text">Book<span>Pandit</span></a>
+            </div>
+            <div class="nav-links">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-profile">
+                    <img src="images/logo/user.png" alt="User Avatar" class="avatar">
+                    <span class="username">Rajesh Sah</span>
+                    <a href="login.html" class="btn btn-secondary">Logout</a>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="dashboard-nav">
+                <a href="#overview" class="active"><i class="fas fa-home"></i> Overview</a>
+                <a href="#bookings"><i class="fas fa-calendar-alt"></i> My Bookings</a>
+                <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                <a href="#notifications"><i class="fas fa-bell"></i> Notifications</a>
+                <a href="#payments"><i class="fas fa-credit-card"></i> Payments</a>
+                <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h1>Welcome Back, John!</h1>
+                <p>Here's what's happening with your bookings.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-details">
+                        <h3>Active Bookings</h3>
+                        <p class="stat-number">3</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-history"></i></div>
+                    <div class="stat-details">
+                        <h3>Past Bookings</h3>
+                        <p class="stat-number">12</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+                    <div class="stat-details">
+                        <h3>Total Spent</h3>
+                        <p class="stat-number">₹25,000</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Bookings -->
+            <section class="dashboard-section">
+                <h2>Recent Bookings</h2>
+                <div class="bookings-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Pandit</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#BK001</td>
+                                <td>Wedding Ceremony</td>
+                                <td>15 Mar 2024</td>
+                                <td>Pandit Sharma</td>
+                                <td><span class="status-badge confirmed">Confirmed</span></td>
+                                <td><button class="btn btn-small">View Details</button></td>
+                            </tr>
+                            <tr>
+                                <td>#BK002</td>
+                                <td>House Warming</td>
+                                <td>20 Mar 2024</td>
+                                <td>Pandit Kumar</td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                                <td><button class="btn btn-small">View Details</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Upcoming Events -->
+            <section class="dashboard-section">
+                <h2>Upcoming Events</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">Mar</span>
+                        </div>
+                        <div class="event-details">
+                            <h3>Wedding Ceremony</h3>
+                            <p><i class="fas fa-clock"></i> 9:00 AM - 1:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Temple Hall, City</p>
+                        </div>
+                        <div class="event-actions">
+                            <button class="btn btn-secondary btn-small">View Details</button>
+                            <button class="btn btn-primary btn-small">Reschedule</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Book Pandit. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

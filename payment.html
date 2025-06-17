@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Book Pandit</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Khalti SDK -->
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.22.0.0.0/khalti-checkout.iffe.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <a href="index.html" class="logo-text">Book<span>Pandit</span></a>
+            </div>
+            <div class="nav-links">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="payment-page">
+        <div class="container">
+            <div class="payment-container">
+                <div class="payment-header">
+                    <h1>Complete Your Payment</h1>
+                    <p>Choose your preferred payment method</p>
+                </div>
+
+                <div class="payment-content">
+                    <div class="payment-summary">
+                        <h3>Booking Summary</h3>
+                        <div class="summary-details">
+                            <p><strong>Service Type:</strong> <span id="payment-service-type">Wedding Ceremony</span></p>
+                            <p><strong>Sub-Type:</strong> <span id="payment-service-subtype">Full Wedding</span></p>
+                            <p><strong>Date:</strong> <span id="payment-date">March 15, 2024</span></p>
+                            <p><strong>Time:</strong> <span id="payment-time">9:00 AM</span></p>
+                            <p><strong>Pandit:</strong> <span id="payment-pandit">Pandit Ramesh Sharma</span></p>
+                            <p><strong>Total Amount:</strong> <span id="payment-amount">₹15,000</span></p>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <h3>Select Payment Method</h3>
+                        <div class="payment-options">
+                            <div class="payment-option" data-gateway="esewa">
+                                <input type="radio" id="esewa" name="payment" value="esewa">
+                                <label for="esewa">
+                                    <img src="images/logo/esewa.png" alt="eSewa" class="payment-logo">
+                                    <span>eSewa</span>
+                                </label>
+                            </div>
+                            <div class="payment-option" data-gateway="imepay">
+                                <input type="radio" id="imepay" name="payment" value="imepay">
+                                <label for="imepay">
+                                    <img src="images/logo/imepay.png" alt="IME Pay" class="payment-logo">
+                                    <span>IME Pay</span>
+                                </label>
+                            </div>
+                            <div class="payment-option" data-gateway="khalti">
+                                <input type="radio" id="khalti" name="payment" value="khalti">
+                                <label for="khalti">
+                                    <img src="images/logo/khalti.png" alt="Khalti" class="payment-logo">
+                                    <span>Khalti</span>
+                                </label>
+                            </div>
+                            <div class="payment-option" data-gateway="connectips">
+                                <input type="radio" id="connectips" name="payment" value="connectips">
+                                <label for="connectips">
+                                    <img src="images/logo/connectips.png" alt="Connect IPS" class="payment-logo">
+                                    <span>Connect IPS</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="payment-actions">
+                            <button class="btn btn-secondary" onclick="window.history.back()">Back</button>
+                            <button class="btn btn-primary" id="proceed-payment">Proceed to Payment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Book Pandit</h3>
+                    <p>Your trusted platform for booking pandits for all religious ceremonies and events.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@bookpandit.com</li>
+                        <li><i class="fas fa-phone"></i> +91 1234567890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Temple Street, City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Book Pandit. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/payment.js"></script>
+</body>
+</html> 

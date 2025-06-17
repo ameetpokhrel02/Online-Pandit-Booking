@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.x.x",
+    "dotenv": "^16.4.7",
+    "express": "^4.x.x",
+    "jsonwebtoken": "^8.x.x",
+    "mysql2": "^2.x.x",
+    "sequelize": "^6.x.x"
+  }
+}

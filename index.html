@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Pandit - Online Pandit Booking Platform</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <a href="index.html" class="logo-text">Book<span>Pandit</span></a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="our-pandits.html">Our Pandits</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="video-background">
+                <video autoplay muted loop playsinline id="hero-video">
+                    <source src="/vidoes/astrology vide.mp4" type="video/mp4">
+                    <!-- Fallback background image if video doesn't load -->
+                    <img src="images/hero-bg.jpg" alt="Hero Background">
+                </video>
+                <div class="overlay"></div>
+            </div>
+            <div class="container">
+                <h1>Book Your Pandit Online</h1>
+                <p>Find experienced pandits for all your religious ceremonies and events. Book online with ease and convenience.</p>
+                <a href="services.html" class="btn btn-primary">Book Now</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="images/logo/weeding.png" alt="Wedding Ceremonies">
+                        <h3>Wedding Ceremonies</h3>
+                        <p>Expert pandits for all wedding rituals and ceremonies</p>
+                        <a href="services.html" class="btn btn-secondary">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/logo/grahiaprabesh.png" alt="House Warming">
+                        <h3>House Warming</h3>
+                        <p>Traditional house warming ceremonies and pujas</p>
+                        <a href="services.html" class="btn btn-secondary">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <img src="images/logo/naming.png" alt="Naming Ceremonies">
+                        <h3>Naming Ceremonies</h3>
+                        <p>Sacred naming ceremonies for newborns</p>
+                        <a href="services.html" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Book Pandit?</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Experienced Pandits</h3>
+                        <p>Verified and experienced pandits for all ceremonies</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <h3>Easy Booking</h3>
+                        <p>Simple and convenient online booking process</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-rupee-sign"></i>
+                        <h3>Transparent Pricing</h3>
+                        <p>Clear and competitive pricing for all services</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-headset"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Round-the-clock customer support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Book Your Pandit?</h2>
+                <p>Join thousands of satisfied customers who have booked their pandits through our platform.</p>
+                <a href="signup.html" class="btn btn-secondary">Get Started</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Book Pandit</h3>
+                    <p>Your trusted platform for booking pandits for all religious ceremonies and events.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@bookpandit.com</li>
+                        <li><i class="fas fa-phone"></i> +91 1234567890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Temple Street, City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Book Pandit. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
