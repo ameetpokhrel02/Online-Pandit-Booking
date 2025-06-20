@@ -1497,4 +1497,138 @@ a:hover {
     --shadow-color: rgba(0, 0, 0, 0.1);
     --gradient-start: #f8f9fa;
     --gradient-end: #e9ecef;
+}
+
+/* About Us Page Modern Styles */
+.mission {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--white) 100%);
+    padding: 4rem 0;
+}
+.mission-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+.mission-text {
+    flex: 2;
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+    padding: 2rem;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+.mission-text:hover {
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.16);
+    transform: translateY(-4px) scale(1.02);
+}
+.mission-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mission-image img {
+    max-width: 220px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(255, 107, 0, 0.10);
+    transition: transform 0.3s;
+}
+.mission-image img:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.values {
+    background: var(--light-gray);
+    padding: 4rem 0;
+}
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.value-card {
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+.value-card:hover {
+    box-shadow: 0 8px 32px rgba(255, 107, 0, 0.16);
+    transform: translateY(-6px) scale(1.04);
+}
+.value-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+}
+.value-card:hover i {
+    color: var(--secondary-color);
+}
+
+.team {
+    background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
+    padding: 4rem 0;
+}
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.team-member {
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.team-member:hover {
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.16);
+    transform: translateY(-6px) scale(1.04);
+}
+.team-member img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 4px solid var(--primary-color);
+    transition: border-color 0.3s, transform 0.3s;
+}
+.team-member:hover img {
+    border-color: var(--secondary-color);
+    transform: scale(1.08) rotate(2deg);
+}
+.team-member h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+.team-member .role {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+@media (max-width: 900px) {
+    .mission-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+@media (max-width: 600px) {
+    .mission-text, .value-card, .team-member {
+        padding: 1.2rem 0.7rem;
+    }
+    .mission-image img {
+        max-width: 140px;
+    }
 } 
