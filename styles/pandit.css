@@ -38,3 +38,24 @@
 .pandit-card p {
     color: var(--text-secondary);
 }
+
+/* Modern Pandit Info Styles */
+.pandit-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+.pandit-exp {
+    color: var(--secondary-color);
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+}
+.pandit-loc {
+    color: var(--primary-color);
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
