@@ -84,6 +84,12 @@
 
                     <!-- Contact Form -->
                     <div class="contact-form-container">
+                        <div class="pandit-slider">
+                            <img class="pandit-img" src="images/logo/pandit.png" alt="Pandit 1" style="opacity:1">
+                            <img class="pandit-img" src="images/logo/pandit7.png" alt="Pandit 2" style="opacity:0">
+                            <img class="pandit-img" src="images/logo/pandit8.png" alt="Pandit 3" style="opacity:0">
+                            <img class="pandit-img" src="images/logo/pandit10.png" alt="Pandit 4" style="opacity:0">
+                        </div>
                         <h2>Send us a Message</h2>
                         <form class="contact-form">
                             <div class="form-group">
@@ -183,5 +189,20 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+    // Pandit image wipe animation
+    const images = document.querySelectorAll('.pandit-slider .pandit-img');
+    let current = 0;
+    setInterval(() => {
+        images[current].style.transition = 'opacity 0.7s cubic-bezier(0.77,0,0.175,1)';
+        images[current].style.opacity = 0;
+        current = (current + 1) % images.length;
+        images[current].style.transition = 'none';
+        images[current].style.opacity = 1;
+        setTimeout(() => {
+            images[current].style.transition = 'opacity 0.7s cubic-bezier(0.77,0,0.175,1)';
+        }, 20);
+    }, 2500);
+    </script>
 </body>
 </html> 
