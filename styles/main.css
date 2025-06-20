@@ -1800,4 +1800,30 @@ a:hover {
     .cta {
         padding: 2rem 0.5rem;
     }
+}
+
+/* Team Social Icons */
+.team-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.social-icon {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    transition: color 0.3s, transform 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--primary-light);
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.social-icon:hover {
+    color: var(--white);
+    background: var(--primary-color);
+    transform: scale(1.15) rotate(-8deg);
+    box-shadow: 0 4px 16px rgba(255, 107, 0, 0.15);
 } 
