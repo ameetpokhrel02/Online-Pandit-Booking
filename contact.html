@@ -150,6 +150,35 @@
                 </div>
             </div>
         </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">How do I book a pandit?</button>
+                        <div class="faq-answer">You can book a pandit by selecting your desired service and filling out the booking form. Our team will confirm your booking shortly.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What payment methods are accepted?</button>
+                        <div class="faq-answer">We accept online payments via eSewa, Khalti, IME Pay, and bank transfer. Cash payments are also available for select services.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I choose a specific pandit?</button>
+                        <div class="faq-answer">Yes, you can request a specific pandit based on availability. Please mention your preference during booking.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What if I need to cancel or reschedule?</button>
+                        <div class="faq-answer">You can cancel or reschedule your booking by contacting our support team at least 24 hours in advance.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Do you provide services outside Kathmandu?</button>
+                        <div class="faq-answer">Yes, we provide services in multiple cities across Nepal. Please check availability for your location during booking.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -207,6 +236,20 @@
             images[current].style.transition = 'opacity 0.7s cubic-bezier(0.77,0,0.175,1)';
         }, 20);
     }, 2500);
+
+    // FAQ Accordion
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            this.classList.toggle('active');
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
     </script>
 </body>
 </html> 
