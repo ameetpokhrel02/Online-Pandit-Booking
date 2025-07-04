@@ -58,6 +58,8 @@
                       <th>Service</th>
                       <th>Date</th>
                       <th>Time</th>
+                      <th>User</th>
+                      <th>Notes</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -159,7 +161,7 @@
             actionBtns = `<button class='btn btn-success btn-sm' onclick="updateBookingStatus(${b.id}, 'completed')">Complete</button>`;
           }
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${b.id}</td><td>${b.service}</td><td>${b.date}</td><td>${b.time}</td><td>${b.status}</td><td>${actionBtns}</td>`;
+          tr.innerHTML = `<td>${b.id}</td><td>${b.service}</td><td>${b.date}</td><td>${b.time}</td><td>${b.user.full_name} (${b.user.email})</td><td>${b.ceremony_notes || ''}</td><td>${b.status}</td><td>${actionBtns}</td>`;
           tbody.appendChild(tr);
         });
       } else {

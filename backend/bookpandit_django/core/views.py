@@ -59,7 +59,16 @@ def pandit_bookings(request):
     except User.DoesNotExist:
         return JsonResponse({'error': 'Pandit not found.'}, status=404)
     bookings = Booking.objects.filter(pandit=pandit).order_by('-date')
-    data = [model_to_dict(b, fields=['id', 'service', 'date', 'time', 'status']) for b in bookings]
+    data = []
+    for b in bookings:
+        booking_dict = model_to_dict(b, fields=['id', 'service', 'date', 'time', 'status', 'ceremony_notes'])
+        # Add user info
+        booking_dict['user'] = {
+            'username': b.user.username,
+            'email': b.user.email,
+            'full_name': f"{b.user.first_name} {b.user.last_name}".strip()
+        }
+        data.append(booking_dict)
     return JsonResponse({'bookings': data})
 
 @csrf_exempt
