@@ -118,23 +118,65 @@
       })
       .catch(err => console.log('Backend not reachable:', err));
 
-    // Dummy bookings data for Pandit
-    const bookings = [
-      {id: 1, service: 'Marriage', date: '2025-07-10', time: '10:00 AM', status: 'Pending'},
-      {id: 2, service: 'Griha Pravesh', date: '2025-07-12', time: '2:00 PM', status: 'Confirmed'},
-      {id: 3, service: 'Puja', date: '2025-07-15', time: '9:00 AM', status: 'Completed'}
-    ];
-    const tbody = document.getElementById('bookings-table-body');
-    bookings.forEach(b => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${b.id}</td><td>${b.service}</td><td>${b.date}</td><td>${b.time}</td><td>${b.status}</td><td><button class='btn btn-secondary btn-sm'>View</button></td>`;
-      tbody.appendChild(tr);
-    });
+    // --- Pandit Dashboard Integration ---
+    // Replace with actual logged-in pandit username (for demo, prompt)
+    let panditUsername = localStorage.getItem('panditUsername');
+    if (!panditUsername) {
+      panditUsername = prompt('Enter your Pandit username (for demo):');
+      localStorage.setItem('panditUsername', panditUsername);
+    }
 
-    // Profile form handler (dummy, just shows alert)
-    document.getElementById('pandit-profile-form').addEventListener('submit', function(e) {
+    // Fetch bookings for this Pandit
+    async function fetchBookings() {
+      const tbody = document.getElementById('bookings-table-body');
+      tbody.innerHTML = '';
+      const res = await fetch(`http://127.0.0.1:8000/api/pandit/bookings/?pandit=${panditUsername}`);
+      const data = await res.json();
+      if (data.bookings && data.bookings.length > 0) {
+        data.bookings.forEach(b => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${b.id}</td><td>${b.service}</td><td>${b.date}</td><td>${b.time}</td><td>${b.status}</td><td>
+            <button class='btn btn-secondary btn-sm' onclick="updateBookingStatus(${b.id}, 'confirmed')">Accept</button>
+            <button class='btn btn-danger btn-sm' onclick="updateBookingStatus(${b.id}, 'rejected')">Reject</button>
+            <button class='btn btn-success btn-sm' onclick="updateBookingStatus(${b.id}, 'completed')">Complete</button>
+          </td>`;
+          tbody.appendChild(tr);
+        });
+      } else {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan='6'>No bookings found.</td>`;
+        tbody.appendChild(tr);
+      }
+    }
+    fetchBookings();
+
+    // Update booking status
+    window.updateBookingStatus = async function(bookingId, status) {
+      const res = await fetch('http://127.0.0.1:8000/api/pandit/booking-status/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ booking_id: bookingId, status })
+      });
+      const data = await res.json();
+      alert(data.message || data.error);
+      fetchBookings();
+    }
+
+    // Profile form handler
+    document.getElementById('pandit-profile-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      alert('Profile updated! (This is a demo. Connect to backend for real update.)');
+      const email = document.getElementById('pandit-email').value;
+      const name = document.getElementById('pandit-name').value;
+      // For demo, split name into first/last
+      const [first_name, ...lastArr] = name.split(' ');
+      const last_name = lastArr.join(' ');
+      const res = await fetch('http://127.0.0.1:8000/api/pandit/profile/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: panditUsername, email, first_name, last_name })
+      });
+      const data = await res.json();
+      alert(data.message || data.error);
     });
     </script>
 </body>
