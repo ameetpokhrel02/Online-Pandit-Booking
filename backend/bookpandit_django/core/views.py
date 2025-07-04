@@ -1,3 +1,48 @@
+# ...existing code...
+from .models import ChatMessage
+from django.utils import timezone
+from django.db.models import Q
+# --- Chat APIs ---
+@csrf_exempt
+@require_http_methods(["POST"])
+def send_message(request):
+    data = json.loads(request.body)
+    sender_username = data.get('sender')
+    receiver_username = data.get('receiver')
+    message = data.get('message')
+    if not (sender_username and receiver_username and message):
+        return JsonResponse({'error': 'Missing fields.'}, status=400)
+    try:
+        sender = User.objects.get(username=sender_username)
+        receiver = User.objects.get(username=receiver_username)
+    except User.DoesNotExist:
+        return JsonResponse({'error': 'User not found.'}, status=404)
+    chat = ChatMessage.objects.create(sender=sender, receiver=receiver, message=message, timestamp=timezone.now())
+    return JsonResponse({'message': 'Message sent.', 'id': chat.id, 'timestamp': chat.timestamp})
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def get_messages(request):
+    user1 = request.GET.get('user1')
+    user2 = request.GET.get('user2')
+    if not (user1 and user2):
+        return JsonResponse({'error': 'Missing users.'}, status=400)
+    messages = ChatMessage.objects.filter(
+        (Q(sender__username=user1) & Q(receiver__username=user2)) |
+        (Q(sender__username=user2) & Q(receiver__username=user1))
+    ).order_by('timestamp')
+    data = [
+        {
+            'id': m.id,
+            'sender': m.sender.username,
+            'receiver': m.receiver.username,
+            'message': m.message,
+            'timestamp': m.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+            'is_read': m.is_read
+        }
+        for m in messages
+    ]
+    return JsonResponse({'messages': data})
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from .models import Booking, User
