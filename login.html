@@ -41,7 +41,7 @@
                     <h1>Welcome Back</h1>
                     <p>Login to your account to continue</p>
                     
-                    <form class="auth-form">
+                    <form class="auth-form" id="login-form">
                         <div class="form-group">
                             <label for="email">Email Address</label>
                             <div class="input-group">
@@ -133,6 +133,32 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+    // Login form handler for all roles
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        // For this demo, username is email
+        const response = await fetch('http://127.0.0.1:8000/api/login/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: email, password })
+        });
+        const data = await response.json();
+        if (response.ok) {
+            if (data.role === 'admin') {
+                window.location.href = 'admin-dashboard.html';
+            } else if (data.role === 'pandit') {
+                window.location.href = 'pandit-dashboard.html';
+            } else {
+                window.location.href = 'user-dashboard.html';
+            }
+        } else {
+            alert('Login failed: ' + (data.error || 'Unknown error'));
+        }
+    });
+    </script>
 </body>
 <script>
 // Connect to Django backend and show a message

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandit Dashboard - Book Pandit</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <a href="index.html" class="logo-text">Book<span>Pandit</span></a>
+            </div>
+            <div class="nav-links">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-profile">
+                    <img src="images/logo/pandit.png" alt="Pandit Avatar" class="avatar">
+                    <span class="username">Pandit</span>
+                    <a href="login.html" class="btn btn-secondary">Logout</a>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="dashboard-nav">
+                <a href="#overview" class="active"><i class="fas fa-home"></i> Overview</a>
+                <a href="#bookings"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+            </nav>
+        </aside>
+
+        <!-- Main Section -->
+        <main class="dashboard-main">
+            <section id="overview">
+                <h2>Welcome, Pandit!</h2>
+                <p>This is your dashboard. Here you can view your bookings, manage your profile, and more.</p>
+            </section>
+            <section id="bookings">
+                <h2>My Bookings</h2>
+                <p>All your assigned bookings will appear here.</p>
+            </section>
+            <section id="profile">
+                <h2>Profile</h2>
+                <p>Update your profile information here.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Book Pandit. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+    // Connect to Django backend and show a message
+    fetch('http://127.0.0.1:8000/api/hello/')
+      .then(response => response.json())
+      .then(data => {
+        const msgDiv = document.createElement('div');
+        msgDiv.textContent = 'Backend says: ' + data.message;
+        msgDiv.style.background = '#e6ffe6';
+        msgDiv.style.color = '#222';
+        msgDiv.style.padding = '10px';
+        msgDiv.style.margin = '20px auto';
+        msgDiv.style.textAlign = 'center';
+        msgDiv.style.maxWidth = '400px';
+        document.body.insertBefore(msgDiv, document.body.firstChild);
+      })
+      .catch(err => console.log('Backend not reachable:', err));
+    </script>
+</body>
+</html>
