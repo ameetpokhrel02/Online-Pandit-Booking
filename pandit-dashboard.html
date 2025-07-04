@@ -120,26 +120,46 @@
 
     // --- Pandit Dashboard Integration ---
     // Replace with actual logged-in pandit username (for demo, prompt)
-    let panditUsername = localStorage.getItem('panditUsername');
-    if (!panditUsername) {
-      panditUsername = prompt('Enter your Pandit username (for demo):');
-      localStorage.setItem('panditUsername', panditUsername);
+    // Improved authentication: check login state
+    let user = null;
+    try {
+      user = JSON.parse(localStorage.getItem('user'));
+    } catch (e) {}
+    if (!user || user.role !== 'pandit') {
+      window.location.href = 'login.html';
     }
+    const panditUsername = user.username;
+    // Show Pandit name in navbar
+    document.querySelector('.user-profile .username').textContent = user.username;
+    // Logout button
+    document.querySelector('.user-profile .btn.btn-secondary').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('user');
+      window.location.href = 'login.html';
+    });
 
     // Fetch bookings for this Pandit
     async function fetchBookings() {
       const tbody = document.getElementById('bookings-table-body');
       tbody.innerHTML = '';
+      // Show loading
+      const loadingTr = document.createElement('tr');
+      loadingTr.innerHTML = `<td colspan='6'>Loading...</td>`;
+      tbody.appendChild(loadingTr);
       const res = await fetch(`http://127.0.0.1:8000/api/pandit/bookings/?pandit=${panditUsername}`);
       const data = await res.json();
+      tbody.innerHTML = '';
       if (data.bookings && data.bookings.length > 0) {
         data.bookings.forEach(b => {
+          let actionBtns = '';
+          if (b.status === 'pending') {
+            actionBtns = `<button class='btn btn-secondary btn-sm' onclick="updateBookingStatus(${b.id}, 'confirmed')">Accept</button>
+                          <button class='btn btn-danger btn-sm' onclick="updateBookingStatus(${b.id}, 'rejected')">Reject</button>`;
+          } else if (b.status === 'confirmed') {
+            actionBtns = `<button class='btn btn-success btn-sm' onclick="updateBookingStatus(${b.id}, 'completed')">Complete</button>`;
+          }
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${b.id}</td><td>${b.service}</td><td>${b.date}</td><td>${b.time}</td><td>${b.status}</td><td>
-            <button class='btn btn-secondary btn-sm' onclick="updateBookingStatus(${b.id}, 'confirmed')">Accept</button>
-            <button class='btn btn-danger btn-sm' onclick="updateBookingStatus(${b.id}, 'rejected')">Reject</button>
-            <button class='btn btn-success btn-sm' onclick="updateBookingStatus(${b.id}, 'completed')">Complete</button>
-          </td>`;
+          tr.innerHTML = `<td>${b.id}</td><td>${b.service}</td><td>${b.date}</td><td>${b.time}</td><td>${b.status}</td><td>${actionBtns}</td>`;
           tbody.appendChild(tr);
         });
       } else {
