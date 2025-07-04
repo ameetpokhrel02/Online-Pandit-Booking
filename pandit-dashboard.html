@@ -51,11 +51,43 @@
             </section>
             <section id="bookings">
                 <h2>My Bookings</h2>
-                <p>All your assigned bookings will appear here.</p>
+                <table class="dashboard-table">
+                  <thead>
+                    <tr>
+                      <th>Booking ID</th>
+                      <th>Service</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bookings-table-body">
+                    <!-- Booking rows will be inserted here by JS -->
+                  </tbody>
+                </table>
             </section>
             <section id="profile">
                 <h2>Profile</h2>
-                <p>Update your profile information here.</p>
+                <form id="pandit-profile-form" class="profile-form">
+                  <div class="form-group">
+                    <label for="pandit-name">Full Name</label>
+                    <input type="text" id="pandit-name" name="pandit-name" value="Pandit Name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="pandit-email">Email</label>
+                    <input type="email" id="pandit-email" name="pandit-email" value="pandit@email.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="pandit-bio">Bio</label>
+                    <textarea id="pandit-bio" name="pandit-bio" rows="3">Experienced Pandit for all rituals.</textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="pandit-skills">Skills</label>
+                    <input type="text" id="pandit-skills" name="pandit-skills" value="Marriage, Griha Pravesh, Puja">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Update Profile</button>
+                </form>
             </section>
         </main>
     </div>
@@ -85,6 +117,25 @@
         document.body.insertBefore(msgDiv, document.body.firstChild);
       })
       .catch(err => console.log('Backend not reachable:', err));
+
+    // Dummy bookings data for Pandit
+    const bookings = [
+      {id: 1, service: 'Marriage', date: '2025-07-10', time: '10:00 AM', status: 'Pending'},
+      {id: 2, service: 'Griha Pravesh', date: '2025-07-12', time: '2:00 PM', status: 'Confirmed'},
+      {id: 3, service: 'Puja', date: '2025-07-15', time: '9:00 AM', status: 'Completed'}
+    ];
+    const tbody = document.getElementById('bookings-table-body');
+    bookings.forEach(b => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${b.id}</td><td>${b.service}</td><td>${b.date}</td><td>${b.time}</td><td>${b.status}</td><td><button class='btn btn-secondary btn-sm'>View</button></td>`;
+      tbody.appendChild(tr);
+    });
+
+    // Profile form handler (dummy, just shows alert)
+    document.getElementById('pandit-profile-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Profile updated! (This is a demo. Connect to backend for real update.)');
+    });
     </script>
 </body>
 </html>
