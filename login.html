@@ -134,4 +134,21 @@
 
     <script src="js/main.js"></script>
 </body>
+<script>
+// Connect to Django backend and show a message
+fetch('http://127.0.0.1:8000/api/hello/')
+  .then(response => response.json())
+  .then(data => {
+    const msgDiv = document.createElement('div');
+    msgDiv.textContent = 'Backend says: ' + data.message;
+    msgDiv.style.background = '#e6ffe6';
+    msgDiv.style.color = '#222';
+    msgDiv.style.padding = '10px';
+    msgDiv.style.margin = '20px auto';
+    msgDiv.style.textAlign = 'center';
+    msgDiv.style.maxWidth = '400px';
+    document.body.insertBefore(msgDiv, document.body.firstChild);
+  })
+  .catch(err => console.log('Backend not reachable:', err));
+</script>
 </html> 
