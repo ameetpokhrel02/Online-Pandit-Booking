@@ -203,6 +203,137 @@
         });
     });
 </script>
+
+<!-- Floating Chat Box -->
+<style>
+#chatbox-float-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+#chatbox-container {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 320px;
+  max-width: 90vw;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+#chatbox-header {
+  background: #007bff;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#chatbox-messages {
+  height: 250px;
+  overflow-y: auto;
+  padding: 10px;
+  background: #f9f9f9;
+}
+#chatbox-input {
+  display: flex;
+  border-top: 1px solid #eee;
+}
+#chatbox-input input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 1rem;
+}
+#chatbox-input button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+}
+</style>
+<button id="chatbox-float-btn" title="Chat with Pandit"><i class="fas fa-comments"></i></button>
+<div id="chatbox-container">
+  <div id="chatbox-header">Chat with Pandit <span id="chatbox-close" style="cursor:pointer;">&times;</span></div>
+  <div id="chatbox-messages"></div>
+  <form id="chatbox-input">
+    <input type="text" id="chatbox-message-input" placeholder="Type your message..." autocomplete="off" required />
+    <button type="submit">Send</button>
+  </form>
+</div>
+<script>
+// --- Floating Chat Box Logic ---
+const chatBtn = document.getElementById('chatbox-float-btn');
+const chatBox = document.getElementById('chatbox-container');
+const chatClose = document.getElementById('chatbox-close');
+const chatMessages = document.getElementById('chatbox-messages');
+const chatInputForm = document.getElementById('chatbox-input');
+const chatInput = document.getElementById('chatbox-message-input');
+
+// For demo: user is guest, pandit is 'pandit1'
+let chatUser = localStorage.getItem('chatUser') || prompt('Enter your name for chat:') || 'Guest';
+localStorage.setItem('chatUser', chatUser);
+const chatPandit = 'pandit1'; // You can make this dynamic
+
+function appendMessage(sender, message, time) {
+  const div = document.createElement('div');
+  div.style.margin = '5px 0';
+  div.innerHTML = `<b style='color:${sender===chatUser?'#007bff':'#222'}'>${sender}:</b> ${message} <span style='font-size:0.8em;color:#888;'>${time||''}</span>`;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+async function fetchMessages() {
+  const res = await fetch(`http://127.0.0.1:8000/api/chat/get/?user1=${chatUser}&user2=${chatPandit}`);
+  const data = await res.json();
+  chatMessages.innerHTML = '';
+  if (data.messages) {
+    data.messages.forEach(m => appendMessage(m.sender, m.message, m.timestamp));
+  }
+}
+
+let chatInterval = null;
+chatBtn.onclick = function() {
+  chatBox.style.display = 'flex';
+  fetchMessages();
+  chatInterval = setInterval(fetchMessages, 2000);
+}
+chatClose.onclick = function() {
+  chatBox.style.display = 'none';
+  clearInterval(chatInterval);
+}
+chatInputForm.onsubmit = async function(e) {
+  e.preventDefault();
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+  await fetch('http://127.0.0.1:8000/api/chat/send/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sender: chatUser, receiver: chatPandit, message: msg })
+  });
+  chatInput.value = '';
+  fetchMessages();
+}
+</script>
 <script>
 // Example: Fetch hello message from Django backend and display it on the homepage
 fetch('http://127.0.0.1:8000/api/hello/')
