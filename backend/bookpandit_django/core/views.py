@@ -1,8 +1,21 @@
-# ...existing code...
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import get_user_model
+import json
+from .forms import UserSignupForm
 from .models import ChatMessage
 from django.utils import timezone
 from django.db.models import Q
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth.decorators import login_required
+from .models import Booking, User
+from django.forms.models import model_to_dict
+
+User = get_user_model()
+
 # --- Chat APIs ---
+
 @csrf_exempt
 @require_http_methods(["POST"])
 def send_message(request):
@@ -43,10 +56,7 @@ def get_messages(request):
         for m in messages
     ]
     return JsonResponse({'messages': data})
-from django.views.decorators.http import require_http_methods
-from django.contrib.auth.decorators import login_required
-from .models import Booking, User
-from django.forms.models import model_to_dict
+
 @csrf_exempt
 @require_http_methods(["GET"])
 def pandit_bookings(request):
@@ -104,14 +114,6 @@ def update_booking_status(request):
     booking.status = status
     booking.save()
     return JsonResponse({'message': f'Booking status updated to {status}.'})
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth import get_user_model
-import json
-from .forms import UserSignupForm
-
-User = get_user_model()
 
 def hello(request):
     return JsonResponse({'message': 'Hello from Django!'})
@@ -134,17 +136,20 @@ def signup(request):
 @csrf_exempt
 def login(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        username = data.get('username')
+        try:
+            data = json.loads(request.body)
+        except Exception:
+            data = request.POST
+        username = data.get('username') or data.get('email')
         password = data.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             # Only allow admin login if role is admin
             if user.role == 'admin' or user.role in ['user', 'pandit']:
                 auth_login(request, user)
-                return JsonResponse({'message': 'Login successful!', 'role': user.role})
+                return JsonResponse({'success': True, 'message': 'Login successful!', 'role': user.role})
             else:
-                return JsonResponse({'error': 'Invalid role.'}, status=403)
+                return JsonResponse({'success': False, 'error': 'Invalid role.'}, status=403)
         else:
-            return JsonResponse({'error': 'Invalid credentials.'}, status=401)
-    return JsonResponse({'error': 'POST request required.'}, status=405)
+            return JsonResponse({'success': False, 'error': 'Invalid credentials.'}, status=401)
+    return JsonResponse({'success': False, 'error': 'POST request required.'}, status=405)
