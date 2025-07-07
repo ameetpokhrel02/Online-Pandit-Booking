@@ -11,4 +11,5 @@ urlpatterns = [
     path('chat/send/', views.send_message, name='send_message'),
     path('chat/get/', views.get_messages, name='get_messages'),
     path('book/', views.create_booking, name='create_booking'),
+    path('user/bookings/', views.user_bookings, name='user_bookings'),
 ]

@@ -1,3 +1,30 @@
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.forms.models import model_to_dict
+# ...existing code...
+@csrf_exempt
+@require_http_methods(["GET"])
+def user_bookings(request):
+    email = request.GET.get('email')
+    if not email:
+        return JsonResponse({'success': False, 'error': 'Email required.'}, status=400)
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'User not found.'}, status=404)
+    bookings = Booking.objects.filter(user=user).order_by('-date')
+    data = []
+    for b in bookings:
+        booking_dict = model_to_dict(b, fields=['id', 'service', 'date', 'time', 'status', 'ceremony_notes'])
+        # Add pandit info
+        booking_dict['pandit'] = {
+            'username': b.pandit.username,
+            'email': b.pandit.email,
+            'full_name': f"{b.pandit.first_name} {b.pandit.last_name}".strip()
+        }
+        data.append(booking_dict)
+    return JsonResponse({'success': True, 'bookings': data})
 # Booking creation API
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
