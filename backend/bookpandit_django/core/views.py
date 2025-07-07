@@ -121,17 +121,20 @@ def hello(request):
 @csrf_exempt
 def signup(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
+        try:
+            data = json.loads(request.body)
+        except Exception:
+            data = request.POST
         # Only allow user or pandit role for signup
         if data.get('role') not in ['user', 'pandit']:
             return JsonResponse({'error': 'Invalid role for signup.'}, status=400)
         form = UserSignupForm(data)
         if form.is_valid():
             user = form.save()
-            return JsonResponse({'message': 'Signup successful!', 'role': user.role})
+            return JsonResponse({'success': True, 'message': 'Signup successful!', 'role': user.role})
         else:
-            return JsonResponse({'error': form.errors}, status=400)
-    return JsonResponse({'error': 'POST request required.'}, status=405)
+            return JsonResponse({'success': False, 'error': form.errors}, status=400)
+    return JsonResponse({'success': False, 'error': 'POST request required.'}, status=405)
 
 @csrf_exempt
 def login(request):
