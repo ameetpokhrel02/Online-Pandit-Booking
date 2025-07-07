@@ -1,3 +1,15 @@
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.forms.models import model_to_dict
+from django.contrib.auth import authenticate, login as auth_login, get_user_model
+import json
+from .forms import UserSignupForm
+from .models import ChatMessage, Booking, User
+from django.utils import timezone
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 # Admin: Get all bookings
 @csrf_exempt
 @require_http_methods(["GET"])
@@ -22,7 +34,14 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.forms.models import model_to_dict
-# ...existing code...
+from django.contrib.auth import authenticate, login as auth_login, get_user_model
+import json
+from .forms import UserSignupForm
+from .models import ChatMessage, Booking, User
+from django.utils import timezone
+from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 @csrf_exempt
 @require_http_methods(["GET"])
 def user_bookings(request):
