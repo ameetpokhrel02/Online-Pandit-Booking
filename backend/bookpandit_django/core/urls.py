@@ -12,4 +12,5 @@ urlpatterns = [
     path('chat/get/', views.get_messages, name='get_messages'),
     path('book/', views.create_booking, name='create_booking'),
     path('user/bookings/', views.user_bookings, name='user_bookings'),
+    path('admin/all-bookings/', views.all_bookings, name='all_bookings'),
 ]

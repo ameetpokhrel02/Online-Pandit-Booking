@@ -1,3 +1,23 @@
+# Admin: Get all bookings
+@csrf_exempt
+@require_http_methods(["GET"])
+def all_bookings(request):
+    bookings = Booking.objects.all().order_by('-date')
+    data = []
+    for b in bookings:
+        booking_dict = model_to_dict(b, fields=['id', 'service', 'date', 'time', 'status', 'ceremony_notes'])
+        booking_dict['user'] = {
+            'username': b.user.username,
+            'email': b.user.email,
+            'full_name': f"{b.user.first_name} {b.user.last_name}".strip()
+        }
+        booking_dict['pandit'] = {
+            'username': b.pandit.username,
+            'email': b.pandit.email,
+            'full_name': f"{b.pandit.first_name} {b.pandit.last_name}".strip()
+        }
+        data.append(booking_dict)
+    return JsonResponse({'success': True, 'bookings': data})
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
