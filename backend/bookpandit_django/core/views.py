@@ -1,3 +1,46 @@
+# Booking creation API
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
+def create_booking(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+        except Exception:
+            data = request.POST
+        # Required fields
+        required_fields = ['service', 'date', 'time', 'pandit', 'user_email', 'user_fullname']
+        for field in required_fields:
+            if not data.get(field):
+                return JsonResponse({'success': False, 'error': f'Missing field: {field}'}, status=400)
+        # Find or create user by email
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        user, _ = User.objects.get_or_create(email=data['user_email'], defaults={
+            'username': data['user_email'],
+            'first_name': data.get('user_fullname', '').split(' ')[0],
+            'last_name': ' '.join(data.get('user_fullname', '').split(' ')[1:]),
+            'role': 'user',
+        })
+        # Find pandit by username or email
+        try:
+            pandit = User.objects.get(username=data['pandit'], role='pandit')
+        except User.DoesNotExist:
+            try:
+                pandit = User.objects.get(email=data['pandit'], role='pandit')
+            except User.DoesNotExist:
+                return JsonResponse({'success': False, 'error': 'Pandit not found.'}, status=404)
+        # Create booking
+        from .models import Booking
+        booking = Booking.objects.create(
+            user=user,
+            pandit=pandit,
+            service=data['service'],
+            date=data['date'],
+            time=data['time'],
+            ceremony_notes=data.get('notes', ''),
+        )
+        return JsonResponse({'success': True, 'message': 'Booking created!', 'booking_id': booking.id})
+    return JsonResponse({'success': False, 'error': 'POST request required.'}, status=405)
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login as auth_login

@@ -10,4 +10,5 @@ urlpatterns = [
     path('pandit/booking-status/', views.update_booking_status, name='update_booking_status'),
     path('chat/send/', views.send_message, name='send_message'),
     path('chat/get/', views.get_messages, name='get_messages'),
+    path('book/', views.create_booking, name='create_booking'),
 ]
