@@ -142,7 +142,20 @@ def login(request):
             data = request.POST
         username = data.get('username') or data.get('email')
         password = data.get('password')
-        user = authenticate(request, username=username, password=password)
+        # Support login with email or username
+        user = None
+        if username:
+            # Try username first
+            user = authenticate(request, username=username, password=password)
+            if user is None:
+                # Try email if username failed
+                from django.contrib.auth import get_user_model
+                User = get_user_model()
+                try:
+                    user_obj = User.objects.get(email=username)
+                    user = authenticate(request, username=user_obj.username, password=password)
+                except User.DoesNotExist:
+                    user = None
         if user is not None:
             # Only allow admin login if role is admin
             if user.role == 'admin' or user.role in ['user', 'pandit']:
