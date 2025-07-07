@@ -1,3 +1,13 @@
+# Create default pandit1 user if not exists
+from django.db.models.signals import post_migrate
+from django.dispatch import receiver
+
+@receiver(post_migrate)
+def create_default_pandit(sender, **kwargs):
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    if not User.objects.filter(username='pandit1').exists():
+        User.objects.create_user(username='pandit1', password='pandit123', role='pandit', email='pandit1@example.com')
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
