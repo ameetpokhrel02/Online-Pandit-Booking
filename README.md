@@ -1,6 +1,10 @@
 ## MobileView
  <img width="410" height="778" alt="image" src="https://github.com/user-attachments/assets/5bf4da18-3aec-40fb-9819-e69b96c24566" />
 
+ ## Web View
+ <img width="1857" height="950" alt="image" src="https://github.com/user-attachments/assets/ebeeee98-53b5-487b-b946-d41452b56f1d" />
+
+
 # Book Pandit - Online Pandit Booking Platform
 
 A modern web platform for booking pandits for religious ceremonies and events.
