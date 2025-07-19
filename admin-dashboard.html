@@ -186,22 +186,25 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+    // Fetch and display all bookings for admin
+    document.addEventListener('DOMContentLoaded', async function() {
+      const res = await fetch('http://127.0.0.1:8000/api/admin/all-bookings/');
+      const data = await res.json();
+      const tbody = document.querySelector('.bookings-table tbody');
+      tbody.innerHTML = '';
+      if (data.success && data.bookings.length > 0) {
+        data.bookings.forEach(b => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>#BK${b.id.toString().padStart(3,'0')}</td><td>${b.user.full_name} (${b.user.email})</td><td>${b.service}</td><td>${b.date}</td><td>-</td><td><span class='status-badge ${b.status}'>${b.status.charAt(0).toUpperCase()+b.status.slice(1)}</span></td><td><div class='action-buttons'><button class='btn btn-icon' title='View'><i class='fas fa-eye'></i></button><button class='btn btn-icon' title='Edit'><i class='fas fa-edit'></i></button><button class='btn btn-icon' title='Delete'><i class='fas fa-trash'></i></button></div></td>`;
+          tbody.appendChild(tr);
+        });
+      } else {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan='7'>No bookings found.</td>`;
+        tbody.appendChild(tr);
+      }
+    });
+    </script>
 </body>
-<script>
-// Connect to Django backend and show a message
-fetch('http://127.0.0.1:8000/api/hello/')
-  .then(response => response.json())
-  .then(data => {
-    const msgDiv = document.createElement('div');
-    msgDiv.textContent = 'Backend says: ' + data.message;
-    msgDiv.style.background = '#e6ffe6';
-    msgDiv.style.color = '#222';
-    msgDiv.style.padding = '10px';
-    msgDiv.style.margin = '20px auto';
-    msgDiv.style.textAlign = 'center';
-    msgDiv.style.maxWidth = '400px';
-    document.body.insertBefore(msgDiv, document.body.firstChild);
-  })
-  .catch(err => console.log('Backend not reachable:', err));
-</script>
-</html> 
+</html>

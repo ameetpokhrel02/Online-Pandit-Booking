@@ -192,6 +192,42 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+    // Booking form handler
+    document.querySelector('.booking-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      // Collect form data
+      const service = document.getElementById('service-type').value;
+      const date = document.getElementById('ceremony-date').value;
+      const time = document.getElementById('ceremony-time').value;
+      const fullname = document.getElementById('fullname').value;
+      const email = document.getElementById('email').value;
+      const notes = document.getElementById('additional-notes').value;
+      // For demo, assign pandit1 as the pandit
+      const pandit = 'pandit1';
+      // POST to backend
+      const res = await fetch('http://127.0.0.1:8000/api/book/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service,
+          date,
+          time,
+          user_email: email,
+          user_fullname: fullname,
+          pandit,
+          notes
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert('Booking successful!');
+        window.location.href = 'payment.html';
+      } else {
+        alert('Booking failed: ' + (data.error || 'Unknown error'));
+      }
+    });
+    </script>
 </body>
 <script>
 // Connect to Django backend and show a message
@@ -210,4 +246,4 @@ fetch('http://127.0.0.1:8000/api/hello/')
   })
   .catch(err => console.log('Backend not reachable:', err));
 </script>
-</html> 
+</html>

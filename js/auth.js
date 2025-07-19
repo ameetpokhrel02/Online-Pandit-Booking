@@ -48,41 +48,64 @@ function initializePasswordToggle() {
 
 function handleSignup(event) {
     event.preventDefault();
-    
     const form = event.target;
     const formData = new FormData(form);
-    
-    // Validate passwords match
     const password = formData.get('password');
     const confirmPassword = formData.get('confirm-password');
-    
     if (password !== confirmPassword) {
         alert('Passwords do not match');
         return;
     }
-    
-    // Validate password strength
     if (!isPasswordStrong(password)) {
         alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character');
         return;
     }
-    
-    // Here you would typically send the data to your backend
-    // For now, we'll just show a success message and redirect to login
-    alert('Account created successfully! Please login to continue.');
-    window.location.href = 'login.html';
+    // Send signup data to Django backend
+    fetch('http://localhost:8000/api/signup/', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Account created successfully! Please login to continue.');
+            window.location.href = 'login.html';
+        } else {
+            alert(data.error || 'Signup failed.');
+        }
+    })
+    .catch(() => {
+        alert('Signup failed. Please try again.');
+    });
 }
 
 function handleLogin(event) {
     event.preventDefault();
-    
     const form = event.target;
     const formData = new FormData(form);
-    
-    // Here you would typically send the data to your backend
-    // For now, we'll just show a success message and redirect to home
-    alert('Login successful!');
-    window.location.href = 'index.html';
+    // Send login data to Django backend
+    fetch('http://localhost:8000/api/login/', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Redirect based on role
+            if (data.role === 'admin') {
+                window.location.href = 'admin-dashboard.html';
+            } else if (data.role === 'pandit') {
+                window.location.href = 'pandit-dashboard.html';
+            } else {
+                window.location.href = 'user-dashboard.html';
+            }
+        } else {
+            alert(data.error || 'Login failed.');
+        }
+    })
+    .catch(() => {
+        alert('Login failed. Please try again.');
+    });
 }
 
 function handleGoogleLogin() {
@@ -103,4 +126,4 @@ function isPasswordStrong(password) {
     // - At least one special character
     const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return strongPasswordRegex.test(password);
-} 
+}
