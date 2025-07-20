@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Book Pandit Ad Popup -->
+    <div id="ad-popup" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);z-index:99999;align-items:center;justify-content:center;">
+      <div style="position:relative;background:#fff;padding:0;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,0.2);max-width:90vw;max-height:90vh;display:flex;flex-direction:column;align-items:flex-end;">
+        <button id="ad-close-btn" style="background:transparent;border:none;font-size:2rem;line-height:1;position:absolute;top:8px;right:16px;cursor:pointer;z-index:2;">&times;</button>
+        <img src="images/logo/Book pandit ads.png" alt="Book Pandit Ad" style="max-width:80vw;max-height:80vh;display:block;border-radius:10px;" />
+      </div>
+    </div>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -192,6 +199,19 @@
         </div>
     </footer>
     <script src="js/main.js"></script>
+    <script>
+    // Show ad popup on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      var adPopup = document.getElementById('ad-popup');
+      var adClose = document.getElementById('ad-close-btn');
+      if (adPopup && adClose) {
+        adPopup.style.display = 'flex';
+        adClose.onclick = function() {
+          adPopup.style.display = 'none';
+        };
+      }
+    });
+    </script>
     <script>
     // FAQ Accordions
     const faqQuestions = document.querySelectorAll('.faq-question');

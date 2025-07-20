@@ -180,7 +180,7 @@
         translations = data;
         document.getElementById('lang-switcher').value = currentLang;
         applyTranslations();
-        // Only sets event after translations loaded
+        // Only sets event after translations loadeds
         document.getElementById('lang-switcher').addEventListener('change', function() {
           setLang(this.value);
         });
