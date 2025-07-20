@@ -22,9 +22,13 @@
                 </button>
                 <div class="user-profile">
                     <img src="images/logo/user.png" alt="User Avatar" class="avatar">
-                    <span class="username">Rajesh Sah</span>
-                    <a href="login.html" class="btn btn-secondary">Logout</a>
+                    <span class="username" data-i18n="username">Rajesh Sah</span>
+                    <a href="login.html" class="btn btn-secondary" data-i18n="logout">Logout</a>
                 </div>
+                <select id="lang-switcher" style="margin-left:10px;">
+                  <option value="en">EN</option>
+                  <option value="np">ने</option>
+                </select>
             </div>
             <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -37,20 +41,20 @@
         <!-- Sidebar -->
         <aside class="dashboard-sidebar">
             <nav class="dashboard-nav">
-                <a href="#overview" class="active"><i class="fas fa-home"></i> Overview</a>
-                <a href="#bookings"><i class="fas fa-calendar-alt"></i> My Bookings</a>
-                <a href="#profile"><i class="fas fa-user"></i> Profile</a>
-                <a href="#notifications"><i class="fas fa-bell"></i> Notifications</a>
-                <a href="#payments"><i class="fas fa-credit-card"></i> Payments</a>
-                <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#overview" class="active"><i class="fas fa-home"></i> <span data-i18n="overview">Overview</span></a>
+                <a href="#bookings"><i class="fas fa-calendar-alt"></i> <span data-i18n="myBookings">My Bookings</span></a>
+                <a href="#profile"><i class="fas fa-user"></i> <span data-i18n="profile">Profile</span></a>
+                <a href="#notifications"><i class="fas fa-bell"></i> <span data-i18n="notifications">Notifications</span></a>
+                <a href="#payments"><i class="fas fa-credit-card"></i> <span data-i18n="payments">Payments</span></a>
+                <a href="#settings"><i class="fas fa-cog"></i> <span data-i18n="settings">Settings</span></a>
             </nav>
         </aside>
 
         <!-- Main Content -->
         <main class="dashboard-main">
             <div class="dashboard-header">
-                <h1>Welcome Back, John!</h1>
-                <p>Here's what's happening with your bookings.</p>
+                <h1 data-i18n="welcome">Welcome Back, John!</h1>
+                <p data-i18n="dashboardMsg">Here's what's happening with your bookings.</p>
             </div>
 
             <!-- Stats Cards -->
@@ -58,21 +62,21 @@
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
                     <div class="stat-details">
-                        <h3>Active Bookings</h3>
+                        <h3 data-i18n="activeBookings">Active Bookings</h3>
                         <p class="stat-number">3</p>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-history"></i></div>
                     <div class="stat-details">
-                        <h3>Past Bookings</h3>
+                        <h3 data-i18n="pastBookings">Past Bookings</h3>
                         <p class="stat-number">12</p>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
                     <div class="stat-details">
-                        <h3>Total Spent</h3>
+                        <h3 data-i18n="totalSpent">Total Spent</h3>
                         <p class="stat-number">₹25,000</p>
                     </div>
                 </div>
@@ -80,17 +84,17 @@
 
             <!-- Recent Bookings -->
             <section class="dashboard-section">
-                <h2>Recent Bookings</h2>
+                <h2 data-i18n="recentBookings">Recent Bookings</h2>
                 <div class="bookings-table">
                     <table>
                         <thead>
                             <tr>
-                                <th>Booking ID</th>
-                                <th>Service</th>
-                                <th>Date</th>
-                                <th>Pandit</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th data-i18n="bookingId">Booking ID</th>
+                                <th data-i18n="service">Service</th>
+                                <th data-i18n="date">Date</th>
+                                <th data-i18n="pandit">Pandit</th>
+                                <th data-i18n="status">Status</th>
+                                <th data-i18n="action">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -99,16 +103,16 @@
                                 <td>Wedding Ceremony</td>
                                 <td>15 Mar 2024</td>
                                 <td>Pandit Sharma</td>
-                                <td><span class="status-badge confirmed">Confirmed</span></td>
-                                <td><button class="btn btn-small">View Details</button></td>
+                                <td><span class="status-badge confirmed" data-i18n="confirmed">Confirmed</span></td>
+                                <td><button class="btn btn-small" data-i18n="viewDetails">View Details</button></td>
                             </tr>
                             <tr>
                                 <td>#BK002</td>
                                 <td>House Warming</td>
                                 <td>20 Mar 2024</td>
                                 <td>Pandit Kumar</td>
-                                <td><span class="status-badge pending">Pending</span></td>
-                                <td><button class="btn btn-small">View Details</button></td>
+                                <td><span class="status-badge pending" data-i18n="pending">Pending</span></td>
+                                <td><button class="btn btn-small" data-i18n="viewDetails">View Details</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -117,7 +121,7 @@
 
             <!-- Upcoming Events -->
             <section class="dashboard-section">
-                <h2>Upcoming Events</h2>
+                <h2 data-i18n="upcomingEvents">Upcoming Events</h2>
                 <div class="events-grid">
                     <div class="event-card">
                         <div class="event-date">
@@ -125,13 +129,13 @@
                             <span class="month">Mar</span>
                         </div>
                         <div class="event-details">
-                            <h3>Wedding Ceremony</h3>
-                            <p><i class="fas fa-clock"></i> 9:00 AM - 1:00 PM</p>
-                            <p><i class="fas fa-map-marker-alt"></i> Temple Hall, City</p>
+                            <h3 data-i18n="weddingCeremony">Wedding Ceremony</h3>
+                            <p><i class="fas fa-clock"></i> <span data-i18n="eventTime">9:00 AM - 1:00 PM</span></p>
+                            <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="eventLocation">Temple Hall, City</span></p>
                         </div>
                         <div class="event-actions">
-                            <button class="btn btn-secondary btn-small">View Details</button>
-                            <button class="btn btn-primary btn-small">Reschedule</button>
+                            <button class="btn btn-secondary btn-small" data-i18n="viewDetails">View Details</button>
+                            <button class="btn btn-primary btn-small" data-i18n="reschedule">Reschedule</button>
                         </div>
                     </div>
                 </div>
@@ -143,13 +147,46 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-bottom">
-                <p>&copy; 2024 Book Pandit. All rights reserved.</p>
+                <p data-i18n="footer">&copy; 2024 Book Pandit. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
     <script>
+    // --- Language Switcher & Translation Loader ---
+    const langFilePath = 'lang.json';
+    let translations = {};
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      applyTranslations();
+    }
+
+    fetch(langFilePath)
+      .then(res => res.json())
+      .then(data => {
+        translations = data;
+        document.getElementById('lang-switcher').value = currentLang;
+        applyTranslations();
+      });
+
+    document.getElementById('lang-switcher').addEventListener('change', function() {
+      setLang(this.value);
+    });
+    // On page load, set language
+    setLang(currentLang);
     // Connect to Django backend and show a message
     fetch('http://127.0.0.1:8000/api/hello/')
       .then(response => response.json())
