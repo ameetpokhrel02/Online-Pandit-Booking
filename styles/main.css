@@ -46,6 +46,61 @@ body {
     padding: 0 1rem;
 }
 
+/* Responsive root font size and container width */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+  .container {
+    width: 100% !important;
+    padding: 0 8px !important;
+    box-sizing: border-box;
+  }
+  .dashboard-container, .dashboard-main, .dashboard-sidebar {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+  }
+  .navbar .logo-text {
+    font-size: 1.2rem !important;
+  }
+  .navbar .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0;
+  }
+  .dashboard-header h1, .dashboard-header p {
+    font-size: 1.1rem !important;
+  }
+  .stats-grid, .dashboard-section, .bookings-table, .events-grid {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: auto;
+  }
+  .dashboard-table, .bookings-table table {
+    font-size: 0.95rem;
+  }
+}
+
+/* Ensure body and html take full height */
+html, body {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Make sure images and tables are responsive */
+img, table {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
@@ -1898,4 +1953,4 @@ a:hover {
     .faq-section h2 {
         font-size: 1.3rem;
     }
-} 
+}
