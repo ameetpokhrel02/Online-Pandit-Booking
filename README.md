@@ -3,7 +3,10 @@
 
  ## Web View
  <img width="1857" height="950" alt="image" src="https://github.com/user-attachments/assets/ebeeee98-53b5-487b-b946-d41452b56f1d" />
+ 
 
+## Web View with Ads
+<img width="1863" height="946" alt="image" src="https://github.com/user-attachments/assets/60913741-622b-4585-9f85-9aceaf1d82e0" />
 
 # Book Pandit - Online Pandit Booking Platform
 
