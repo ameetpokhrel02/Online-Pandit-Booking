@@ -180,13 +180,11 @@
         translations = data;
         document.getElementById('lang-switcher').value = currentLang;
         applyTranslations();
+        // Only set event after translations loaded
+        document.getElementById('lang-switcher').addEventListener('change', function() {
+          setLang(this.value);
+        });
       });
-
-    document.getElementById('lang-switcher').addEventListener('change', function() {
-      setLang(this.value);
-    });
-    // On page load, set language
-    setLang(currentLang);
     // Connect to Django backend and show a message
     fetch('http://127.0.0.1:8000/api/hello/')
       .then(response => response.json())
