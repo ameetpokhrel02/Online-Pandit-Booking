@@ -141,15 +141,15 @@ Backend
 ## Image Guidelines
 
 1. All images should be optimized for web use
-2. Use appropriate file formats:
-   - Photos: JPG or WebP
-   - Logos and icons: PNG with transparency
-   - Icons: SVG (preferred) or PNG
-3. Maintain consistent aspect ratios within each category
-4. Ensure images are high quality but optimized for fast loading
-5. Consider responsive design when choosing image sizes
 
-## Setup Instructions
+## Mobile View
+<img width="410" height="778" alt="Mobile View" src="https://github.com/user-attachments/assets/5bf4da18-3aec-40fb-9819-e69b96c24566" />
+
+## Web View
+<img width="1857" height="950" alt="Web View" src="https://github.com/user-attachments/assets/ebeeee98-53b5-487b-b946-d41452b56f1d" />
+
+## Web View with Ads Popup
+<img width="1863" height="946" alt="Web View with Ads" src="https://github.com/user-attachments/assets/60913741-622b-4585-9f85-9aceaf1d82e0" />
 
 ### Prerequisites
 - Node.js
@@ -157,23 +157,9 @@ Backend
 - Sequelize
 - Express.js
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd BookPandit
-   ```
-
-2. Install dependencies:
-   ```bash
    npm install
    ```
 
-3. Set up the database:
-   - Start XAMPP and ensure MySQL is running.
-   - Create a new database named `book_pandit`.
-
-4. Configure the database connection:
    - Create a `.env` file in the root directory and add your database credentials:
      ```
      DB_HOST=localhost
