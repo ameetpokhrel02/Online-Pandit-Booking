@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Pandits - Book Pandit</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/pandits.css">
+    <link rel="stylesheet" href="styles/styles/main.css">
+    <link rel="stylesheet" href="styles/styles/pandit.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -14,19 +14,23 @@
         <div class="container">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <a href="index.html" class="logo-text">Book<span>Pandit</span></a>
+                <a href="index.html" class="logo-text">Pandit<span>Yatra</span></a>
             </div>
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="services.html">Services</a>
-                <a href="about.html">About</a>
-                <a href="our-pandits.html">Our Pandits</a>
-                <a href="contact.html">Contact</a>
-                <a href="login.html" class="btn btn-secondary">Login</a>
-                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                <a href="index.html" data-i18n="home">Home</a>
+                <a href="services.html" data-i18n="services">Services</a>
+                <a href="about.html" data-i18n="about">About</a>
+                <a href="our-pandits.html" data-i18n="ourPandits">Our Pandits</a>
+                <a href="contact.html" data-i18n="contact">Contact</a>
+                <a href="login.html" class="btn btn-secondary" data-i18n="login">Login</a>
+                <a href="signup.html" class="btn btn-primary" data-i18n="signup">Sign Up</a>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
                 </button>
+                <select id="lang-switcher" style="margin-left:10px;">
+                  <option value="en">EN</option>
+                  <option value="np">ने</option>
+                </select>
             </div>
             <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -46,7 +50,7 @@
                     <a href="#pandits-list" class="astrology-hero-btn">Let's Begin</a>
                 </div>
                 <div class="astrology-hero-img">
-                    <img src="images/rashi.png" alt="Astrology Zodiac Wheel">
+                    <img src="images/logo/rashi.png" alt="Astrology Zodiac Wheel">
                 </div>
             </div>
         </section>
@@ -172,22 +176,41 @@
     </footer>
 
     <script src="js/main.js"></script>
+
+    <script src="js/js/main.js"></script>
+    <script>
+    // --- Language Switcher & Translation Loader ---
+    const langFilePath = 'lang.json';
+    let translations = {};
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      applyTranslations();
+    }
+
+    fetch(langFilePath)
+      .then(res => res.json())
+      .then(data => {
+        translations = data;
+        document.getElementById('lang-switcher').value = currentLang;
+        applyTranslations();
+      });
+
+    document.getElementById('lang-switcher').addEventListener('change', function() {
+      setLang(this.value);
+    });
+    setLang(currentLang);
+    </script>
 </body>
-<script>
-// Connect to Django backend and show a message
-fetch('http://127.0.0.1:8000/api/hello/')
-  .then(response => response.json())
-  .then(data => {
-    const msgDiv = document.createElement('div');
-    msgDiv.textContent = 'Backend says: ' + data.message;
-    msgDiv.style.background = '#e6ffe6';
-    msgDiv.style.color = '#222';
-    msgDiv.style.padding = '10px';
-    msgDiv.style.margin = '20px auto';
-    msgDiv.style.textAlign = 'center';
-    msgDiv.style.maxWidth = '400px';
-    document.body.insertBefore(msgDiv, document.body.firstChild);
-  })
-  .catch(err => console.log('Backend not reachable:', err));
-</script>
-</html> 
+</html>
