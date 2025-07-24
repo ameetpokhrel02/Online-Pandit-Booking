@@ -1,16 +1,9 @@
-## MobileView
- <img width="410" height="778" alt="image" src="https://github.com/user-attachments/assets/5bf4da18-3aec-40fb-9819-e69b96c24566" />
-
- ## Web View
- <img width="1857" height="950" alt="image" src="https://github.com/user-attachments/assets/ebeeee98-53b5-487b-b946-d41452b56f1d" />
- 
-
-## Web View with Ads
-<img width="1863" height="946" alt="image" src="https://github.com/user-attachments/assets/60913741-622b-4585-9f85-9aceaf1d82e0" />
 
 # Book Pandit - Online Pandit Booking Platform
 
 A modern web platform for booking pandits for religious ceremonies and events.
+
+---
 
 ## Features
 
@@ -19,14 +12,22 @@ A modern web platform for booking pandits for religious ceremonies and events.
 - Secure payment integration
 - User authentication and profile management
 - Responsive design for all devices
+- Modern UI/UX with translation (English/Nepali)
+- Admin dashboard for managing users, bookings, and services
+
+---
 
 ## Tech Stack
 
-- React.js with TypeScript
-- Tailwind CSS for styling
-- React Router for navigation
-- Firebase for authentication and database
-- Modern UI/UX design
+- HTML5, CSS3 (with modern CSS and responsive design)
+- JavaScript (Vanilla, modular)
+- Django (backend API)
+- MySQL (database)
+- Node.js (for backend/server.js)
+- Express.js, Sequelize (backend API)
+- Font Awesome (icons)
+
+---
 
 ## Project Structure
 
@@ -41,149 +42,141 @@ BookPandit/
 ├── booking.html            # Booking form page
 ├── calendar.html           # Calendar selection page
 ├── payment.html            # Payment page
+├── user-dashboard.html     # User dashboard
+├── admin-dashboard.html    # Admin dashboard
+├── service-selection.html  # Service selection page
+├── our-pandits.html        # Pandit profiles
 ├── styles/
-│   └── main.css            # Main stylesheet
+│   ├── main.css            # Main stylesheet
+│   ├── dashboard.css       # Dashboard styles
+│   └── pandit.css          # Pandit page styles
 ├── js/
 │   ├── main.js             # Main JavaScript
 │   ├── auth.js             # Authentication functions
+│   ├── payment.js          # Payment logic
 │   └── calendar.js         # Calendar functionality
-└── images/                 # Image assets
-    ├── logo/               # Logo images
-    │   ├── logo.png        # Main logo
-    │   └── favicon.ico     # Website favicon
-    ├── auth/               # Authentication related images
-    │   └── auth-bg.jpg     # Authentication background
-    ├── services/           # Service related images
-    │   ├── wedding.jpg     # Wedding ceremony
-    │   ├── house-warming.jpg # House warming
-    │   ├── naming.jpg      # Naming ceremony
-    │   ├── religious.jpg   # Religious events
-    │   ├── griha-pravesh.jpg # Griha pravesh
-    │   └── special-pujas.jpg # Special pujas
-    ├── payment/            # Payment gateway logos
-    │   ├── esewa-logo.png  # eSewa logo
-    │   ├── imepay-logo.png # IME Pay logo
-    │   ├── khalti-logo.png # Khalti logo
-    │   └── connectips-logo.png # Connect IPS logo
-    ├── pandits/            # Pandit profile images
-    │   ├── pandit1.jpg     # Pandit Ramesh Sharma
-    │   └── pandit2.jpg     # Pandit Amit Kumar
-    └── features/           # Feature icons
-        ├── experienced.jpg # Experienced pandits
-        ├── easy-booking.jpg # Easy booking
-        ├── pricing.jpg     # Transparent pricing
-        └── support.jpg     # 24/7 support
-```
-Backend
-/BookPandit
-│
-├── /app
-│ ├── /components
-│ ├── /pages
-│ ├── /styles
-│ ├── /js
-│ └── /images
-│
-├── /backend
-│ ├── /config
-│ ├── /controllers
-│ ├── /models
-│ ├── /routes
-│ ├── /middlewares
-│ ├── /utils
-│ ├── server.js
-│ └── database.js
-│
-├── /public
-│ ├── index.html
-│ ├── services.html
-│ ├── about.html
-│ ├── contact.html
-│ ├── payment.html
-│ └── our-pandits.html
-│
-├── package.json
-├── .env
+├── images/
+│   ├── logo/               # Logo images
+│   ├── auth/               # Auth images
+│   ├── services/           # Service images
+│   ├── payment/            # Payment logos
+│   ├── pandits/            # Pandit profile images
+│   └── features/           # Feature icons
+├── vidoes/
+│   └── vidoes/             # Video files (e.g. astrology vide.mp4, glob.mp4)
+├── lang.json               # Translation file
+├── backend/                # Backend (Django/Node)
+│   ├── server.js
+│   ├── database.js
+│   ├── models/
+│   ├── routes/
+│   └── middlewares/
 └── README.md
-## Required Images
+```
 
-### Logo and Branding
-1. `images/logo/logo.png` - Main website logo (Recommended size: 200x50px)
-2. `images/logo/favicon.ico` - Website favicon (16x16px or 32x32px)
+---
 
-### Authentication
-1. `images/auth/auth-bg.jpg` - Background image for login/signup pages (Recommended size: 1200x800px)
+## Required Images & Assets
 
-### Services
-1. `images/services/wedding.jpg` - Wedding ceremony image (Recommended size: 400x300px)
-2. `images/services/house-warming.jpg` - House warming ceremony image (400x300px)
-3. `images/services/naming.jpg` - Naming ceremony image (400x300px)
-4. `images/services/religious.jpg` - Religious events image (400x300px)
-5. `images/services/griha-pravesh.jpg` - Griha pravesh ceremony image (400x300px)
-6. `images/services/special-pujas.jpg` - Special pujas image (400x300px)
+**Logo and Branding**
+- `images/logo/logo.png` - Main website logo (200x50px recommended)
+- `images/logo/favicon.ico` - Website favicon (16x16px or 32x32px)
 
-### Payment Gateways
-1. `images/payment/esewa-logo.png` - eSewa payment gateway logo (200x100px)
-2. `images/payment/imepay-logo.png` - IME Pay payment gateway logo (200x100px)
-3. `images/payment/khalti-logo.png` - Khalti payment gateway logo (200x100px)
-4. `images/payment/connectips-logo.png` - Connect IPS payment gateway logo (200x100px)
+**Authentication**
+- `images/auth/auth-bg.jpg` - Login/signup background (1200x800px recommended)
 
-### Pandit Profiles
-1. `images/pandits/pandit1.jpg` - Pandit Ramesh Sharma profile image (200x200px)
-2. `images/pandits/pandit2.jpg` - Pandit Amit Kumar profile image (200x200px)
+**Services**
+- `images/services/wedding.jpg` - Wedding ceremony (400x300px)
+- `images/services/house-warming.jpg` - House warming (400x300px)
+- `images/services/naming.jpg` - Naming ceremony (400x300px)
+- `images/services/religious.jpg` - Religious events (400x300px)
+- `images/services/griha-pravesh.jpg` - Griha pravesh (400x300px)
+- `images/services/special-pujas.jpg` - Special pujas (400x300px)
 
-### Features
-1. `images/features/experienced.jpg` - Experienced pandits icon (100x100px)
-2. `images/features/easy-booking.jpg` - Easy booking icon (100x100px)
-3. `images/features/pricing.jpg` - Transparent pricing icon (100x100px)
-4. `images/features/support.jpg` - 24/7 support icon (100x100px)
+**Payment Gateways**
+- `images/payment/esewa-logo.png` - eSewa (200x100px)
+- `images/payment/imepay-logo.png` - IME Pay (200x100px)
+- `images/payment/khalti-logo.png` - Khalti (200x100px)
+- `images/payment/connectips-logo.png` - Connect IPS (200x100px)
 
-## Image Guidelines
+**Pandit Profiles**
+- `images/pandits/pandit1.jpg` - Pandit Ramesh Sharma (200x200px)
+- `images/pandits/pandit2.jpg` - Pandit Amit Kumar (200x200px)
 
-1. All images should be optimized for web use
+**Features**
+- `images/features/experienced.jpg` - Experienced pandits (100x100px)
+- `images/features/easy-booking.jpg` - Easy booking (100x100px)
+- `images/features/pricing.jpg` - Transparent pricing (100x100px)
+- `images/features/support.jpg` - 24/7 support (100x100px)
 
-## Mobile View
-<img width="410" height="778" alt="Mobile View" src="https://github.com/user-attachments/assets/5bf4da18-3aec-40fb-9819-e69b96c24566" />
+**Videos**
+- `vidoes/vidoes/astrology vide.mp4` - Astrology background video
+- `vidoes/vidoes/glob.mp4` - Globe earth video for hero section
 
-## Web View
-<img width="1857" height="950" alt="Web View" src="https://github.com/user-attachments/assets/ebeeee98-53b5-487b-b946-d41452b56f1d" />
+---
 
-## Web View with Ads Popup
-<img width="1863" height="946" alt="Web View with Ads" src="https://github.com/user-attachments/assets/60913741-622b-4585-9f85-9aceaf1d82e0" />
+## Setup & Installation
 
 ### Prerequisites
 - Node.js
-- MySQL (via XAMPP)
-- Sequelize
-- Express.js
+- MySQL (via XAMPP or local install)
+- Django (for backend API)
+- Express.js, Sequelize (for Node backend)
 
+### Steps
+1. Clone the repository and navigate to the project folder.
+2. Install dependencies:
+   ```bash
    npm install
    ```
-
-   - Create a `.env` file in the root directory and add your database credentials:
-     ```
-     DB_HOST=localhost
-     DB_USER=root
-     DB_PASSWORD=
-     DB_NAME=book_pandit
-     ```
-
-5. Run the server:
+3. Create a `.env` file in the root directory and add your database credentials:
+   ```env
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=
+   DB_NAME=book_pandit
+   ```
+4. Run the backend server:
    ```bash
    node backend/server.js
    ```
+5. For Django API, run:
+   ```bash
+   python manage.py runserver
+   ```
+
+---
 
 ## Role-Based Authentication
 - Users can register and log in to book services.
 - Admins can manage users, bookings, and services.
 
-### Database Models
-- User: Contains fields for username, password, role (user/admin), etc.
-- Booking: Contains fields for service type, date, user ID, etc.
-- Pandit: Contains fields for name, experience, location, etc.
+---
+
+## Database Models
+- **User**: username, password, role (user/admin), etc.
+- **Booking**: service type, date, user ID, etc.
+- **Pandit**: name, experience, location, etc.
+
+---
+
+## Screenshots
+
+### Mobile View
+<img width="410" height="778" alt="Mobile View" src="https://github.com/user-attachments/assets/5bf4da18-3aec-40fb-9819-e69b96c24566" />
+
+### Web View
+<img width="1857" height="950" alt="Web View" src="https://github.com/user-attachments/assets/ebeeee98-53b5-487b-b946-d41452b56f1d" />
+
+### Web View with Ads Popup
+<img width="1863" height="946" alt="Web View with Ads" src="https://github.com/user-attachments/assets/60913741-622b-4585-9f85-9aceaf1d82e0" />
+
+---
 
 ## License
 This project is licensed under the MIT License.
 
+---
+
 ## Project Overview
-Book Pandit is a web application that allows users to book pandits for various religious ceremonies. The application features user and admin dashboards, payment integration, and a list of available pandits. 
+Book Pandit is a web application that allows users to book pandits for various religious ceremonies. The application features user and admin dashboards, payment integration, and a list of available pandits. It is designed for modern usability, security, and scalability.
