@@ -200,7 +200,7 @@
     </footer>
     <script src="js/js/main.js"></script>
     <script>
-    // Show ad popup on page load, always above navbar
+    // Show ad popup on page load, always above navbar, and never hide or affect navbar
     window.addEventListener('DOMContentLoaded', function() {
       var adPopup = document.getElementById('ad-popup');
       var adClose = document.getElementById('ad-close-btn');
@@ -209,6 +209,14 @@
         adPopup.style.zIndex = '100001'; // Ensure ad is always above navbar
         adClose.onclick = function() {
           adPopup.style.display = 'none';
+          // Explicitly ensure navbar is visible
+          var navbar = document.querySelector('.navbar');
+          if (navbar) {
+            navbar.style.display = '';
+            navbar.style.visibility = 'visible';
+            navbar.style.position = '';
+            navbar.style.zIndex = '';
+          }
         };
       }
     });
