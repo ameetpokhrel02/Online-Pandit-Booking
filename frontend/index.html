@@ -165,27 +165,41 @@
       <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:40px;max-width:1200px;">
         <!-- Left: Text and Buttons -->
         <div style="flex:1 1 340px;min-width:320px;max-width:520px;z-index:2;">
-          <button style="background:#e6f0ff;color:#1976d2;font-weight:600;border:none;border-radius:10px;padding:8px 28px;font-size:1rem;margin-bottom:24px;letter-spacing:1px;">DOWNLOAD</button>
-          <h2 style="font-size:2.5rem;font-weight:700;line-height:1.1;margin-bottom:12px;color:#222;">Download PanditYatra App for <span style="color:#1976d2;">FREE</span></h2>
-          <p style="font-size:1.1rem;color:#555;margin-bottom:32px;">For faster, easier booking and exclusive deals.</p>
+          <div style="margin-bottom:24px;">
+            <button class="download-btn-py" style="background:#1976d2;color:#fff;font-weight:700;border:none;border-radius:10px;padding:12px 38px;font-size:1.1rem;letter-spacing:1px;box-shadow:0 2px 8px rgba(25,118,210,0.10);transition:background 0.2s;cursor:pointer;">Download Now</button>
+          </div>
+          <h2 style="font-size:2.3rem;font-weight:700;line-height:1.1;margin-bottom:12px;color:#222;">Get the <span style="color:#1976d2;">PanditYatra</span> App</h2>
+          <p style="font-size:1.1rem;color:#555;margin-bottom:32px;">Book verified pandits, manage bookings, and get instant support—right from your phone.</p>
           <div style="display:flex;gap:18px;">
-            <a href="#" style="display:inline-block;"><img src="images/logo/google-play-badge.png" alt="Get it on Google Play" style="height:54px;"></a>
-            <a href="#" style="display:inline-block;"><img src="images/logo/app-store-badge.png" alt="Download on the App Store" style="height:54px;"></a>
+            <a href="#" style="display:inline-block;"><img src="images/logo/google-play-badge.png" alt="Get it on Google Play" style="height:54px;transition:transform 0.2s;"></a>
+            <a href="#" style="display:inline-block;"><img src="images/logo/app-store-badge.png" alt="Download on the App Store" style="height:54px;transition:transform 0.2s;"></a>
           </div>
         </div>
-        <!-- Right: Mobile UI Mockup -->
+        <!-- Right: Half-size iPhone Mockup -->
         <div style="flex:1 1 320px;min-width:260px;display:flex;align-items:center;justify-content:center;">
-          <div style="background:#fff;border-radius:36px;box-shadow:0 8px 32px rgba(25,118,210,0.10);padding:18px 10px 10px 10px;max-width:320px;width:100%;position:relative;">
-            <div style="background:#222;border-radius:24px 24px 0 0;width:60%;height:8px;margin:0 auto 10px auto;"></div>
-            <div style="background:#f7faff;border-radius:28px;width:100%;height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
-              <img src="images/logo/pandit10.png" alt="App UI" style="width:90%;max-width:220px;margin:30px 0 0 0;box-shadow:0 2px 12px rgba(25,118,210,0.08);border-radius:18px;" />
-              <div style="margin-top:24px;text-align:center;">
-                <span style="display:inline-block;background:#e6f0ff;color:#1976d2;font-weight:600;padding:4px 18px;border-radius:8px;font-size:1rem;">Book Pandit Instantly</span>
+          <div style="background:#fff;border-radius:36px;box-shadow:0 8px 32px rgba(25,118,210,0.10);padding:10px 10px 10px 10px;max-width:220px;width:100%;position:relative;">
+            <div style="background:#222;border-radius:24px 24px 0 0;width:60%;height:8px;margin:0 auto 8px auto;"></div>
+            <div style="background:#f7faff;border-radius:28px;width:100%;height:270px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;">
+              <img src="images/logo/pandit10.png" alt="App UI" style="width:90%;max-width:120px;margin:10px 0 0 0;box-shadow:0 2px 12px rgba(25,118,210,0.08);border-radius:18px;" />
+              <div style="margin-top:16px;text-align:center;">
+                <span style="display:inline-block;background:#e6f0ff;color:#1976d2;font-weight:600;padding:4px 14px;border-radius:8px;font-size:0.95rem;">Book Instantly</span>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <style>
+      .download-btn-py:hover {
+        background: #1251a3 !important;
+        color: #fff !important;
+        box-shadow: 0 4px 16px rgba(25,118,210,0.18);
+        transform: translateY(-2px) scale(1.04);
+      }
+      .app-download-section a img:hover {
+        transform: scale(1.08);
+        box-shadow: 0 4px 16px rgba(25,118,210,0.18);
+      }
+      </style>
     </section>
     <footer class="footer">
         <div class="container">
