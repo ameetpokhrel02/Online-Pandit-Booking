@@ -1,0 +1,10 @@
+# Ignore environment variables
+.env
+# Node modules
+backend/node_modules/
+# Python virtual environments
+venv/
+__pycache__/
+# Other common ignores
+.DS_Store
+*.pyc
