@@ -32,16 +32,15 @@
 
     <!-- Main Content -->
     <main class="auth-page">
-        <div class="container">
-            <div class="auth-container">
-                <div class="auth-image">
-                    <img src="images/logo/login-signup.png" alt="Login Background">
+        <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px;min-height:80vh;">
+            <div class="auth-container" style="display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:32px;width:100%;max-width:720px;background:#fff;border-radius:18px;box-shadow:0 4px 24px rgba(25,118,210,0.07);padding:28px 0;">
+                <div class="auth-image" style="flex:1 1 320px;min-width:260px;display:flex;align-items:center;justify-content:center;background:#fff0e6;border-radius:14px 0 0 14px;padding:32px 0;">
+                    <img src="images/logo/login-signup.png" alt="Login Background" style="width:90%;max-width:320px;min-width:180px;object-fit:contain;">
                 </div>
-                <div class="auth-form-container">
-                    <h1>Welcome Back</h1>
-                    <p>Login to your account to continue</p>
-                    
-                    <form class="auth-form" id="login-form">
+                <div class="auth-form-container" style="flex:1 1 340px;min-width:300px;padding:32px 32px 24px 32px;display:flex;flex-direction:column;justify-content:center;">
+                    <h1 style="font-size:2.3rem;font-weight:800;margin-bottom:10px;color:#ff8000;letter-spacing:0.5px;text-shadow:0 2px 8px rgba(255,128,0,0.07);">Welcome Back</h1>
+                    <p style="margin-bottom:18px;color:#1976d2;">Login to your account to continue</p>
+                    <form class="auth-form" id="login-form" style="width:100%;">
                         <div class="form-group">
                             <label for="email">Email Address</label>
                             <div class="input-group">
