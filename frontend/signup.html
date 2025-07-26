@@ -31,11 +31,14 @@
 
     <!-- Main Content -->
     <main class="auth-page">
-        <div class="container">
-            <div class="auth-container">
-                <div class="auth-image">
-                    <img src="images/logo/login-signup.png" alt="Sign Up">
-                </div>
+        <div class="video-background">
+                <video autoplay muted loop playsinline id="hero-video">
+                    <source src="/BookPandit/frontend/vidoes/vidoes/modern pandits.mp4" type="video/mp4">
+                    <!-- Fallback background image if video doesn't load -->
+                    <img src="images/hero-bg.jpg" alt="Hero Background">
+                </video>
+                <div class="overlay"></div>
+            </div>
                 <div class="auth-form-container">
                     <h1>Create Account</h1>
                     <p>Join us to book pandits for your religious ceremonies</p>
