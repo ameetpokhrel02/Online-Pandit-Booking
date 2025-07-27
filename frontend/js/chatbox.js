@@ -147,7 +147,7 @@
     input.value = '';
   });
 
-  // Icon click: open chatbox, hide icon
+  // Icon click: open chatbox, hide icons
   chatIcon.addEventListener('click', function() {
     chatBox.style.display = 'flex';
     chatIcon.style.display = 'none';
