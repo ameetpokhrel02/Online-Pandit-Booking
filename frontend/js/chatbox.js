@@ -3,6 +3,7 @@
   // Create chatbox HTML
   const chatBox = document.createElement('div');
   chatBox.id = 'pandit-chatbox';
+  chatBox.style.display = 'none'; // Start hidden, show via icon
   chatBox.innerHTML = `
     <div class="chatbox-header">
       <img src="images/logo/pandit.png" alt="Pandit Logo" class="chatbox-logo">
@@ -17,9 +18,25 @@
   `;
   document.body.appendChild(chatBox);
 
-  // Styles
+  // Floating chat icon button
+  const chatIcon = document.createElement('button');
+  chatIcon.id = 'pandit-chatbox-icon';
+  chatIcon.title = 'Open Pandit Chat';
+  chatIcon.innerHTML = '<i class="fas fa-comments"></i>';
+  document.body.appendChild(chatIcon);
+
+  // Icon styles
   const style = document.createElement('style');
   style.textContent = `
+    #pandit-chatbox-icon {
+      position: fixed; bottom: 32px; right: 32px; z-index: 9998;
+      width: 56px; height: 56px; border-radius: 50%; background: #ff8000;
+      color: #fff; border: none; box-shadow: 0 4px 16px rgba(25,118,210,0.13);
+      font-size: 2rem; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    #pandit-chatbox-icon:hover { background: #1976d2; }
     #pandit-chatbox {
       position: fixed; bottom: 32px; right: 32px; z-index: 9999;
       width: 340px; max-width: 95vw; background: #fff; border-radius: 18px;
@@ -130,10 +147,16 @@
     input.value = '';
   });
 
-  // Close button
+  // Icon click: open chatbox, hide icon
+  chatIcon.addEventListener('click', function() {
+    chatBox.style.display = 'flex';
+    chatIcon.style.display = 'none';
+  });
+
+  // Close button: hide chatbox, show icon
   closeBtn.addEventListener('click', function() {
     chatBox.style.display = 'none';
-    setTimeout(() => { chatBox.style.display = 'flex'; }, 12000); // Reappear after 12s
+    chatIcon.style.display = 'flex';
   });
 
   // Initial
@@ -141,4 +164,7 @@
   if (messagesDiv.innerHTML === '') {
     addMsg('Namaste! Say "hi" or "hello" to chat with Pandit.', 'pandit');
   }
+  // Show icon by default
+  chatIcon.style.display = 'flex';
+  chatBox.style.display = 'none';
 })();
