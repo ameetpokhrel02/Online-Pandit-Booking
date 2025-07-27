@@ -2,6 +2,7 @@
 # Book Pandit - Online Pandit Booking Platform
 
 A modern web platform for booking pandits for religious ceremonies and events.
+<img width="1833" height="950" alt="image" src="https://github.com/user-attachments/assets/d5ffafdb-96b7-4b07-a988-a9e698f7139a" />
 
 ---
 
