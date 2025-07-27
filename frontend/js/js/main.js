@@ -1,22 +1,116 @@
+// Global variables
+let currentLanguage = 'en';
+let translations = {};
+
+// Load translations
+async function loadTranslations() {
+    try {
+        const response = await fetch('lang.json');
+        translations = await response.json();
+    } catch (error) {
+        console.error('Error loading translations:', error);
+    }
+}
+
+// Translate page content
+function translatePage(lang) {
+    if (!translations[lang]) return;
+    
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            element.textContent = translations[lang][key];
+        }
+    });
+    
+    // Update page title
+    const titleElement = document.querySelector('title');
+    if (titleElement && translations[lang]['pageTitle']) {
+        titleElement.textContent = translations[lang]['pageTitle'];
+    }
+    
+    // Update language switcher
+    const langSwitcher = document.getElementById('lang-switcher');
+    if (langSwitcher) {
+        langSwitcher.value = lang;
+    }
+}
+
+// Initialize language switcher
+function initLanguageSwitcher() {
+    const langSwitcher = document.getElementById('lang-switcher');
+    if (langSwitcher) {
+        langSwitcher.addEventListener('change', function() {
+            currentLanguage = this.value;
+            translatePage(currentLanguage);
+            localStorage.setItem('preferredLanguage', currentLanguage);
+        });
+    }
+}
+
+// Theme management
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Set initial theme
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+    }
+}
+
+function updateThemeIcon(theme) {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        const icon = themeToggle.querySelector('i');
+        if (icon) {
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    }
+}
+
 // Mobile Menu Toggle
-document.addEventListener('DOMContentLoaded', function() {
+function initMobileMenu() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
-    if (mobileMenuBtn) {
+    if (mobileMenuBtn && navLinks) {
         mobileMenuBtn.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.navbar')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.addEventListener('click', function(event) {
+            if (event.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            }
         });
     }
+}
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.navbar')) {
-            navLinks.style.display = 'none';
-        }
-    });
-
-    // Smooth scroll for anchor links
+// Smooth scroll for anchor links
+function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -28,27 +122,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+}
 
-    // Add active class to current navigation item
+// Add active class to current navigation item
+function setActiveNavigation() {
     const currentLocation = location.pathname;
     document.querySelectorAll('.nav-links a').forEach(link => {
         if (link.getAttribute('href') === currentLocation) {
             link.classList.add('active');
         }
     });
+}
 
-    // Contact Form Validation and Submission
+// Contact Form Validation and Submission
+function initContactForm() {
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Get form values
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const service = document.getElementById('service').value;
-            const message = document.getElementById('message').value.trim();
+            const name = document.getElementById('name')?.value.trim();
+            const email = document.getElementById('email')?.value.trim();
+            const phone = document.getElementById('phone')?.value.trim();
+            const service = document.getElementById('service')?.value;
+            const message = document.getElementById('message')?.value.trim();
             
             // Validate form
             let isValid = true;
@@ -88,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
             contactForm.reset();
         });
     }
-});
+}
 
 // Email validation helper function
 function isValidEmail(email) {
@@ -98,145 +196,117 @@ function isValidEmail(email) {
 
 // Helper function to validate phone number
 function isValidPhone(phone) {
-    // Basic phone number validation - can be customized based on requirements
-    const phoneRegex = /^[0-9]{10}$/;
-    return phoneRegex.test(phone);
+    const re = /^[\+]?[1-9][\d]{0,15}$/;
+    return re.test(phone.replace(/[\s\-\(\)]/g, ''));
 }
 
-// Add scroll event listener for navbar
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.backgroundColor = 'var(--white)';
-        navbar.style.boxShadow = 'none';
-    }
-});
-
-// Password Visibility Toggle
-document.querySelectorAll('.toggle-password').forEach(button => {
-    button.addEventListener('click', function() {
-        const input = this.previousElementSibling;
-        const icon = this.querySelector('i');
-        
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            input.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        }
-    });
-});
-
-// Login Form Validation
-const loginForm = document.querySelector('.auth-form');
-if (loginForm && window.location.pathname.includes('login.html')) {
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = this.querySelector('#email').value.trim();
-        const password = this.querySelector('#password').value.trim();
-        
-        if (!email || !password) {
-            alert('Please fill in all fields');
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        // Here you would typically send the login data to your server
-        // For now, we'll just show a success message
-        alert('Login successful!');
-        window.location.href = 'index.html';
+// Initialize password toggle functionality
+function initPasswordToggle() {
+    const toggleButtons = document.querySelectorAll('.toggle-password');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.previousElementSibling;
+            const icon = this.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        });
     });
 }
 
-// Registration Form Validation
-if (loginForm && window.location.pathname.includes('register.html')) {
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const fullname = this.querySelector('#fullname').value.trim();
-        const email = this.querySelector('#email').value.trim();
-        const phone = this.querySelector('#phone').value.trim();
-        const password = this.querySelector('#password').value.trim();
-        const confirmPassword = this.querySelector('#confirm-password').value.trim();
-        const terms = this.querySelector('#terms').checked;
-        
-        if (!fullname || !email || !phone || !password || !confirmPassword) {
-            alert('Please fill in all fields');
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            alert('Please enter a valid email address');
-            return;
-        }
-        
-        if (!isValidPhone(phone)) {
-            alert('Please enter a valid phone number');
-            return;
-        }
-        
-        if (password.length < 8) {
-            alert('Password must be at least 8 characters long');
-            return;
-        }
-        
-        if (password !== confirmPassword) {
-            alert('Passwords do not match');
-            return;
-        }
-        
-        if (!terms) {
-            alert('Please agree to the Terms of Service and Privacy Policy');
-            return;
-        }
-        
-        // Here you would typically send the registration data to your server
-        // For now, we'll just show a success message
-        alert('Registration successful! Please login to continue.');
-        window.location.href = 'login.html';
+// Initialize FAQ functionality
+function initFAQ() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const isActive = this.classList.contains('active');
+            
+            // Close all other questions
+            faqQuestions.forEach(q => {
+                q.classList.remove('active');
+                const answer = q.nextElementSibling;
+                if (answer && answer.classList.contains('faq-answer')) {
+                    answer.style.maxHeight = '0';
+                }
+            });
+            
+            // Toggle current question
+            if (!isActive) {
+                this.classList.add('active');
+                const answer = this.nextElementSibling;
+                if (answer && answer.classList.contains('faq-answer')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            }
+        });
     });
 }
 
-// Theme Toggle Functionality
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = themeToggle.querySelector('i');
-
-// Check for saved theme preference or use system preference
-const savedTheme = localStorage.getItem('theme') || 
-    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-// Apply saved theme
-document.documentElement.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
-
-// Toggle theme on button click
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+// Initialize ad popup functionality
+function initAdPopup() {
+    const adPopup = document.getElementById('ad-popup');
+    const adCloseBtn = document.getElementById('ad-close-btn');
     
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
-});
-
-// Update theme icon based on current theme
-function updateThemeIcon(theme) {
-    if (theme === 'dark') {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-    } else {
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
+    if (adPopup && adCloseBtn) {
+        // Show popup after 3 seconds
+        setTimeout(() => {
+            adPopup.style.display = 'flex';
+        }, 3000);
+        
+        // Close popup functionality
+        adCloseBtn.addEventListener('click', () => {
+            adPopup.style.display = 'none';
+        });
+        
+        // Close popup when clicking outside
+        adPopup.addEventListener('click', (e) => {
+            if (e.target === adPopup) {
+                adPopup.style.display = 'none';
+            }
+        });
     }
-} 
+}
+
+// Main initialization function
+async function init() {
+    // Load translations first
+    await loadTranslations();
+    
+    // Initialize all functionality
+    initLanguageSwitcher();
+    initThemeToggle();
+    initMobileMenu();
+    initSmoothScroll();
+    setActiveNavigation();
+    initContactForm();
+    initPasswordToggle();
+    initFAQ();
+    initAdPopup();
+    
+    // Set initial language
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    currentLanguage = savedLanguage;
+    translatePage(currentLanguage);
+    
+    // Ensure navigation is visible on page load
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.style.display = 'block';
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
+
+// Ensure navigation is visible on page refresh
+window.addEventListener('load', function() {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.style.display = 'block';
+    }
+}); 
