@@ -137,6 +137,23 @@
     setTimeout(() => addMsg(reply, 'pandit'), 500);
   }
 
+  // Helper to check if homepage
+  function isHomePage() {
+    return window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/BookPandit/frontend/';
+  }
+
+  // Add persistent homepage message if on homepage
+  function ensureHomePageWelcome() {
+    if (!isHomePage()) return;
+    const msgs = JSON.parse(localStorage.getItem('panditChatMsgs') || '[]');
+    const welcomeText = "Let's chat with our pandits for any festival occasions...";
+    const alreadyPresent = msgs.some(m => m.text === welcomeText && m.sender === 'pandit');
+    if (!alreadyPresent) {
+      msgs.unshift({ text: welcomeText, sender: 'pandit' });
+      localStorage.setItem('panditChatMsgs', JSON.stringify(msgs));
+    }
+  }
+
   // Form submit
   form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -167,4 +184,7 @@
   // Show icon by default
   chatIcon.style.display = 'flex';
   chatBox.style.display = 'none';
+
+  // On page load, ensure homepage welcome message
+  ensureHomePageWelcome();
 })();

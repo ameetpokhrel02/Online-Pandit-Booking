@@ -154,7 +154,7 @@ BookPandit/
 ---
 
 ## Database Models
-- **User**: username, password, role (user/admin), etc.
+- **User**: username, password, role (user&admin), etc.
 - **Booking**: service type, date, user ID, etc.
 - **Pandit**: name, experience, location, etc.
 
