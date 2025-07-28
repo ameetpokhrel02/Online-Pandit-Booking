@@ -57,33 +57,35 @@
                 <p data-i18n="dashboardMsg">Here's what's happening with your bookings.</p>
             </div>
 
-            <!-- Stats Cards -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
-                    <div class="stat-details">
-                        <h3 data-i18n="activeBookings">Active Bookings</h3>
-                        <p class="stat-number">3</p>
+            <!-- Section: Overview (default) -->
+            <section class="dashboard-section" id="section-overview">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="stat-details">
+                            <h3 data-i18n="activeBookings">Active Bookings</h3>
+                            <p class="stat-number">3</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-history"></i></div>
+                        <div class="stat-details">
+                            <h3 data-i18n="pastBookings">Past Bookings</h3>
+                            <p class="stat-number">12</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+                        <div class="stat-details">
+                            <h3 data-i18n="totalSpent">Total Spent</h3>
+                            <p class="stat-number">₹25,000</p>
+                        </div>
                     </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-history"></i></div>
-                    <div class="stat-details">
-                        <h3 data-i18n="pastBookings">Past Bookings</h3>
-                        <p class="stat-number">12</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
-                    <div class="stat-details">
-                        <h3 data-i18n="totalSpent">Total Spent</h3>
-                        <p class="stat-number">₹25,000</p>
-                    </div>
-                </div>
-            </div>
+            </section>
 
-            <!-- Recent Bookings -->
-            <section class="dashboard-section">
+            <!-- Section: My Bookings -->
+            <section class="dashboard-section" id="section-bookings" style="display:none;">
                 <h2 data-i18n="recentBookings">Recent Bookings</h2>
                 <div class="bookings-table">
                     <table>
@@ -98,47 +100,50 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>#BK001</td>
-                                <td>Wedding Ceremony</td>
-                                <td>15 Mar 2024</td>
-                                <td>Pandit Sharma</td>
-                                <td><span class="status-badge confirmed" data-i18n="confirmed">Confirmed</span></td>
-                                <td><button class="btn btn-small" data-i18n="viewDetails">View Details</button></td>
-                            </tr>
-                            <tr>
-                                <td>#BK002</td>
-                                <td>House Warming</td>
-                                <td>20 Mar 2024</td>
-                                <td>Pandit Kumar</td>
-                                <td><span class="status-badge pending" data-i18n="pending">Pending</span></td>
-                                <td><button class="btn btn-small" data-i18n="viewDetails">View Details</button></td>
-                            </tr>
+                            <!-- Filled by JS -->
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <!-- Upcoming Events -->
-            <section class="dashboard-section">
-                <h2 data-i18n="upcomingEvents">Upcoming Events</h2>
-                <div class="events-grid">
-                    <div class="event-card">
-                        <div class="event-date">
-                            <span class="day">15</span>
-                            <span class="month">Mar</span>
-                        </div>
-                        <div class="event-details">
-                            <h3 data-i18n="weddingCeremony">Wedding Ceremony</h3>
-                            <p><i class="fas fa-clock"></i> <span data-i18n="eventTime">9:00 AM - 1:00 PM</span></p>
-                            <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="eventLocation">Temple Hall, City</span></p>
-                        </div>
-                        <div class="event-actions">
-                            <button class="btn btn-secondary btn-small" data-i18n="viewDetails">View Details</button>
-                            <button class="btn btn-primary btn-small" data-i18n="reschedule">Reschedule</button>
-                        </div>
-                    </div>
-                </div>
+            <!-- Section: Profile -->
+            <section class="dashboard-section" id="section-profile" style="display:none;">
+                <h2 data-i18n="profile">Profile</h2>
+                <form id="profile-form" style="max-width:400px;">
+                    <label>Name:<input type="text" id="profile-name" value="John Doe" /></label><br>
+                    <label>Email:<input type="email" id="profile-email" value="john@example.com" /></label><br>
+                    <label>Phone:<input type="text" id="profile-phone" value="9876543210" /></label><br>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+                <div id="profile-save-msg" style="color:green;margin-top:10px;display:none;">Profile updated!</div>
+            </section>
+
+            <!-- Section: Notifications -->
+            <section class="dashboard-section" id="section-notifications" style="display:none;">
+                <h2 data-i18n="notifications">Notifications</h2>
+                <ul id="notifications-list">
+                    <li>Your booking #BK001 is confirmed!</li>
+                    <li>New festival event coming up next week.</li>
+                </ul>
+            </section>
+
+            <!-- Section: Payments -->
+            <section class="dashboard-section" id="section-payments" style="display:none;">
+                <h2 data-i18n="payments">Payments</h2>
+                <ul>
+                    <li>Paid ₹5000 for Wedding Ceremony (Mar 2024)</li>
+                    <li>Paid ₹2000 for House Warming (Feb 2024)</li>
+                </ul>
+            </section>
+
+            <!-- Section: Settings -->
+            <section class="dashboard-section" id="section-settings" style="display:none;">
+                <h2 data-i18n="settings">Settings</h2>
+                <form id="settings-form" style="max-width:400px;">
+                    <label>Change Password:<input type="password" id="settings-password" /></label><br>
+                    <button type="submit" class="btn btn-primary">Update Password</button>
+                </form>
+                <div id="settings-save-msg" style="color:green;margin-top:10px;display:none;">Password updated!</div>
             </section>
         </main>
     </div>
@@ -226,6 +231,49 @@
         tbody.appendChild(tr);
       }
     });
+
+    // Dashboard section switching
+    const navLinks = document.querySelectorAll('.dashboard-nav a');
+    const sections = {
+      overview: document.getElementById('section-overview'),
+      bookings: document.getElementById('section-bookings'),
+      profile: document.getElementById('section-profile'),
+      notifications: document.getElementById('section-notifications'),
+      payments: document.getElementById('section-payments'),
+      settings: document.getElementById('section-settings'),
+    };
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        Object.values(sections).forEach(sec => sec.style.display = 'none');
+        const id = this.getAttribute('href').replace('#','');
+        if (sections[id]) sections[id].style.display = '';
+      });
+    });
+    // Profile form save
+    const profileForm = document.getElementById('profile-form');
+    if (profileForm) {
+      profileForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('profile-save-msg').style.display = 'block';
+        setTimeout(()=>{
+          document.getElementById('profile-save-msg').style.display = 'none';
+        }, 2000);
+      });
+    }
+    // Settings form save
+    const settingsForm = document.getElementById('settings-form');
+    if (settingsForm) {
+      settingsForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('settings-save-msg').style.display = 'block';
+        setTimeout(()=>{
+          document.getElementById('settings-save-msg').style.display = 'none';
+        }, 2000);
+      });
+    }
     </script>
 </body>
 </html>
