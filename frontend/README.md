@@ -148,7 +148,7 @@ BookPandit/
 ---
 
 ## Role-Based Authentication
-- Users can register and log in to book services.
+- Users can register and log in to book service.
 - Admins can manage users, bookings, and services.
 
 ---
