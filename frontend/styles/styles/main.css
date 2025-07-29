@@ -2130,17 +2130,6 @@ a:hover {
     margin-bottom: 2rem;
 }
 .payment-option {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: box-shadow 0.2s, border 0.2s;
-    box-shadow: 0 1px 4px rgba(44, 62, 80, 0.06);
-}
-.payment-option input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-}
-.payment-option label {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2149,16 +2138,36 @@ a:hover {
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid transparent;
-    transition: border 0.2s, background 0.2s;
+    box-shadow: 0 1px 4px rgba(44, 62, 80, 0.06);
+    transition: border 0.2s, background 0.2s, box-shadow 0.2s;
+    position: relative;
+    margin-bottom: 0;
 }
-.payment-option label:hover {
+.payment-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.payment-option:hover {
     background: #f0f6ff;
     border: 2px solid var(--primary-color);
 }
-.payment-option input[type="radio"]:checked + label {
-    background: #fff7f0;
-    border: 2.5px solid var(--primary-color);
-    box-shadow: 0 2px 12px rgba(255, 107, 0, 0.08);
+.payment-option input[type="radio"]:checked ~ img,
+.payment-option input[type="radio"]:checked ~ span {
+    /* Optional: add a visual effect to the image/text when selected */
+    filter: brightness(1.1);
+}
+.payment-option input[type="radio"]:checked ~ span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.payment-option input[type="radio"]:checked ~ .payment-logo {
+    box-shadow: 0 0 0 2px var(--primary-color);
+    border-radius: 6px;
+}
+.payment-option input[type="radio"]:checked ~ span,
+.payment-option input[type="radio"]:checked ~ img {
+    /* Add more highlight if needed */
 }
 .payment-option img {
     width: 70px;
