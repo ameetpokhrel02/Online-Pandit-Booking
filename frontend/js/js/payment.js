@@ -14,7 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePaymentSelection();
 
     // Add event listener for proceed to payment button
-    document.getElementById('proceed-payment').addEventListener('click', handlePayment);
+    document.getElementById('proceed-payment').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent form submission/page reload
+        handlePayment();
+    });
 });
 
 function updatePaymentSummary(service, type, date, time, pandit) {
