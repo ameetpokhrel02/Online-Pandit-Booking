@@ -1,0 +1,32 @@
+<script>
+async function verifyEsewa() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const refId = urlParams.get('refId');
+    const amt = urlParams.get('amt');
+    const oid = urlParams.get('oid');
+    if (!refId || !amt || !oid) {
+        document.body.innerHTML = '<h2>Missing payment details!</h2>';
+        return;
+    }
+    const resp = await fetch('/api/verify/esewa/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `refId=${encodeURIComponent(refId)}&amt=${encodeURIComponent(amt)}&oid=${encodeURIComponent(oid)}`
+    });
+    const data = await resp.json();
+    if (data.success) {
+        await markOrderPaid(oid, 'esewa', refId);
+        document.body.innerHTML = '<h2>Payment Successful!</h2>';
+    } else {
+        document.body.innerHTML = '<h2>Payment Failed!</h2>';
+    }
+}
+async function markOrderPaid(orderId, method, refId) {
+    await fetch('/api/mark-paid/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({order_id: orderId, method, ref_id: refId})
+    });
+}
+window.onload = verifyEsewa;
+</script> 

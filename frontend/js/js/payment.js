@@ -291,3 +291,27 @@ function handlePayment() {
         proceedBtn.textContent = 'Proceed to Payment';
     }, 600);
 } 
+
+function onKhaltiSuccess(payload) {
+    fetch('/api/verify/khalti/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `token=${encodeURIComponent(payload.token)}&amount=${encodeURIComponent(payload.amount)}`
+    })
+    .then(res => res.json())
+    .then(async data => {
+        if (data.success) {
+            await markOrderPaid(orderId, 'khalti', payload.token);
+            alert('Payment Successful!');
+        } else {
+            alert('Payment Failed!');
+        }
+    });
+}
+async function markOrderPaid(orderId, method, refId) {
+    await fetch('/api/mark-paid/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({order_id: orderId, method, ref_id: refId})
+    });
+} 
