@@ -310,3 +310,11 @@ window.addEventListener('load', function() {
         navbar.style.display = 'block';
     }
 }); 
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.wa-icon-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            window.open(this.href, '_blank');
+        });
+    });
+}); 
