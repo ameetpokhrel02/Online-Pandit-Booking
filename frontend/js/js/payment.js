@@ -192,7 +192,7 @@ function handleEsewaPayment() {
     
     const form = document.createElement('form');
     form.setAttribute('method', 'POST');
-    form.setAttribute('action', PAYMENT_GATEWAYS.esewa.testUrl);
+    form.setAttribute('action', PAYMENT_GATEWAYS.esewa.liveUrl);
 
     const params = {
         ...PAYMENT_GATEWAYS.esewa.params,
