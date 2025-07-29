@@ -165,31 +165,9 @@
     }
   }
 
-  // Show authentication required message
-  function showAuthRequiredMessage() {
-    const authMessage = document.createElement('div');
-    authMessage.className = 'chatbox-msg pandit';
-    authMessage.innerHTML = `
-      <div class="chatbox-msg-bubble">
-        <strong>Authentication Required</strong><br>
-        Please <a href="login.html" style="color: #1976d2; text-decoration: underline;">login</a> or 
-        <a href="signup.html" style="color: #1976d2; text-decoration: underline;">sign up</a> to chat with us.
-      </div>
-    `;
-    messagesDiv.appendChild(authMessage);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-  }
-
   // Form submit
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    // Check authentication before allowing chat
-    if (!isAuthenticated) {
-      showAuthRequiredMessage();
-      return;
-    }
-    
     const text = input.value.trim();
     if (!text) return;
     addMsg(text, 'user');
