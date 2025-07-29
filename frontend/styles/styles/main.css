@@ -2043,3 +2043,202 @@ a:hover {
     gap: 18px;
   }
 }
+
+/* --- Payment Page Enhanced Styles --- */
+.payment-page {
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #fff 100%);
+    min-height: 100vh;
+}
+
+.payment-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(44, 62, 80, 0.10);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.payment-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+.payment-header h1 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.payment-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.payment-content {
+    display: flex;
+    gap: 2rem;
+}
+
+.payment-summary {
+    flex: 1;
+    background: #f6f8fa;
+    padding: 1.5rem 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
+}
+.payment-summary h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+.summary-details p {
+    margin-bottom: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.05rem;
+}
+.summary-details strong {
+    color: #222;
+}
+#payment-amount {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+
+.payment-methods {
+    flex: 1.2;
+    background: #f6f8fa;
+    padding: 1.5rem 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
+}
+.payment-methods h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+.payment-option {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border 0.2s;
+    box-shadow: 0 1px 4px rgba(44, 62, 80, 0.06);
+}
+.payment-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+.payment-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.2rem 0.5rem;
+    background: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.2s, background 0.2s;
+}
+.payment-option label:hover {
+    background: #f0f6ff;
+    border: 2px solid var(--primary-color);
+}
+.payment-option input[type="radio"]:checked + label {
+    background: #fff7f0;
+    border: 2.5px solid var(--primary-color);
+    box-shadow: 0 2px 12px rgba(255, 107, 0, 0.08);
+}
+.payment-option img {
+    width: 70px;
+    height: 38px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 1px 2px rgba(44,62,80,0.08));
+}
+.payment-option span {
+    font-weight: 500;
+    color: #333;
+    font-size: 1.05rem;
+}
+
+.payment-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+.payment-actions button {
+    padding: 0.8rem 2.2rem;
+    font-size: 1.08rem;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(44, 62, 80, 0.08);
+    transition: background 0.2s, color 0.2s;
+}
+.payment-actions .btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+}
+.payment-actions .btn-primary:hover {
+    background: var(--primary-dark);
+}
+.payment-actions .btn-secondary {
+    background: #fff;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+.payment-actions .btn-secondary:hover {
+    background: var(--primary-light);
+}
+
+@media (max-width: 900px) {
+    .payment-container {
+        padding: 1.2rem 0.5rem;
+    }
+    .payment-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .payment-options {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 600px) {
+    .payment-container {
+        padding: 0.5rem 0.2rem;
+    }
+    .payment-header h1 {
+        font-size: 1.4rem;
+    }
+    .payment-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .payment-summary, .payment-methods {
+        padding: 1rem 0.5rem;
+    }
+    .payment-options {
+        grid-template-columns: 1fr;
+        gap: 0.7rem;
+    }
+    .payment-actions {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+    .payment-actions button {
+        width: 100%;
+    }
+}
