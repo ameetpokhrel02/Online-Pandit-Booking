@@ -255,6 +255,7 @@ function handlePayment() {
 
     // Get selected payment method
     const selected = document.querySelector('.payment-option input[type="radio"]:checked');
+    console.log('Selected payment radio:', selected);
     if (!selected) {
         alert('Please select a payment method.');
         proceedBtn.disabled = false;
