@@ -243,25 +243,47 @@ function handleConnectIpsPayment() {
     window.location.href = PAYMENT_GATEWAYS.connectips.testUrl + '?' + new URLSearchParams(params).toString();
 }
 
-// Main payment handler
-function handlePayment(paymentMethod) {
-    switch(paymentMethod) {
-        case 'esewa':
-            handleEsewaPayment();
-            break;
-        case 'khalti':
-            const khaltiCheckout = initializeKhalti();
-            if (khaltiCheckout) {
-                khaltiCheckout.show({amount: getPaymentAmount() * 100});
-            }
-            break;
-        case 'imepay':
-            handleImePayment();
-            break;
-        case 'connectips':
-            handleConnectIpsPayment();
-            break;
-        default:
-            alert('Please select a payment method');
+// Enhanced main payment handler with user feedback and validation
+function handlePayment() {
+    // Show loading feedback
+    const proceedBtn = document.getElementById('proceed-payment');
+    proceedBtn.disabled = true;
+    proceedBtn.textContent = 'Processing...';
+
+    // Get selected payment method
+    const selected = document.querySelector('.payment-option input[type="radio"]:checked');
+    if (!selected) {
+        alert('Please select a payment method.');
+        proceedBtn.disabled = false;
+        proceedBtn.textContent = 'Proceed to Payment';
+        return;
     }
+    const paymentMethod = selected.value;
+
+    // Small delay for UX
+    setTimeout(() => {
+        switch(paymentMethod) {
+            case 'esewa':
+                handleEsewaPayment();
+                break;
+            case 'khalti':
+                const khaltiCheckout = initializeKhalti();
+                if (khaltiCheckout) {
+                    khaltiCheckout.show({amount: getPaymentAmount() * 100});
+                } else {
+                    alert('Khalti payment is not available.');
+                }
+                break;
+            case 'imepay':
+                handleImePayment();
+                break;
+            case 'connectips':
+                handleConnectIpsPayment();
+                break;
+            default:
+                alert('Invalid payment method.');
+        }
+        proceedBtn.disabled = false;
+        proceedBtn.textContent = 'Proceed to Payment';
+    }, 600);
 } 
