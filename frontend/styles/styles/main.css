@@ -450,10 +450,11 @@ p {
     box-shadow: 0 2px 8px rgba(255, 107, 0, 0.1);
 }
 .service-actions .btn-secondary:hover {
-    background: var(--primary-color);
+    background: var(--info-color);
     color: var(--white);
+    border-color: var(--info-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(255, 107, 0, 0.2);
+    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.3);
 }
 .custom-service {
     background: var(--primary-light);
