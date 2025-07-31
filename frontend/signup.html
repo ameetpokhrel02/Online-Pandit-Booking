@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Book Pandit</title>
+    <link rel="icon" type="image/png" href="images/logo/logo.png">
     <link rel="stylesheet" href="styles/styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="js/auth.js" defer></script>
 </head>
-<body>
+<body class="modern-auth-body">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -36,96 +37,108 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="auth-page">
-        <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px;min-height:80vh;">
-            <div class="auth-container" style="display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:32px;width:100%;max-width:720px;background:#fff;border-radius:18px;box-shadow:0 4px 24px rgba(25,118,210,0.07);padding:28px 0;">
-                <div class="auth-image" style="flex:1 1 320px;min-width:260px;display:flex;align-items:center;justify-content:center;background:#fff0e6;border-radius:14px 0 0 14px;padding:32px 0;">
-                    <img src="images/logo/login-signup.png" alt="Sign Up" style="width:90%;max-width:320px;min-width:180px;object-fit:contain;">
-                </div>
-                <div class="auth-form-container" style="flex:1 1 340px;min-width:300px;padding:32px 32px 24px 32px;display:flex;flex-direction:column;justify-content:center;">
-                    <h1 style="font-size:2.3rem;font-weight:800;margin-bottom:10px;color:#ff8000;letter-spacing:0.5px;text-shadow:0 2px 8px rgba(255,128,0,0.07);">Create Account</h1>
-                    <p style="margin-bottom:18px;color:#1976d2;">Join us to book pandits for your religious ceremonies</p>
-                    <form class="auth-form" id="signup-form" style="width:100%;">
-                        <div class="form-group">
-                            <label for="fullname">Full Name</label>
-                            <div class="input-group">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+    <main class="modern-auth-page">
+        <div class="modern-auth-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="modern-auth-container">
+                <div class="modern-auth-card">
+                    <div class="auth-header">
+                        <div class="auth-logo">
+                            <div class="logo-glow"></div>
+                            <span class="brand-name">BookPandit</span>
+                        </div>
+                        <h1 class="auth-title">Create Account</h1>
+                        <p class="auth-subtitle">Join us to book pandits for your religious ceremonies</p>
+                    </div>
+                    
+                    <form class="modern-auth-form" id="signup-form">
+                        <div class="modern-form-group">
+                            <div class="modern-input-group">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" id="fullname" name="fullname" placeholder="Full name" required>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <div class="input-group">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <div class="modern-form-group">
+                            <div class="modern-input-group">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" id="email" name="email" placeholder="Email address" required>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <div class="input-group">
-                                <i class="fas fa-phone"></i>
-                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        <div class="modern-form-group">
+                            <div class="modern-input-group">
+                                <i class="fas fa-phone input-icon"></i>
+                                <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <div class="input-group">
-                                <i class="fas fa-lock"></i>
+                        <div class="modern-form-group">
+                            <div class="modern-input-group">
+                                <i class="fas fa-lock input-icon"></i>
                                 <input type="password" id="password" name="password" placeholder="Create a password" required>
-                                <button type="button" class="toggle-password">
+                                <button type="button" class="toggle-password-modern">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="confirm-password">Confirm Password</label>
-                            <div class="input-group">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
-                                <button type="button" class="toggle-password">
+                        <div class="modern-form-group">
+                            <div class="modern-input-group">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+                                <button type="button" class="toggle-password-modern">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="terms">
+                        <div class="modern-form-group">
+                            <div class="modern-input-group">
+                                <i class="fas fa-user-tag input-icon"></i>
+                                <select id="role" name="role" required>
+                                    <option value="">Select role</option>
+                                    <option value="user">User</option>
+                                    <option value="pandit">Pandit</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modern-form-options">
+                            <div class="remember-me-modern">
                                 <input type="checkbox" id="terms" name="terms" required>
-                                <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                                <label for="terms">I agree to the <a href="#" style="color: #ff6b6b;">Terms</a> and <a href="#" style="color: #ff6b6b;">Privacy Policy</a></label>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="role">Sign up as</label>
-                            <select id="role" name="role" required>
-                                <option value="user">User</option>
-                                <option value="pandit">Pandit</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-                    </form>
+                        <button type="submit" class="modern-login-btn">
+                            <span>Create Account</span>
+                        </button>
 
-                    <div class="social-login">
-                        <p>Or sign up with</p>
-                        <div class="social-buttons">
-                            <button class="btn btn-social btn-google">
+                        <div class="modern-separator">
+                            <span>or</span>
+                        </div>
+
+                        <div class="modern-social-buttons">
+                            <button type="button" class="modern-social-btn google-btn">
                                 <i class="fab fa-google"></i>
-                                <span>Google</span>
+                                <span>Sign up with Google</span>
                             </button>
-                            <button class="btn btn-social btn-facebook">
+                            <button type="button" class="modern-social-btn facebook-btn">
                                 <i class="fab fa-facebook-f"></i>
-                                <span>Facebook</span>
+                                <span>Sign up with Facebook</span>
                             </button>
                         </div>
-                    </div>
 
-                    <div class="auth-footer">
-                        <p>Already have an account? <a href="login.html">Sign In</a></p>
-                    </div>
+                        <div class="modern-auth-footer">
+                            <p>Already have an account? <a href="login.html">Sign In</a></p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -151,9 +164,9 @@
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> info@bookpandit.com</li>
-                        <li><i class="fas fa-phone"></i> +91 1234567890</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Temple Street, City</li>
+                        <li><i class="fas fa-envelope"></i> mypandit@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> 9847226995</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Nepal, Kathmandu</li>
                     </ul>
                 </div>
             </div>

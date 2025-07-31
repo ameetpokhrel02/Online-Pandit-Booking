@@ -273,7 +273,7 @@
 /* Pandit Card Favorite Button Styles */
 .pandit-img-wrap {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -297,26 +297,25 @@
 
 .favorite-btn {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid var(--primary-color);
+    top: -8px;
+    right: -8px;
+    background: var(--white);
+    border: none;
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .favorite-btn:hover {
     background: var(--primary-color);
-    border-color: var(--primary-color);
-    transform: scale(1.1);
+    transform: scale(1.15);
     box-shadow: 0 4px 16px rgba(255, 107, 0, 0.3);
 }
 
@@ -332,7 +331,6 @@
 
 .favorite-btn.favorited {
     background: var(--primary-color);
-    border-color: var(--primary-color);
     animation: heartBeat 0.6s ease-in-out;
 }
 
@@ -381,10 +379,10 @@
 /* Favorite button responsive design */
 @media (max-width: 768px) {
     .favorite-btn {
-        width: 32px;
-        height: 32px;
-        top: 6px;
-        right: 6px;
+        width: 28px;
+        height: 28px;
+        top: -6px;
+        right: -6px;
     }
     
     .favorite-btn i {
@@ -399,10 +397,10 @@
 
 @media (max-width: 480px) {
     .favorite-btn {
-        width: 28px;
-        height: 28px;
-        top: 4px;
-        right: 4px;
+        width: 24px;
+        height: 24px;
+        top: -4px;
+        right: -4px;
     }
     
     .favorite-btn i {
