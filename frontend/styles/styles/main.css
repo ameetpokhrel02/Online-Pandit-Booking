@@ -223,25 +223,6 @@ p {
     color: var(--primary-color);
 }
 
-.mobile-menu-btn {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    padding: 0.5rem;
-    transition: color 0.3s ease;
-}
-
-.mobile-menu-btn:hover {
-    color: var(--primary-color);
-}
-
-.mobile-menu-btn.active {
-    color: var(--primary-color);
-}
-
 /* Hero Section */
 .hero {
     position: relative;
@@ -2072,11 +2053,14 @@ a:hover {
   }
   .navbar .nav-links {
     width: 100%;
-    display: flex;
+    display: none !important;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
     margin-bottom: 8px;
+  }
+  .navbar .nav-links.active {
+    display: flex !important;
   }
   .navbar .nav-links a,
   .navbar .nav-links .btn {
@@ -2089,6 +2073,7 @@ a:hover {
     top: 18px;
     right: 18px;
     z-index: 10;
+    display: block;
   }
 }
 
@@ -2104,10 +2089,40 @@ a:hover {
     align-items: center;
   }
   .navbar .nav-links {
-    display: flex;
+    display: flex !important;
     align-items: center;
     gap: 18px;
   }
+  .navbar .mobile-menu-btn {
+    display: none !important;
+  }
+}
+
+/* Mobile Menu Styles */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--primary-color);
+}
+
+.mobile-menu-btn.active {
+    color: var(--primary-color);
+}
+
+/* Ensure mobile menu is hidden by default */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 /* --- Payment Page Enhanced Styles --- */
