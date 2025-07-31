@@ -247,23 +247,38 @@
             <h2 data-i18n="faq">Frequently Asked Questions</h2>
             <div class="faq-list">
                 <div class="faq-item">
-                    <button class="faq-question" data-i18n="howToBook">How do I book a pandit?</button>
+                    <button class="faq-question" data-i18n="howToBook">
+                        <span>How do I book a pandit?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
                     <div class="faq-answer" data-i18n="howToBookAnswer">You can book a pandit by selecting your desired service and filling out the booking form. Our team will confirm your booking shortly.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" data-i18n="paymentMethods">What payment methods are accepted?</button>
+                    <button class="faq-question" data-i18n="paymentMethods">
+                        <span>What payment methods are accepted?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
                     <div class="faq-answer" data-i18n="paymentMethodsAnswer">We accept online payments via eSewa, Khalti, IME Pay, and bank transfer. Cash payments are also available for select services.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" data-i18n="choosePandit">Can I choose a specific pandit?</button>
+                    <button class="faq-question" data-i18n="choosePandit">
+                        <span>Can I choose a specific pandit?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
                     <div class="faq-answer" data-i18n="choosePanditAnswer">Yes, you can request a specific pandit based on availability. Please mention your preference during booking.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" data-i18n="cancelReschedule">What if I need to cancel or reschedule?</button>
+                    <button class="faq-question" data-i18n="cancelReschedule">
+                        <span>What if I need to cancel or reschedule?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
                     <div class="faq-answer" data-i18n="cancelRescheduleAnswer">You can cancel or reschedule your booking by contacting our support team at least 24 hours in advance.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" data-i18n="outsideKathmandu">Do you provide services outside Kathmandu?</button>
+                    <button class="faq-question" data-i18n="outsideKathmandu">
+                        <span>Do you provide services outside Kathmandu?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
                     <div class="faq-answer" data-i18n="outsideKathmanduAnswer">Yes, we provide services in multiple cities across Nepal. Please check availability for your location during booking.</div>
                 </div>
             </div>
@@ -375,16 +390,57 @@
     </script>
     <script src="js/chatbox.js"></script>
     <script>
-    // FAQ Accordions
+    // Enhanced FAQ Accordions with smooth animations
     const faqQuestions = document.querySelectorAll('.faq-question');
+    
     faqQuestions.forEach(btn => {
         btn.addEventListener('click', function() {
+            const faqItem = this.parentElement;
             const answer = this.nextElementSibling;
-            this.classList.toggle('active');
-            if (answer.style.maxHeight) {
+            const isActive = this.classList.contains('active');
+            
+            // Close all other FAQ items
+            faqQuestions.forEach(otherBtn => {
+                if (otherBtn !== this) {
+                    otherBtn.classList.remove('active');
+                    const otherAnswer = otherBtn.nextElementSibling;
+                    otherAnswer.style.maxHeight = null;
+                    otherAnswer.style.opacity = '0';
+                    otherAnswer.style.transform = 'translateY(-10px)';
+                    otherBtn.parentElement.classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ item
+            if (isActive) {
+                // Close
+                this.classList.remove('active');
+                faqItem.classList.remove('active');
                 answer.style.maxHeight = null;
+                answer.style.opacity = '0';
+                answer.style.transform = 'translateY(-10px)';
             } else {
+                // Open
+                this.classList.add('active');
+                faqItem.classList.add('active');
                 answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.style.opacity = '1';
+                answer.style.transform = 'translateY(0)';
+            }
+        });
+    });
+    
+    // Add hover effects for better UX
+    faqQuestions.forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('active')) {
+                this.style.background = 'rgba(255, 107, 0, 0.05)';
+            }
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('active')) {
+                this.style.background = 'transparent';
             }
         });
     });

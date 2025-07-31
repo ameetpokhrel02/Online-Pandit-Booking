@@ -66,9 +66,12 @@
             <p>Our pandits are a beacon of spiritual wisdom and tradition. With years of experience and profound devotion, they bring heartfelt blessings and sacred rituals to every ceremony, enriching lives with joy and harmony.</p>
 
             <div class="pandits-grid">
-                <div class="pandit-card">
+                <div class="pandit-card" data-pandit-id="1">
                     <div class="pandit-img-wrap">
                         <img src="images/logo/pandit9.png" alt="Laxman Devkota">
+                        <button class="favorite-btn" data-pandit-id="1" title="Add to Favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="pandit-details">
                         <h3 class="pandit-name">Laxman Devkota</h3>
@@ -84,9 +87,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pandit-card">
+                <div class="pandit-card" data-pandit-id="2">
                     <div class="pandit-img-wrap">
                         <img src="images/logo/pandit6.png" alt="Shukdev Sharan Adhikari">
+                        <button class="favorite-btn" data-pandit-id="2" title="Add to Favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="pandit-details">
                         <h3 class="pandit-name">Shukdev Sharan Adhikari</h3>
@@ -102,9 +108,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pandit-card">
+                <div class="pandit-card" data-pandit-id="3">
                     <div class="pandit-img-wrap">
                         <img src="images/logo/pandit7.png" alt="Amrit Gaire">
+                        <button class="favorite-btn" data-pandit-id="3" title="Add to Favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="pandit-details">
                         <h3 class="pandit-name">Amrit Gaire</h3>
@@ -120,9 +129,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pandit-card">
+                <div class="pandit-card" data-pandit-id="4">
                     <div class="pandit-img-wrap">
                         <img src="images/logo/pandit8.png" alt="Krishna Sharan">
+                        <button class="favorite-btn" data-pandit-id="4" title="Add to Favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="pandit-details">
                         <h3 class="pandit-name">Krishna Sharan</h3>
@@ -138,9 +150,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pandit-card">
+                <div class="pandit-card" data-pandit-id="5">
                     <div class="pandit-img-wrap">
                         <img src="images/logo/pandit10.png" alt="Sachin Khanal">
+                        <button class="favorite-btn" data-pandit-id="5" title="Add to Favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="pandit-details">
                         <h3 class="pandit-name">Sachin Khanal</h3>
@@ -156,9 +171,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pandit-card">
+                <div class="pandit-card" data-pandit-id="6">
                     <div class="pandit-img-wrap">
                         <img src="images/logo/pandit11.png" alt="Sandip Devkota">
+                        <button class="favorite-btn" data-pandit-id="6" title="Add to Favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="pandit-details">
                         <h3 class="pandit-name">Sandip Devkota</h3>
@@ -174,9 +192,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pandit-card">
+                <div class="pandit-card" data-pandit-id="7">
                     <div class="pandit-img-wrap">
                         <img src="images/logo/pandit12.png" alt="Ghanashyam Bhattarai">
+                        <button class="favorite-btn" data-pandit-id="7" title="Add to Favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="pandit-details">
                         <h3 class="pandit-name">Ghanashyam Bhattarai</h3>
@@ -192,9 +213,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pandit-card">
+                <div class="pandit-card" data-pandit-id="8">
                     <div class="pandit-img-wrap">
-                        <img src="images/logo/pandit13.png" alt="John Doe">
+                        <img src="images/logo/pandit13.png" alt="Rajesh Kumar Bhattarai">
+                        <button class="favorite-btn" data-pandit-id="8" title="Add to Favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
                     <div class="pandit-details">
                         <h3 class="pandit-name">Rajesh Kumar Bhattarai</h3>
@@ -289,6 +313,139 @@
       setLang(this.value);
     });
     setLang(currentLang);
+
+    // --- Favorite Pandits Functionality ---
+    class FavoritePandits {
+        constructor() {
+            this.favorites = this.loadFavorites();
+            this.init();
+        }
+
+        loadFavorites() {
+            const saved = localStorage.getItem('favoritePandits');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        saveFavorites() {
+            localStorage.setItem('favoritePandits', JSON.stringify(this.favorites));
+        }
+
+        init() {
+            this.setupEventListeners();
+            this.updateAllFavoriteButtons();
+        }
+
+        setupEventListeners() {
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.toggleFavorite(btn);
+                });
+            });
+        }
+
+        toggleFavorite(btn) {
+            const panditId = btn.getAttribute('data-pandit-id');
+            const isFavorited = this.favorites.includes(panditId);
+
+            if (isFavorited) {
+                // Remove from favorites
+                this.favorites = this.favorites.filter(id => id !== panditId);
+                btn.classList.remove('favorited');
+                btn.title = 'Add to Favorites';
+                this.showNotification('Removed from favorites', 'info');
+            } else {
+                // Add to favorites
+                this.favorites.push(panditId);
+                btn.classList.add('favorited');
+                btn.title = 'Remove from Favorites';
+                this.showNotification('Added to favorites!', 'success');
+            }
+
+            this.saveFavorites();
+        }
+
+        updateAllFavoriteButtons() {
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                const panditId = btn.getAttribute('data-pandit-id');
+                if (this.favorites.includes(panditId)) {
+                    btn.classList.add('favorited');
+                    btn.title = 'Remove from Favorites';
+                } else {
+                    btn.classList.remove('favorited');
+                    btn.title = 'Add to Favorites';
+                }
+            });
+        }
+
+        showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `favorite-notification ${type}`;
+            notification.textContent = message;
+            
+            // Style the notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#4CAF50' : '#2196F3'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+                z-index: 10000;
+                font-weight: 500;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        getFavorites() {
+            return this.favorites;
+        }
+
+        isFavorited(panditId) {
+            return this.favorites.includes(panditId);
+        }
+    }
+
+    // Initialize favorite functionality
+    const favoritePandits = new FavoritePandits();
+
+    // Add hover effects for better UX
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('favorited')) {
+                this.style.transform = 'scale(1.1)';
+            }
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('favorited')) {
+                this.style.transform = 'scale(1)';
+            }
+        });
+    });
     </script>
 </body>
 </html>
