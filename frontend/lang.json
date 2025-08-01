@@ -115,7 +115,8 @@
     "signUpWithGoogle": "Sign up with Google",
     "signUpWithFacebook": "Sign up with Facebook",
     "alreadyAccount": "Already have an account?",
-    "signIn": "Sign In"
+    "signIn": "Sign In",
+    "panditQuote": "May divine blessings guide your spiritual journey"
   },
   "np": {
     "home": "गृहपृष्ठ",
@@ -233,6 +234,7 @@
     "signUpWithGoogle": "Google सँग साइन अप गर्नुहोस्",
     "signUpWithFacebook": "Facebook सँग साइन अप गर्नुहोस्",
     "alreadyAccount": "पहिले नै खाता छ?",
-    "signIn": "साइन इन गर्नुहोस्"
+    "signIn": "साइन इन गर्नुहोस्",
+    "panditQuote": "दैवी आशीर्वादले तपाईंको आध्यात्मिक यात्रालाई मार्गदर्शन गरोस्"
   }
 }
