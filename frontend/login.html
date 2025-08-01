@@ -111,7 +111,18 @@
                 <div class="modern-auth-visual">
                     <div class="pandit-photo-container">
                         <div class="pandit-photo">
-                            <img src="images/logo/pandit7.png" alt="Pandit" class="pandit-image">
+                            <div class="pandit-carousel">
+                                <img src="images/logo/pandit7.png" alt="Pandit" class="pandit-image active">
+                                <img src="images/logo/pandit8.png" alt="Pandit" class="pandit-image">
+                                <img src="images/logo/pandit9.png" alt="Pandit" class="pandit-image">
+                                <img src="images/logo/pandit10.png" alt="Pandit" class="pandit-image">
+                                <img src="images/logo/pandit11.png" alt="Pandit" class="pandit-image">
+                                <img src="images/logo/pandit12.png" alt="Pandit" class="pandit-image">
+                                <img src="images/logo/pandit13.png" alt="Pandit" class="pandit-image">
+                                <img src="images/logo/padnitt66.png" alt="Pandit" class="pandit-image">
+                                <img src="images/logo/pandit22.png" alt="Pandit" class="pandit-image">
+                                <img src="images/logo/panditt1.png" alt="Pandit" class="pandit-image">
+                            </div>
                             <div class="pandit-glow"></div>
                             <div class="floating-elements">
                                 <div class="floating-om">ॐ</div>
@@ -214,6 +225,24 @@
     });
     // On page load, set language
     setLang(currentLang);
+    
+    // Pandit Photo Carousel
+    function initPanditCarousel() {
+      const images = document.querySelectorAll('.pandit-carousel .pandit-image');
+      let currentIndex = 0;
+      
+      function nextImage() {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+      }
+      
+      // Change image every 3 seconds
+      setInterval(nextImage, 3000);
+    }
+    
+    // Initialize carousel when page loads
+    initPanditCarousel();
     </script>
 </body>
 <script>

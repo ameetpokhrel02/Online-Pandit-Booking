@@ -3036,17 +3036,35 @@ a:hover {
     100% { transform: rotate(360deg); }
 }
 
+.pandit-carousel {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 .pandit-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 260px;
     height: 260px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid rgba(255, 255, 255, 0.9);
-    transition: all 0.3s ease;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: scale(0.8) rotate(-10deg);
 }
 
-.pandit-photo:hover .pandit-image {
-    transform: scale(1.1);
+.pandit-image.active {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.pandit-photo:hover .pandit-image.active {
+    transform: scale(1.1) rotate(0deg);
     border-color: rgba(255, 255, 255, 1);
 }
 
@@ -3163,6 +3181,11 @@ a:hover {
     .pandit-photo {
         width: 200px;
         height: 200px;
+    }
+    
+    .pandit-carousel {
+        width: 180px;
+        height: 180px;
     }
     
     .pandit-image {
