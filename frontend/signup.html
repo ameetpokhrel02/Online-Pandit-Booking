@@ -52,36 +52,36 @@
                             <div class="logo-glow"></div>
                             <span class="brand-name">BookPandit</span>
                         </div>
-                        <h1 class="auth-title">Create Account</h1>
-                        <p class="auth-subtitle">Join us to book pandits for your religious ceremonies</p>
+                        <h1 class="auth-title" data-i18n="createAccount">Create Account</h1>
+                        <p class="auth-subtitle" data-i18n="joinUs">Join us to book pandits for your religious ceremonies</p>
                     </div>
                     
                     <form class="modern-auth-form" id="signup-form">
                         <div class="modern-form-group">
                             <div class="modern-input-group">
                                 <i class="fas fa-user input-icon"></i>
-                                <input type="text" id="fullname" name="fullname" placeholder="Full name" required>
+                                <input type="text" id="fullname" name="fullname" placeholder="Full name" data-i18n-placeholder="fullName" required>
                             </div>
                         </div>
 
                         <div class="modern-form-group">
                             <div class="modern-input-group">
                                 <i class="fas fa-envelope input-icon"></i>
-                                <input type="email" id="email" name="email" placeholder="Email address" required>
+                                <input type="email" id="email" name="email" placeholder="Email address" data-i18n-placeholder="emailAddress" required>
                             </div>
                         </div>
 
                         <div class="modern-form-group">
                             <div class="modern-input-group">
                                 <i class="fas fa-phone input-icon"></i>
-                                <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
+                                <input type="tel" id="phone" name="phone" placeholder="Phone number" data-i18n-placeholder="phoneNumber" required>
                             </div>
                         </div>
 
                         <div class="modern-form-group">
                             <div class="modern-input-group">
                                 <i class="fas fa-lock input-icon"></i>
-                                <input type="password" id="password" name="password" placeholder="Create a password" required>
+                                <input type="password" id="password" name="password" placeholder="Create a password" data-i18n-placeholder="createPassword" required>
                                 <button type="button" class="toggle-password-modern">
                                     <i class="fas fa-eye"></i>
                                 </button>
@@ -91,7 +91,7 @@
                         <div class="modern-form-group">
                             <div class="modern-input-group">
                                 <i class="fas fa-lock input-icon"></i>
-                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" data-i18n-placeholder="confirmPassword" required>
                                 <button type="button" class="toggle-password-modern">
                                     <i class="fas fa-eye"></i>
                                 </button>
@@ -102,9 +102,9 @@
                             <div class="modern-input-group">
                                 <i class="fas fa-user-tag input-icon"></i>
                                 <select id="role" name="role" required>
-                                    <option value="">Select role</option>
-                                    <option value="user">User</option>
-                                    <option value="pandit">Pandit</option>
+                                    <option value="" data-i18n="selectRole">Select role</option>
+                                    <option value="user" data-i18n="user">User</option>
+                                    <option value="pandit" data-i18n="pandit">Pandit</option>
                                 </select>
                             </div>
                         </div>
@@ -112,31 +112,31 @@
                         <div class="modern-form-options">
                             <div class="remember-me-modern">
                                 <input type="checkbox" id="terms" name="terms" required>
-                                <label for="terms">I agree to the <a href="#" style="color: #ff6b6b;">Terms</a> and <a href="#" style="color: #ff6b6b;">Privacy Policy</a></label>
+                                <label for="terms" data-i18n="agreeTerms">I agree to the <a href="#" style="color: #ff6b6b;">Terms</a> and <a href="#" style="color: #ff6b6b;">Privacy Policy</a></label>
                             </div>
                         </div>
 
                         <button type="submit" class="modern-login-btn">
-                            <span>Create Account</span>
+                            <span data-i18n="createAccount">Create Account</span>
                         </button>
 
                         <div class="modern-separator">
-                            <span>or</span>
+                            <span data-i18n="or">or</span>
                         </div>
 
                         <div class="modern-social-buttons">
                             <button type="button" class="modern-social-btn google-btn">
                                 <i class="fab fa-google"></i>
-                                <span>Sign up with Google</span>
+                                <span data-i18n="signUpWithGoogle">Sign up with Google</span>
                             </button>
                             <button type="button" class="modern-social-btn facebook-btn">
                                 <i class="fab fa-facebook-f"></i>
-                                <span>Sign up with Facebook</span>
+                                <span data-i18n="signUpWithFacebook">Sign up with Facebook</span>
                             </button>
                         </div>
 
                         <div class="modern-auth-footer">
-                            <p>Already have an account? <a href="login.html">Sign In</a></p>
+                            <p><span data-i18n="alreadyAccount">Already have an account?</span> <a href="login.html" data-i18n="signIn">Sign In</a></p>
                         </div>
                     </form>
                 </div>
@@ -185,6 +185,51 @@
     </footer>
 
     <script src="js/js/main.js"></script>
+    
+    <script>
+    // --- Language Switcher & Translation Loader ---
+    const langFilePath = 'lang.json';
+    let translations = {};
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+      
+      // Handle placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.placeholder = translations[currentLang][key];
+        }
+      });
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      applyTranslations();
+    }
+
+    fetch(langFilePath)
+      .then(res => res.json())
+      .then(data => {
+        translations = data;
+        document.getElementById('lang-switcher').value = currentLang;
+        applyTranslations();
+      });
+
+    document.getElementById('lang-switcher').addEventListener('change', function() {
+      setLang(this.value);
+    });
+    // On page load, set language
+    setLang(currentLang);
+    </script>
+    
     <script>
     // Signup form handler for Pandit/User
     document.getElementById('signup-form').addEventListener('submit', async function(e) {

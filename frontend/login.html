@@ -52,22 +52,22 @@
                             <div class="logo-glow"></div>
                             <span class="brand-name">BookPandit</span>
                         </div>
-                        <h1 class="auth-title">Welcome Back</h1>
-                        <p class="auth-subtitle">Login to your account to continue</p>
+                        <h1 class="auth-title" data-i18n="welcomeBack">Welcome Back</h1>
+                        <p class="auth-subtitle" data-i18n="loginToAccount">Login to your account to continue</p>
                     </div>
                     
                     <form class="modern-auth-form" id="login-form">
                         <div class="modern-form-group">
                             <div class="modern-input-group">
                                 <i class="fas fa-envelope input-icon"></i>
-                                <input type="email" id="email" name="email" placeholder="Email address" required>
+                                <input type="email" id="email" name="email" placeholder="Email address" data-i18n-placeholder="emailAddress" required>
                             </div>
                         </div>
 
                         <div class="modern-form-group">
                             <div class="modern-input-group">
                                 <i class="fas fa-lock input-icon"></i>
-                                <input type="password" id="password" name="password" placeholder="Password" required>
+                                <input type="password" id="password" name="password" placeholder="Password" data-i18n-placeholder="password" required>
                                 <button type="button" class="toggle-password-modern">
                                     <i class="fas fa-eye"></i>
                                 </button>
@@ -77,32 +77,32 @@
                         <div class="modern-form-options">
                             <div class="remember-me-modern">
                                 <input type="checkbox" id="remember" name="remember">
-                                <label for="remember">Remember me</label>
+                                <label for="remember" data-i18n="rememberMe">Remember me</label>
                             </div>
-                            <a href="forgot-password.html" class="forgot-password-modern">Forgot Password?</a>
+                            <a href="forgot-password.html" class="forgot-password-modern" data-i18n="forgotPassword">Forgot Password?</a>
                         </div>
 
                         <button type="submit" class="modern-login-btn">
-                            <span>Log in</span>
+                            <span data-i18n="logIn">Log in</span>
                         </button>
 
                         <div class="modern-separator">
-                            <span>or</span>
+                            <span data-i18n="or">or</span>
                         </div>
 
                         <div class="modern-social-buttons">
                             <button type="button" class="modern-social-btn google-btn">
                                 <i class="fab fa-google"></i>
-                                <span>Log in with Google</span>
+                                <span data-i18n="loginWithGoogle">Log in with Google</span>
                             </button>
                             <button type="button" class="modern-social-btn facebook-btn">
                                 <i class="fab fa-facebook-f"></i>
-                                <span>Log in with Facebook</span>
+                                <span data-i18n="loginWithFacebook">Log in with Facebook</span>
                             </button>
                         </div>
 
                         <div class="modern-auth-footer">
-                            <p>Didn't have an account? <a href="signup.html">Register</a></p>
+                            <p><span data-i18n="noAccount">Didn't have an account?</span> <a href="signup.html" data-i18n="register">Register</a></p>
                         </div>
                     </form>
                 </div>
@@ -153,6 +153,50 @@
     <script src="js/js/main.js"></script>
     <script src="js/js/auth.js"></script>
     <script src="js/chatbox.js"></script>
+    
+    <script>
+    // --- Language Switcher & Translation Loader ---
+    const langFilePath = 'lang.json';
+    let translations = {};
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+      
+      // Handle placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[currentLang] && translations[currentLang][key]) {
+          el.placeholder = translations[currentLang][key];
+        }
+      });
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      applyTranslations();
+    }
+
+    fetch(langFilePath)
+      .then(res => res.json())
+      .then(data => {
+        translations = data;
+        document.getElementById('lang-switcher').value = currentLang;
+        applyTranslations();
+      });
+
+    document.getElementById('lang-switcher').addEventListener('change', function() {
+      setLang(this.value);
+    });
+    // On page load, set language
+    setLang(currentLang);
+    </script>
 </body>
 <script>
 // Connect to Django backend and show a messages 
