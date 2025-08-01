@@ -2598,6 +2598,7 @@ a:hover {
     justify-content: center;
     position: relative;
     padding: 2rem 0;
+    margin-top: 80px; /* Add space for fixed navbar */
 }
 
 .modern-auth-background {
@@ -2657,6 +2658,7 @@ a:hover {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
+    padding-top: 2rem; /* Additional top padding */
 }
 
 .modern-auth-split {
@@ -3166,6 +3168,15 @@ a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .modern-auth-page {
+        margin-top: 70px; /* Slightly less margin on mobile */
+        padding: 1rem 0;
+    }
+    
+    .modern-auth-container {
+        padding-top: 1rem;
+    }
+    
     .modern-auth-split {
         flex-direction: column;
         gap: 2rem;
