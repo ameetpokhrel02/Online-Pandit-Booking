@@ -28,6 +28,52 @@
       box-shadow: 0 4px 16px rgba(25,118,210,0.16);
       transform: translateY(-2px) scale(1.03);
     }
+    .app-download-section .phone-mockup-box {
+      background: #fff;
+      border-radius: 28px;
+      padding: 14px 8px 10px 8px;
+      box-shadow: 0 4px 18px rgba(25,118,210,0.09);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 170px;
+      margin: 0 auto;
+    }
+    .app-download-section .phone-mockup-img {
+      width: 110px;
+      height: auto;
+      max-height: 200px;
+      object-fit: contain;
+      z-index: 2;
+    }
+    .app-download-section .phone-mockup-notch {
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38px;
+      height: 6px;
+      background: #222;
+      border-radius: 6px;
+      opacity: 0.13;
+    }
+    .app-download-section .book-instantly-btn {
+      background: #fff0e0;
+      color: #ff8000;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 7px 16px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(255,128,0,0.07);
+      margin-top: 0;
+      margin-bottom: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .app-download-section .book-instantly-btn:hover {
+      background: #ffe3c2;
+      color: #d96a00;
+    }
     </style>
 </head>
 <body>
@@ -221,13 +267,11 @@
                 <img src="images/logo/apple.png" alt="Apple Store" style="height:38px;width:auto;">
               </div>
             </div>
-            <div style="flex:1 1 260px;min-width:220px;display:flex;justify-content:center;">
-              <div style="background:#fff;border-radius:32px;padding:24px 18px 18px 18px;box-shadow:0 8px 32px rgba(25,118,210,0.09);display:flex;flex-direction:column;align-items:center;max-width:260px;">
-                <div style="width:180px;height:340px;display:flex;align-items:center;justify-content:center;background:#f5f7fa;border-radius:24px;box-shadow:0 2px 12px rgba(25,118,210,0.07);margin-bottom:18px;position:relative;">
-                  <img src="images/logo/phone-mockup.png" alt="App Screenshot" style="width:100%;height:auto;max-height:320px;object-fit:contain;z-index:2;">
-                  <span style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:60px;height:8px;background:#222;border-radius:8px;opacity:0.12;"></span>
-                </div>
-                <button style="background:#fff0e0;color:#ff8000;font-weight:600;font-size:1.1rem;padding:10px 28px;border:none;border-radius:10px;box-shadow:0 1px 6px rgba(255,128,0,0.07);margin-top:0;">Book Instantly</button>
+            <div style="flex:1 1 170px;min-width:140px;display:flex;justify-content:center;">
+              <div class="phone-mockup-box" style="position:relative;">
+                <span class="phone-mockup-notch"></span>
+                <img src="images/logo/phone-mockup.png" alt="App Screenshot" class="phone-mockup-img">
+                <button class="book-instantly-btn">Book Instantly</button>
               </div>
             </div>
           </div>
