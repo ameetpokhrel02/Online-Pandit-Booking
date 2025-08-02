@@ -74,6 +74,49 @@
       background: #ffe3c2;
       color: #d96a00;
     }
+    .faq-list {
+      margin-top: 32px;
+    }
+    .faq-item {
+      margin-bottom: 24px;
+    }
+    .faq-question {
+      width: 100%;
+      background: #fff;
+      color: #ff8000;
+      font-weight: 700;
+      font-size: 1.4rem;
+      border: none;
+      border-radius: 24px;
+      padding: 24px 32px;
+      box-shadow: 0 4px 24px rgba(255,128,0,0.08);
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.18s, color 0.18s;
+      outline: none;
+      margin-bottom: 0;
+    }
+    .faq-question.active, .faq-question:focus {
+      background: #fff7f0;
+      color: #d96a00;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      background: #fff7f0;
+      color: #444;
+      border-radius: 0 0 18px 18px;
+      margin: 0 32px 0 32px;
+      padding: 0 0;
+      font-size: 1.1rem;
+      box-shadow: none;
+      transition: max-height 0.35s cubic-bezier(.4,0,.2,1), padding 0.2s;
+    }
+    .faq-question.active + .faq-answer {
+      max-height: 200px;
+      padding: 18px 0 18px 0;
+      box-shadow: 0 2px 12px rgba(255,128,0,0.04);
+    }
     </style>
 </head>
 <body>
@@ -338,15 +381,14 @@
     // FAQ Accordion
     const faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const answer = this.nextElementSibling;
-            this.classList.toggle('active');
-            if (answer.style.maxHeight) {
-                answer.style.maxHeight = null;
-            } else {
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-            }
+      btn.addEventListener('click', function() {
+        // Close all others
+        faqQuestions.forEach(q => {
+          if (q !== btn) q.classList.remove('active');
         });
+        // Toggle this one
+        btn.classList.toggle('active');
+      });
     });
     </script>
 </body>
