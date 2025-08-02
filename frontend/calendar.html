@@ -213,6 +213,68 @@ body {
       border: 1px solid #ddd;
       font-size: 1rem;
     }
+#upcoming-events-list {
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+.event-detail-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  align-items: center;
+  justify-content: center;
+}
+.event-detail-modal.active {
+  display: flex;
+}
+.event-detail-content {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(25,118,210,0.13);
+  padding: 32px 28px 22px 28px;
+  max-width: 380px;
+  width: 95vw;
+  text-align: left;
+  position: relative;
+}
+.event-detail-content h2 {
+  color: #1976d2;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+.event-detail-content .close-btn {
+  position: absolute;
+  top: 12px; right: 18px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #888;
+  cursor: pointer;
+}
+.sidebar-card .sidebar-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.sidebar-card .sidebar-actions button {
+  background: #ffe3e3;
+  color: #b71c1c;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 14px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.sidebar-card .sidebar-actions button.active,
+.sidebar-card .sidebar-actions button:hover {
+  background: #b71c1c;
+  color: #fff;
+}
 @media (max-width: 900px) {
   .calendar-container {
     flex-direction: column;
@@ -262,6 +324,10 @@ body {
     <!-- Sidebar -->
     <aside class="calendar-sidebar-vertical" style="flex:0 0 270px;max-width:320px;">
       <div class="sidebar-card" style="background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(25,118,210,0.06);padding:18px 16px 18px 16px;margin-bottom:22px;">
+        <div class="sidebar-actions">
+          <button id="show-all-events" class="active">All</button>
+          <button id="show-holidays">Holidays</button>
+        </div>
         <h3 style="color:#b71c1c;font-size:1.25rem;font-weight:700;margin-bottom:12px;">Upcoming Events</h3>
         <div id="upcoming-events-list">
           <!-- JS will fill events here -->
@@ -422,6 +488,15 @@ body {
         </div>
     </footer>
 
+    <div id="event-detail-modal" class="event-detail-modal">
+  <div class="event-detail-content">
+    <button class="close-btn" onclick="document.getElementById('event-detail-modal').classList.remove('active')">&times;</button>
+    <h2 id="event-detail-title"></h2>
+    <div id="event-detail-date" style="color:#1976d2;font-weight:600;margin-bottom:8px;"></div>
+    <div id="event-detail-desc" style="color:#444;font-size:1.05rem;"></div>
+  </div>
+</div>
+
     <script src="js/js/main.js"></script>
     <script src="js/chatbox.js"></script>
     <script src="js/js/calendar.js"></script>
@@ -447,15 +522,18 @@ const adMonths = ["January","February","March","April","May","June","July","Augu
 
 // Demo events (replace with real data)
 const demoEvents = [
-  { date: { bs: { y: 2082, m: 3, d: 20 } }, name: "Putrada Ekadashi Vrata", remain: "3 days remaining" },
-  { date: { bs: { y: 2082, m: 3, d: 21 } }, name: "Pradosh Vrata", remain: "4 days remaining" },
-  { date: { bs: { y: 2082, m: 3, d: 23 } }, name: "Poornima Vrata", remain: "6 days remaining" },
-  { date: { bs: { y: 2082, m: 3, d: 24 } }, name: "Upcomming Event", remain: "7 days remaining" }
+  { date: { bs: { y: 2082, m: 3, d: 20 } }, name: "Putrada Ekadashi Vrata", remain: "3 days remaining", desc: "A fasting ritual for the birth of a son, observed by Hindu devotees." },
+  { date: { bs: { y: 2082, m: 3, d: 21 } }, name: "Pradosh Vrata", remain: "4 days remaining", desc: "A sacred day dedicated to Lord Shiva, observed with fasting and prayers." },
+  { date: { bs: { y: 2082, m: 3, d: 23 } }, name: "Poornima Vrata", remain: "6 days remaining", desc: "Full moon day, considered auspicious for various religious activities." },
+  { date: { bs: { y: 2082, m: 3, d: 24 } }, name: "Upcomming Event", remain: "7 days remaining", desc: "Special event details go here." },
+  { date: { bs: { y: 2082, m: 3, d: 25 } }, name: "Janai Purnima", remain: "8 days remaining", desc: "A major Hindu festival celebrated by changing the sacred thread." , holiday: true}
 ];
+let showOnlyHolidays = false;
 
 function fillEventsSidebar() {
-  upcomingEventsList.innerHTML = demoEvents.map(ev =>
-    `<div style='display:flex;align-items:center;gap:10px;margin-bottom:10px;'>
+  let events = showOnlyHolidays ? demoEvents.filter(ev=>ev.holiday) : demoEvents;
+  upcomingEventsList.innerHTML = events.map((ev,i) =>
+    `<div class='event-list-item' data-idx='${i}' style='display:flex;align-items:center;gap:10px;margin-bottom:10px;cursor:pointer;'>
       <div style='background:#1976d2;color:#fff;border-radius:8px;padding:7px 10px;font-weight:600;text-align:center;min-width:44px;'>
         <div style='font-size:1.1rem;'>${toNepaliNum(ev.date.bs.d)}</div>
         <div style='font-size:0.85rem;'>${nepaliMonths[ev.date.bs.m]}</div>
@@ -466,7 +544,29 @@ function fillEventsSidebar() {
       </div>
     </div>`
   ).join('');
+  // Add click listeners for event details
+  document.querySelectorAll('.event-list-item').forEach(item => {
+    item.onclick = function() {
+      const ev = events[+item.getAttribute('data-idx')];
+      document.getElementById('event-detail-title').textContent = ev.name;
+      document.getElementById('event-detail-date').textContent = `${toNepaliNum(ev.date.bs.d)} ${nepaliMonths[ev.date.bs.m]}, ${toNepaliNum(ev.date.bs.y)}`;
+      document.getElementById('event-detail-desc').textContent = ev.desc;
+      document.getElementById('event-detail-modal').classList.add('active');
+    };
+  });
 }
+document.getElementById('show-all-events').onclick = function() {
+  showOnlyHolidays = false;
+  this.classList.add('active');
+  document.getElementById('show-holidays').classList.remove('active');
+  fillEventsSidebar();
+};
+document.getElementById('show-holidays').onclick = function() {
+  showOnlyHolidays = true;
+  this.classList.add('active');
+  document.getElementById('show-all-events').classList.remove('active');
+  fillEventsSidebar();
+};
 fillEventsSidebar();
 
 // Notes logic (localStorage)
