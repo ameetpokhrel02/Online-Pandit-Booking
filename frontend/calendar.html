@@ -6,6 +6,8 @@
     <title>Select Date & Time - Book Pandit</title>
     <link rel="stylesheet" href="styles/styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Nepali Calendar Library -->
+    <script src="https://cdn.jsdelivr.net/npm/bikram-sambat-js@2.1.0/dist/bikram-sambat.min.js"></script>
     <style>
 body {
   background: linear-gradient(135deg, #f7faff 0%, #fff6f0 100%);
@@ -194,6 +196,23 @@ body {
   color: #ff8000;
   font-size: 0.95rem;
 }
+.calendar-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .calendar-toggle label {
+      font-weight: 600;
+      color: #1976d2;
+      font-size: 1.08rem;
+    }
+    .calendar-toggle select {
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
 @media (max-width: 900px) {
   .calendar-container {
     flex-direction: column;
@@ -240,100 +259,109 @@ body {
     <!-- Main Content -->
     <main class="calendar-page">
         <div class="container">
-            <div class="calendar-container">
-                <div class="calendar-header">
-                    <h1>Select Date & Time</h1>
-                    <p>Choose your preferred date and time for the ceremony</p>
-                </div>
+      <div class="calendar-toggle">
+        <label for="calendar-type">Calendar:</label>
+        <select id="calendar-type">
+          <option value="ad">AD (Gregorian)</option>
+          <option value="bs">BS (Nepali)</option>
+        </select>
+      </div>
 
-                <div class="calendar-content">
-                    <div class="calendar-sidebar">
-                        <div class="service-summary">
-                            <h3>Service Summary</h3>
-                            <div class="summary-details">
-                                <p><strong>Service Type:</strong> <span id="service-type">Wedding Ceremony</span></p>
-                                <p><strong>Sub-Type:</strong> <span id="service-subtype">Full Wedding</span></p>
-                                <p><strong>Duration:</strong> <span id="service-duration">4-6 hours</span></p>
-                                <p><strong>Price:</strong> <span id="service-price">₹15,000</span></p>
-                            </div>
-                        </div>
-
-                        <div class="available-pandits">
-                            <h3>Available Pandits</h3>
-                            <div class="pandit-list">
-                                <div class="pandit-card selected">
-                                    <img src="images/pandit1.jpg" alt="Pandit Name">
-                                    <div class="pandit-info">
-                                        <h4>Pandit Ramesh Sharma</h4>
-                                        <p>15+ years experience</p>
-                                        <div class="pandit-rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <span>(4.5)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pandit-card">
-                                    <img src="images/pandit2.jpg" alt="Pandit Name">
-                                    <div class="pandit-info">
-                                        <h4>Pandit Amit Kumar</h4>
-                                        <p>10+ years experience</p>
-                                        <div class="pandit-rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <h1>Select Date & Time</h1>
+                        <p>Choose your preferred date and time for the ceremony</p>
                     </div>
 
-                    <div class="calendar-main">
-                        <div class="calendar-navigation">
-                            <button class="prev-month"><i class="fas fa-chevron-left"></i></button>
-                            <h2 id="current-month">March 2024</h2>
-                            <button class="next-month"><i class="fas fa-chevron-right"></i></button>
+                    <div class="calendar-content">
+                        <div class="calendar-sidebar">
+                            <div class="service-summary">
+                                <h3>Service Summary</h3>
+                                <div class="summary-details">
+                                    <p><strong>Service Type:</strong> <span id="service-type">Wedding Ceremony</span></p>
+                                    <p><strong>Sub-Type:</strong> <span id="service-subtype">Full Wedding</span></p>
+                                    <p><strong>Duration:</strong> <span id="service-duration">4-6 hours</span></p>
+                                    <p><strong>Price:</strong> <span id="service-price">₹15,000</span></p>
+                                </div>
+                            </div>
+
+                            <div class="available-pandits">
+                                <h3>Available Pandits</h3>
+                                <div class="pandit-list">
+                                    <div class="pandit-card selected">
+                                        <img src="images/pandit1.jpg" alt="Pandit Name">
+                                        <div class="pandit-info">
+                                            <h4>Pandit Ramesh Sharma</h4>
+                                            <p>15+ years experience</p>
+                                            <div class="pandit-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                                <span>(4.5)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pandit-card">
+                                        <img src="images/pandit2.jpg" alt="Pandit Name">
+                                        <div class="pandit-info">
+                                            <h4>Pandit Amit Kumar</h4>
+                                            <p>10+ years experience</p>
+                                            <div class="pandit-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <span>(4.0)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="calendar-grid">
-                            <div class="calendar-weekdays">
-                                <div>Sun</div>
-                                <div>Mon</div>
-                                <div>Tue</div>
-                                <div>Wed</div>
-                                <div>Thu</div>
-                                <div>Fri</div>
-                                <div>Sat</div>
+                        <div class="calendar-main">
+                            <div class="calendar-navigation">
+                                <button class="prev-month"><i class="fas fa-chevron-left"></i></button>
+                                <h2 id="current-month">March 2024</h2>
+                                <button class="next-month"><i class="fas fa-chevron-right"></i></button>
                             </div>
-                            <div class="calendar-days" id="calendar-days">
-                                <!-- Calendar days will be populated by JavaScript -->
-                            </div>
-                        </div>
 
-                        <div class="time-selection">
-                            <h3>Available Time Slots</h3>
-                            <div class="time-slots">
-                                <button class="time-slot">9:00 AM</button>
-                                <button class="time-slot">10:00 AM</button>
-                                <button class="time-slot">11:00 AM</button>
-                                <button class="time-slot">12:00 PM</button>
-                                <button class="time-slot">2:00 PM</button>
-                                <button class="time-slot">3:00 PM</button>
-                                <button class="time-slot">4:00 PM</button>
-                                <button class="time-slot">5:00 PM</button>
+                            <div class="calendar-grid">
+                                <div class="calendar-weekdays">
+                                    <div>Sun</div>
+                                    <div>Mon</div>
+                                    <div>Tue</div>
+                                    <div>Wed</div>
+                                    <div>Thu</div>
+                                    <div>Fri</div>
+                                    <div>Sat</div>
+                                </div>
+                                <div class="calendar-days" id="calendar-days">
+                                    <!-- Calendar days will be populated by JavaScript -->
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="calendar-actions">
-                            <button class="btn btn-secondary" onclick="window.history.back()">Back</button>
-                            <button class="btn btn-primary" id="proceed-to-payment">Continue to Payment</button>
+                            <div class="time-selection">
+                                <h3>Available Time Slots</h3>
+                                <div class="time-slots">
+                                    <button class="time-slot">9:00 AM</button>
+                                    <button class="time-slot">10:00 AM</button>
+                                    <button class="time-slot">11:00 AM</button>
+                                    <button class="time-slot">12:00 PM</button>
+                                    <button class="time-slot">2:00 PM</button>
+                                    <button class="time-slot">3:00 PM</button>
+                                    <button class="time-slot">4:00 PM</button>
+                                    <button class="time-slot">5:00 PM</button>
+                                </div>
+                            </div>
+
+                            <div class="calendar-actions">
+                                <button class="btn btn-secondary" onclick="window.history.back()">Back</button>
+                                <button class="btn btn-primary" id="proceed-to-payment">Continue to Payment</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -382,6 +410,70 @@ body {
     <script src="js/chatbox.js"></script>
     <script src="js/js/calendar.js"></script>
     <script>
+        // Calendar AD/BS toggle logic
+const calendarTypeSelect = document.getElementById('calendar-type');
+const currentMonthHeader = document.getElementById('current-month');
+const calendarDays = document.getElementById('calendar-days');
+
+// Helper: Nepali numbers
+function toNepaliNum(num) {
+  const np = ['०','१','२','३','४','५','६','७','८','९'];
+  return String(num).split('').map(d=>np[+d]||d).join('');
+}
+
+// Helper: Nepali months
+const nepaliMonths = ['बैशाख','जेठ','असार','श्रावण','भदौ','आश्विन','कार्तिक','मंसिर','पुष','माघ','फाल्गुण','चैत्र'];
+
+let adDate = new Date();
+let bsYear, bsMonth;
+
+function renderCalendar() {
+  const type = calendarTypeSelect.value;
+  calendarDays.innerHTML = '';
+  if (type === 'ad') {
+    // Gregorian calendar (default logic, can be replaced by your calendar.js)
+    const year = adDate.getFullYear();
+    const month = adDate.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month+1, 0).getDate();
+    currentMonthHeader.textContent = adDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+    // Fill blanks
+    for(let i=0;i<firstDay;i++) {
+      const div = document.createElement('div');
+      div.className = 'calendar-day disabled';
+      calendarDays.appendChild(div);
+    }
+    for(let d=1;d<=daysInMonth;d++) {
+      const div = document.createElement('div');
+      div.className = 'calendar-day';
+      div.textContent = d;
+      calendarDays.appendChild(div);
+    }
+  } else {
+    // Nepali calendar
+    const bs = window.BSDate.fromAD(adDate);
+    bsYear = bs.getYear();
+    bsMonth = bs.getMonth();
+    currentMonthHeader.textContent = nepaliMonths[bsMonth] + ' ' + toNepaliNum(bsYear);
+    const firstDay = window.BSDate.getFirstDayOfWeek(bsYear, bsMonth);
+    const daysInMonth = window.BSDate.getNumDaysInMonth(bsYear, bsMonth);
+    for(let i=0;i<firstDay;i++) {
+      const div = document.createElement('div');
+      div.className = 'calendar-day disabled';
+      calendarDays.appendChild(div);
+    }
+    for(let d=1;d<=daysInMonth;d++) {
+      const div = document.createElement('div');
+      div.className = 'calendar-day';
+      div.textContent = toNepaliNum(d);
+      calendarDays.appendChild(div);
+    }
+  }
+}
+
+calendarTypeSelect.addEventListener('change', renderCalendar);
+renderCalendar();
+
         document.getElementById('proceed-to-payment').addEventListener('click', function() {
             const selectedDate = document.querySelector('.calendar-day.selected');
             const selectedTime = document.querySelector('.time-slot.selected');
