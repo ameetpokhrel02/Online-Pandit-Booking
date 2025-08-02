@@ -299,6 +299,22 @@
         reader.readAsDataURL(file);
       });
     }
+    // Mobile sidebar toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const dashboardSidebar = document.querySelector('.dashboard-sidebar');
+    if (mobileMenuBtn && dashboardSidebar) {
+      mobileMenuBtn.addEventListener('click', function() {
+        dashboardSidebar.classList.toggle('active');
+      });
+      // Close sidebar when clicking outside (mobile only)
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 900 && dashboardSidebar.classList.contains('active')) {
+          if (!dashboardSidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            dashboardSidebar.classList.remove('active');
+          }
+        }
+      });
+    }
     </script>
 </body>
 </html>
