@@ -225,7 +225,7 @@ body {
     padding: 0;
   }
 }
-</style>
+    </style>
 </head>
 <body>
     <!-- Navigation pages Section -->
@@ -258,7 +258,21 @@ body {
 
     <!-- Main Content -->
     <main class="calendar-page">
-        <div class="container">
+  <div class="container" style="display:flex;gap:32px;align-items:flex-start;">
+    <!-- Sidebar -->
+    <aside class="calendar-sidebar-vertical" style="flex:0 0 270px;max-width:320px;">
+      <div class="sidebar-card" style="background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(25,118,210,0.06);padding:18px 16px 18px 16px;margin-bottom:22px;">
+        <h3 style="color:#b71c1c;font-size:1.25rem;font-weight:700;margin-bottom:12px;">Upcoming Events</h3>
+        <div id="upcoming-events-list">
+          <!-- JS will fill events here -->
+        </div>
+      </div>
+      <div class="sidebar-card" style="background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(25,118,210,0.06);padding:18px 16px 18px 16px;">
+        <h3 style="color:#b71c1c;font-size:1.15rem;font-weight:700;margin-bottom:10px;">My Notes <button id="add-note-btn" style="background:#ff5252;color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;vertical-align:middle;cursor:pointer;margin-left:8px;">+</button></h3>
+        <div id="my-notes-list" style="color:#444;font-size:1rem;">You can add your notes here.</div>
+      </div>
+    </aside>
+    <div style="flex:1 1 0;min-width:0;">
       <div class="calendar-toggle">
         <label for="calendar-type">Calendar:</label>
         <select id="calendar-type">
@@ -266,12 +280,14 @@ body {
           <option value="bs">BS (Nepali)</option>
         </select>
       </div>
-
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <h1>Select Date & Time</h1>
-                        <p>Choose your preferred date and time for the ceremony</p>
-                    </div>
+      <div class="calendar-navigation" id="calendar-nav-bar">
+        <button class="today-btn" style="background:#fff3e0;color:#ff8000;font-weight:600;padding:7px 18px;border-radius:8px;border:none;box-shadow:0 1px 4px rgba(255,128,0,0.07);margin-right:10px;">Today</button>
+        <select id="year-select" style="padding:6px 12px;border-radius:8px;border:1px solid #ddd;font-size:1rem;margin-right:8px;"></select>
+        <select id="month-select" style="padding:6px 12px;border-radius:8px;border:1px solid #ddd;font-size:1rem;margin-right:8px;"></select>
+        <button class="prev-month"><i class="fas fa-chevron-left"></i></button>
+        <h2 id="current-month">March 2024</h2>
+        <button class="next-month"><i class="fas fa-chevron-right"></i></button>
+      </div>
 
                     <div class="calendar-content">
                         <div class="calendar-sidebar">
@@ -414,30 +430,106 @@ body {
 const calendarTypeSelect = document.getElementById('calendar-type');
 const currentMonthHeader = document.getElementById('current-month');
 const calendarDays = document.getElementById('calendar-days');
+const yearSelect = document.getElementById('year-select');
+const monthSelect = document.getElementById('month-select');
+const todayBtn = document.querySelector('.today-btn');
+const upcomingEventsList = document.getElementById('upcoming-events-list');
+const myNotesList = document.getElementById('my-notes-list');
+const addNoteBtn = document.getElementById('add-note-btn');
 
 // Helper: Nepali numbers
 function toNepaliNum(num) {
   const np = ['०','१','२','३','४','५','६','७','८','९'];
   return String(num).split('').map(d=>np[+d]||d).join('');
 }
-
-// Helper: Nepali months
 const nepaliMonths = ['बैशाख','जेठ','असार','श्रावण','भदौ','आश्विन','कार्तिक','मंसिर','पुष','माघ','फाल्गुण','चैत्र'];
+const adMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
+// Demo events (replace with real data)
+const demoEvents = [
+  { date: { bs: { y: 2082, m: 3, d: 20 } }, name: "Putrada Ekadashi Vrata", remain: "3 days remaining" },
+  { date: { bs: { y: 2082, m: 3, d: 21 } }, name: "Pradosh Vrata", remain: "4 days remaining" },
+  { date: { bs: { y: 2082, m: 3, d: 23 } }, name: "Poornima Vrata", remain: "6 days remaining" },
+  { date: { bs: { y: 2082, m: 3, d: 24 } }, name: "Upcomming Event", remain: "7 days remaining" }
+];
+
+function fillEventsSidebar() {
+  upcomingEventsList.innerHTML = demoEvents.map(ev =>
+    `<div style='display:flex;align-items:center;gap:10px;margin-bottom:10px;'>
+      <div style='background:#1976d2;color:#fff;border-radius:8px;padding:7px 10px;font-weight:600;text-align:center;min-width:44px;'>
+        <div style='font-size:1.1rem;'>${toNepaliNum(ev.date.bs.d)}</div>
+        <div style='font-size:0.85rem;'>${nepaliMonths[ev.date.bs.m]}</div>
+      </div>
+      <div style='flex:1;'>
+        <div style='font-weight:600;color:#b71c1c;'>${ev.name}</div>
+        <div style='font-size:0.95rem;color:#888;'>${ev.remain}</div>
+      </div>
+    </div>`
+  ).join('');
+}
+fillEventsSidebar();
+
+// Notes logic (localStorage)
+function renderNotes() {
+  const notes = JSON.parse(localStorage.getItem('calendar_notes')||'[]');
+  if (!notes.length) {
+    myNotesList.textContent = 'You can add your notes here.';
+  } else {
+    myNotesList.innerHTML = notes.map(n=>`<div style='background:#fff7f0;border-radius:8px;padding:7px 10px;margin-bottom:7px;color:#b71c1c;'>${n}</div>`).join('');
+  }
+}
+addNoteBtn.onclick = function() {
+  const note = prompt('Enter your note:');
+  if (note) {
+    const notes = JSON.parse(localStorage.getItem('calendar_notes')||'[]');
+    notes.push(note);
+    localStorage.setItem('calendar_notes', JSON.stringify(notes));
+    renderNotes();
+  }
+};
+renderNotes();
+
+// Calendar logic
 let adDate = new Date();
 let bsYear, bsMonth;
 
+function fillYearMonthDropdowns(type) {
+  yearSelect.innerHTML = '';
+  monthSelect.innerHTML = '';
+  if (type === 'ad') {
+    let y = adDate.getFullYear();
+    for(let i=y-5;i<=y+5;i++) {
+      yearSelect.innerHTML += `<option value="${i}" ${i===y?'selected':''}>${i}</option>`;
+    }
+    adMonths.forEach((m,i)=>{
+      monthSelect.innerHTML += `<option value="${i}" ${i===adDate.getMonth()?'selected':''}>${m}</option>`;
+    });
+  } else {
+    const bs = window.BSDate.fromAD(adDate);
+    bsYear = bs.getYear();
+    bsMonth = bs.getMonth();
+    for(let i=bsYear-5;i<=bsYear+5;i++) {
+      yearSelect.innerHTML += `<option value="${i}" ${i===bsYear?'selected':''}>${toNepaliNum(i)}</option>`;
+    }
+    nepaliMonths.forEach((m,i)=>{
+      monthSelect.innerHTML += `<option value="${i}" ${i===bsMonth?'selected':''}>${m}</option>`;
+    });
+  }
+}
+
 function renderCalendar() {
   const type = calendarTypeSelect.value;
+  fillYearMonthDropdowns(type);
   calendarDays.innerHTML = '';
+  let today = new Date();
+  let highlightToday = false;
   if (type === 'ad') {
-    // Gregorian calendar (default logic, can be replaced by your calendar.js)
-    const year = adDate.getFullYear();
-    const month = adDate.getMonth();
+    const year = +yearSelect.value;
+    const month = +monthSelect.value;
+    adDate = new Date(year, month, 1);
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month+1, 0).getDate();
-    currentMonthHeader.textContent = adDate.toLocaleString('default', { month: 'long', year: 'numeric' });
-    // Fill blanks
+    currentMonthHeader.textContent = adMonths[month] + ' ' + year;
     for(let i=0;i<firstDay;i++) {
       const div = document.createElement('div');
       div.className = 'calendar-day disabled';
@@ -447,16 +539,27 @@ function renderCalendar() {
       const div = document.createElement('div');
       div.className = 'calendar-day';
       div.textContent = d;
+      // Highlight today
+      if (year===today.getFullYear() && month===today.getMonth() && d===today.getDate()) {
+        div.style.background = '#ff8000';
+        div.style.color = '#fff';
+        div.style.fontWeight = '700';
+      }
       calendarDays.appendChild(div);
     }
   } else {
     // Nepali calendar
-    const bs = window.BSDate.fromAD(adDate);
-    bsYear = bs.getYear();
-    bsMonth = bs.getMonth();
-    currentMonthHeader.textContent = nepaliMonths[bsMonth] + ' ' + toNepaliNum(bsYear);
-    const firstDay = window.BSDate.getFirstDayOfWeek(bsYear, bsMonth);
-    const daysInMonth = window.BSDate.getNumDaysInMonth(bsYear, bsMonth);
+    const year = +yearSelect.value;
+    const month = +monthSelect.value;
+    const bs = new window.BSDate(year, month, 1);
+    adDate = bs.toAD();
+    bsYear = year;
+    bsMonth = month;
+    currentMonthHeader.textContent = nepaliMonths[month] + ' ' + toNepaliNum(year);
+    const firstDay = window.BSDate.getFirstDayOfWeek(year, month);
+    const daysInMonth = window.BSDate.getNumDaysInMonth(year, month);
+    // Find today in BS
+    const todayBS = window.BSDate.fromAD(today);
     for(let i=0;i<firstDay;i++) {
       const div = document.createElement('div');
       div.className = 'calendar-day disabled';
@@ -466,12 +569,32 @@ function renderCalendar() {
       const div = document.createElement('div');
       div.className = 'calendar-day';
       div.textContent = toNepaliNum(d);
+      // Highlight today
+      if (year===todayBS.getYear() && month===todayBS.getMonth() && d===todayBS.getDate()) {
+        div.style.background = '#ff8000';
+        div.style.color = '#fff';
+        div.style.fontWeight = '700';
+      }
+      // Highlight event days
+      demoEvents.forEach(ev => {
+        if (ev.date.bs.y===year && ev.date.bs.m===month && ev.date.bs.d===d) {
+          div.style.background = '#1976d2';
+          div.style.color = '#fff';
+          div.style.fontWeight = '700';
+        }
+      });
       calendarDays.appendChild(div);
     }
   }
 }
 
 calendarTypeSelect.addEventListener('change', renderCalendar);
+yearSelect.addEventListener('change', renderCalendar);
+monthSelect.addEventListener('change', renderCalendar);
+todayBtn.addEventListener('click', function() {
+  adDate = new Date();
+  renderCalendar();
+});
 renderCalendar();
 
         document.getElementById('proceed-to-payment').addEventListener('click', function() {
