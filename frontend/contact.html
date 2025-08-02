@@ -8,6 +8,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="js/auth.js" defer></script>
     <script src="js/protected-features.js" defer></script>
+    <style>
+    .app-download-section .download-btn {
+      background: #1976d2;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 14px 38px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(25,118,210,0.08);
+      margin-bottom: 22px;
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.13s;
+    }
+    .app-download-section .download-btn:hover,
+    .app-download-section .download-btn:focus {
+      background: #1251a3;
+      box-shadow: 0 4px 16px rgba(25,118,210,0.16);
+      transform: translateY(-2px) scale(1.03);
+    }
+    </style>
 </head>
 <body>
     <!-- Navigation bar -->
@@ -192,7 +213,7 @@
         <section class="app-download-section" style="background:#f7faff;padding:48px 0 32px 0;">
           <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px;">
             <div style="flex:1 1 340px;min-width:320px;max-width:520px;">
-              <button style="background:#1976d2;color:#fff;font-weight:600;font-size:1.2rem;padding:14px 38px;border:none;border-radius:12px;box-shadow:0 2px 8px rgba(25,118,210,0.08);margin-bottom:22px;cursor:pointer;">Download Now</button>
+              <button class="download-btn">Download Now</button>
               <h2 style="font-size:2.2rem;font-weight:700;margin-bottom:10px;">Get the <span style="color:#1976d2;">BookPandit</span> App</h2>
               <p style="font-size:1.1rem;color:#444;max-width:420px;margin-bottom:22px;">Book verified pandits, manage bookings, and get instant support—right from your phone.</p>
               <div style="display:flex;gap:18px;align-items:center;">
