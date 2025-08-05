@@ -264,15 +264,65 @@ body {
   background: #b71c1c;
   color: #fff;
 }
+
+/* Responsive styles for mobile */
 @media (max-width: 900px) {
-  .calendar-container {
-    flex-direction: column;
-    padding: 18px 4px;
-    gap: 18px;
+  .container {
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 0 4px;
   }
-  .calendar-sidebar, .calendar-main {
-    min-width: 0;
-    max-width: 100%;
-    padding: 0;
+  .calendar-sidebar-vertical {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 18px;
+  }
+  .calendar-content {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .calendar-main {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+  .calendar-grid {
+    overflow-x: auto;
+  }
+  .calendar-weekdays, .calendar-days {
+    grid-template-columns: repeat(7, 1fr) !important;
+  }
+  .footer .footer-grid {
+    flex-direction: column !important;
+    gap: 16px;
+  }
+}
+
+/* Make sidebar cards full width on mobile */
+@media (max-width: 600px) {
+  .sidebar-card {
+    border-radius: 12px !important;
+    margin-bottom: 14px !important;
+    padding: 12px 8px !important;
+  }
+  .calendar-sidebar-vertical {
+    padding: 0 !important;
+  }
+  .calendar-main {
+    padding: 0 !important;
+  }
+  .calendar-navigation {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .calendar-weekdays div, .calendar-days div {
+    font-size: 0.95rem !important;
+    padding: 6px 0 !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px;
   }
 }
