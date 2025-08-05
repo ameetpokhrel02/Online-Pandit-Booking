@@ -367,67 +367,92 @@ td {
 
 @media (max-width: 900px) {
   .dashboard-container {
-    flex-direction: column;
+    flex-direction: column !important;
+    padding: 0 !important;
   }
   .dashboard-sidebar {
-    height: 100vh;
-    max-height: 100vh;
-    overflow-y: auto;
-    min-width: 0;
-    width: 80vw;
-    max-width: 320px;
-    left: 0;
-    top: 0;
-    border-radius: 0 18px 18px 0;
-    z-index: 1001;
-    box-shadow: 2px 0 16px rgba(25,118,210,0.13);
-    padding-top: 60px;
+    width: 100% !important;
+    min-width: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 18px;
   }
   .dashboard-nav {
+    flex-direction: row !important;
+    flex-wrap: wrap;
     gap: 8px;
-    padding: 0 8px;
+    justify-content: flex-start;
+  }
+  .dashboard-nav a {
+    flex: 1 1 45%;
+    min-width: 120px;
+    font-size: 1rem;
+    padding: 10px 8px;
+    margin: 2px 0;
+    text-align: center;
   }
   .dashboard-main {
-    width: 100%;
-    padding: 16px 4vw;
+    width: 100% !important;
+    padding: 0 4px !important;
   }
   .stats-grid {
-    flex-direction: column;
-    gap: 18px;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
   }
-  .stat-card {
-    width: 100%;
-    min-width: 0;
-    margin: 0 auto;
+  .analytics-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .bookings-table table, .bookings-table thead, .bookings-table tbody, .bookings-table tr, .bookings-table td, .bookings-table th {
+    display: block !important;
+    width: 100% !important;
+  }
+  .bookings-table tr {
+    margin-bottom: 18px;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(25,118,210,0.04);
+    padding: 8px 0;
+  }
+  .bookings-table td, .bookings-table th {
+    padding: 6px 10px !important;
+    text-align: left !important;
+    font-size: 0.97rem;
+    border: none !important;
+  }
+  .section-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px;
+    font-size: 0.98rem;
+  }
+  .user-profile {
+    display: none !important;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 }
 
+/* Extra small screens */
 @media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .dashboard-nav a {
+    min-width: 100px;
+    font-size: 0.97rem;
+    padding: 8px 4px;
+  }
   .dashboard-header h1 {
-    font-size: 1.3rem;
-  }
-  .dashboard-header p {
-    font-size: 1rem;
-  }
-  .dashboard-section {
-    padding: 10px 0;
-  }
-  .bookings-table table, .bookings-table thead, .bookings-table tbody, .bookings-table th, .bookings-table td, .bookings-table tr {
-    display: block;
-    width: 100%;
-  }
-  .bookings-table th, .bookings-table td {
-    text-align: left;
-    padding: 8px 6px;
-    border: none;
-    font-size: 0.98rem;
-  }
-  .bookings-table tr {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #eee;
-  }
-  .dashboard-sidebar {
-    padding: 0;
+    font-size: 1.3rem !important;
   }
 }
 
