@@ -115,7 +115,9 @@
     "signUpWithFacebook": "Sign up with Facebook",
     "alreadyAccount": "Already have an account?",
     "signIn": "Sign In",
-    "panditQuote": "May divine blessings guide your spiritual journey"
+    "panditQuote": "May divine blessings guide your spiritual journey",
+    "aboutPandiyyatraTitle": "About PanditYatra",
+    "aboutPandiyyatraDesc": "PanditYatra is a dedicated platform designed to simplify the process of finding and booking experienced pandits for all types of Hindu religious ceremonies and rituals. Our mission is to connect devotees with knowledgeable and verified pandits, ensuring that every ceremony is performed with authenticity and devotion.<br><br>With PanditYatra, users can browse profiles of pandits, check their expertise, read reviews, and book services online with ease. We also provide detailed information about various pujas, festivals, and traditions to help users make informed decisions. Our platform is committed to preserving spiritual heritage while making religious services accessible and convenient for everyone, whether at home or in the community.<br><br>Join us on PanditYatra to experience a seamless, trustworthy, and enriching spiritual journey."
   },
   "np": {
     "home": "गृहपृष्ठ",
@@ -233,6 +235,15 @@
     "signUpWithFacebook": "Facebook सँग साइन अप गर्नुहोस्",
     "alreadyAccount": "पहिले नै खाता छ?",
     "signIn": "साइन इन गर्नुहोस्",
-    "panditQuote": "दैवी आशीर्वादले तपाईंको आध्यात्मिक यात्रालाई मार्गदर्शन गरोस्"
+    "panditQuote": "दैवी आशीर्वादले तपाईंको आध्यात्मिक यात्रालाई मार्गदर्शन गरोस्",
+    "aboutPandiyyatraDesc": "PanditYatra is a dedicated platform designed to simplify the process of finding and booking experienced pandits for all types of Hindu religious ceremonies and rituals. Our mission is to connect devotees with knowledgeable and verified pandits, ensuring that every ceremony is performed with authenticity and devotion.<br><br>With PanditYatra, users can browse profiles of pandits, check their expertise, read reviews, and book services online with ease. We also provide detailed information about various pujas, festivals, and traditions to help users make informed decisions. Our platform is committed to preserving spiritual heritage while making religious services accessible and convenient for everyone, whether at home or in the community.<br><br>Join us on PanditYatra to experience a seamless, trustworthy, and enriching spiritual journey.",
+    "aboutPandiyyatraTitle": {
+      "en": "About PanditYatra",
+      "ne": "पण्डितयात्रा बारेमा"
+    },
+  
+      "en": "PanditYatra is a dedicated platform designed to simplify the process of finding and booking experienced pandits for all types of Hindu religious ceremonies and rituals. Our mission is to connect devotees with knowledgeable and verified pandits, ensuring that every ceremony is performed with authenticity and devotion.<br><br>With PanditYatra, users can browse profiles of pandits, check their expertise, read reviews, and book services online with ease. We also provide detailed information about various pujas, festivals, and traditions to help users make informed decisions. Our platform is committed to preserving spiritual heritage while making religious services accessible and convenient for everyone, whether at home or in the community.<br><br>Join us on PanditYatra to experience a seamless, trustworthy, and enriching spiritual journey.",
+      "ne": "पण्डितयात्रा एक समर्पित प्लेटफर्म हो जसले हिन्दू धार्मिक अनुष्ठान र पूजाका लागि अनुभवी पण्डितहरू खोज्न र बुक गर्न सजिलो बनाउँछ। हाम्रो उद्देश्य भक्तजनलाई जानकार र प्रमाणित पण्डितहरूसँग जोड्नु हो, जसले प्रत्येक अनुष्ठान पूर्ण निष्ठा र परम्परागत ढंगले सम्पन्न होस् भन्ने सुनिश्चित गर्छ।<br><br>पण्डितयात्रामा, प्रयोगकर्ताहरूले पण्डितहरूको प्रोफाइल हेर्न, उनीहरूको अनुभव जाँच्न, समीक्षाहरू पढ्न र सजिलै अनलाइन सेवा बुक गर्न सक्छन्। हामीले विभिन्न पूजाहरू, चाडपर्व र परम्पराहरूको विस्तृत जानकारी पनि उपलब्ध गराउँछौं, जसले प्रयोगकर्तालाई सही निर्णय लिन सहयोग गर्छ। हाम्रो प्लेटफर्मले आध्यात्मिक सम्पदाको संरक्षण गर्दै धार्मिक सेवाहरूलाई सबैका लागि सहज र पहुँचयोग्य बनाउने प्रतिबद्धता लिएको छ, चाहे घरमै होस् वा समुदायमा।<br><br>पण्डितयात्रामा हामीसँग जोडिनुहोस् र एक सहज, भरपर्दो तथा समृद्ध आध्यात्मिक यात्रा अनुभव गर्नुहोस्।"
+    }
   }
-}
+
