@@ -68,8 +68,21 @@ function handleSignup(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Account created successfully! Please login to continue.');
-            window.location.href = 'login.html';
+            // Store user info in localStorage
+            localStorage.setItem('user', JSON.stringify({
+                username: data.username,
+                email: data.email,
+                role: data.role || 'user'
+            }));
+            alert('Account created successfully!');
+            // Redirect based on role
+            if (data.role === 'pandit') {
+                window.location.href = 'pandit-dashboard.html';
+            } else if (data.role === 'admin') {
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                window.location.href = 'user-dashboard.html';
+            }
         } else {
             alert(data.error || 'Signup failed.');
         }
@@ -91,6 +104,12 @@ function handleLogin(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            // Store user info in localStorage
+            localStorage.setItem('user', JSON.stringify({
+                username: data.username,
+                email: data.email,
+                role: data.role
+            }));
             // Redirect based on role
             if (data.role === 'admin') {
                 window.location.href = 'admin-dashboard.html';
