@@ -1,3 +1,17 @@
+// Highlight selected payment option
+document.querySelectorAll('.payment-option input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+        this.closest('.payment-option').classList.add('selected');
+    });
+});
+
+// Optionally, select the first payment method by default
+const firstRadio = document.querySelector('.payment-option input[type="radio"]');
+if (firstRadio) {
+    firstRadio.checked = true;
+    firstRadio.closest('.payment-option').classList.add('selected');
+}
 document.addEventListener('DOMContentLoaded', function() {
     // Get URL parameters
     const urlParams = new URLSearchParams(window.location.search);
