@@ -5,7 +5,7 @@ A modern web platform for booking pandits for religious ceremonies and events.
 
 ---
 
-## Features
+## Features pandit
 
 - User-friendly interface for booking pandits
 - Multiple service categories
