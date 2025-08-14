@@ -8,3 +8,9 @@ __pycache__/
 # Other common ignores
 .DS_Store
 *.pyc
+requirements.txt
+# Logs
+*.log
+# Build directories
+dist/
+build/
