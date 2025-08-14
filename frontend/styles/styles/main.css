@@ -2638,10 +2638,6 @@ a:hover {
     box-shadow: 0 0 0 2px var(--primary-color);
     border-radius: 6px;
 }
-.payment-option input[type="radio"]:checked ~ span,
-.payment-option input[type="radio"]:checked ~ img {
-    /* Add more highlight if needed */
-}
 .payment-option img {
     width: 70px;
     height: 38px;
