@@ -18,6 +18,7 @@ build/
 # Docker files
 docker-compose.yml
 Dockerfile
+.dockerignore
 # IDE specific files
 .vscode/
 .idea/
