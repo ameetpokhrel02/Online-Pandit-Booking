@@ -1,6 +1,6 @@
 # Authentication System Documentation
 
-## Overview
+### Overview
 
 The BookPandit platform now includes a comprehensive authentication system that requires users to login before accessing certain features like booking, contact forms, and chat functionality.
 
