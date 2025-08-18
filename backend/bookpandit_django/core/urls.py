@@ -1,5 +1,7 @@
 from . import views_payment
 from . import views
+from django.urls import path
+from django.urls import path
 
 urlpatterns = [
     pat('api/verify/esewa/', views_payment.verify_esewa, name='verify_esewa'),
