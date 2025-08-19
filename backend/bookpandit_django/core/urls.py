@@ -1,6 +1,6 @@
 from . import views_payment
 from . import views
-from django.urls import path
+from django.urls import path # type: ignore
 
 urlpatterns = [
     path('api/verify/esewa/', views_payment.verify_esewa, name='verify_esewa'),
