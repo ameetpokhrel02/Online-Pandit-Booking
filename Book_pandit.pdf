@@ -1,0 +1,68 @@
+Book Pandit Project Documentation
+
+1. Introduction
+Book Pandit is an online platform for booking verified pandits for religious ceremonies and events. It streamlines the process of finding, booking, and paying for pandit services, making religious rituals more accessible and convenient.
+
+2. Architecture Overview
+- Frontend: Static HTML, CSS, and JavaScript files located in the frontend/ directory. Pages include home, about, services, contact, authentication, and dashboards.
+- Backend: Django-based REST API in backend/bookpandit_django/. Handles bookings, payments, user management, and serves API endpoints for frontend consumption.
+- Database: SQLite (default for Django), can be swapped for PostgreSQL or MySQL in production.
+
+3. Setup Instructions
+Prerequisites
+- Python 3.8+
+- Node.js (for frontend development, optional)
+- Django (see requirements.txt)
+Installation
+1. Clone the repository.
+2. Install backend dependencies:
+   pip install -r requirements.txt
+3. Run backend server:
+   cd backend/bookpandit_django
+   python manage.py migrate
+   python manage.py runserver
+4. Open frontend/index.html in your browser for the UI.
+
+4. Developer Workflow
+- Backend: Make changes in core/ app, run python manage.py runserver for local development.
+- Frontend: Edit HTML/CSS/JS in frontend/. No build step required for static files.
+- Testing: Use Django’s built-in test framework for backend (python manage.py test).
+
+5. Key Features
+- User authentication (login, signup, password reset)
+- Pandit booking with service selection and calendar
+- Payment integration (eSewa, Khalti, IME Pay)
+- Admin dashboard for managing bookings and users
+- Multilingual support (EN/NP)
+
+6. API Endpoints
+- /api/mark-paid/ (POST): Mark a booking as paid
+- /api/verify/esewa/, /api/verify/imepay/, /api/verify/khalti/: Payment verification endpoints
+- Additional endpoints for booking, user management, etc.
+
+7. Frontend Pages
+- index.html: Homepage with hero video and booking CTA
+- about.html: About Us, mission, values, team
+- services.html: List of available services
+- contact.html: Contact form, FAQ, app download section
+- user-dashboard.html, admin-dashboard.html: Dashboards for users and admins
+
+8. Environment Variables
+- Store sensitive keys in .env (e.g., payment gateway keys, Django secret key)
+- Example:
+  DJANGO_SECRET_KEY=your_secret_key
+  ESEWA_API_KEY=your_esewa_key
+  KHALTI_API_KEY=your_khalti_key
+
+9. Customization & Extending
+- Add new services by updating services.html and backend models.
+- Add new payment methods by creating new API endpoints in core/views_payment.py.
+- Extend user roles and permissions in Django admin.
+
+10. Troubleshooting
+- If video backgrounds do not play, check file paths and browser compatibility.
+- For API errors, check backend logs and ensure migrations are applied.
+- For payment issues, verify API keys and endpoint URLs.
+
+11. Credits
+- Developed by ameetpokhrel02 and contributors.
