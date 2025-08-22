@@ -50,10 +50,12 @@
         <!-- Hero Section file-->
         <section class="hero">
             <div class="video-background">
-                <video autoplay muted loop playsinline id="hero-video">
+                <video autoplay muted loop playsinline id="hero-video" preload="metadata">
                     <source src="vidoes/vidoes/astrology vide.mp4" type="video/mp4">
+                    <source src="vidoes/vidoes/glob.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+                <div class="video-fallback" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); z-index: 1;"></div>
                 <div class="overlay"></div>
             </div>
             <div class="container">
@@ -363,6 +365,7 @@
         </div>
     </footer>
     <script src="js/js/main.js"></script>
+    <script src="js/video-handler.js"></script>
     <script>
     // Show ad popup on page load, always above navbar, and never hide or affect navbar
     window.addEventListener('DOMContentLoaded', function() {
