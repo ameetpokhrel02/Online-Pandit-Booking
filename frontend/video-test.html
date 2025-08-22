@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test - Book Pandit</title>
+    <link rel="stylesheet" href="styles/styles/main.css">
+</head>
+<body>
+    <div class="hero">
+        <div class="video-background">
+            <video autoplay muted loop playsinline id="hero-video" preload="metadata">
+                <source src="vidoes/vidoes/PANDIT GIF 3.mp4" type="video/mp4">
+                <source src="vidoes/vidoes/pandit.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-fallback" style="display: none;">
+                <div>Video Loading...</div>
+            </div>
+            <div class="video-loading">Loading Video...</div>
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <h1>Video Test Page</h1>
+            <p>Testing video loading and fallback functionality</p>
+            <button onclick="testVideo()">Test Video</button>
+            <button onclick="retryVideo()">Retry Video</button>
+        </div>
+    </div>
+
+    <script src="js/video-handler.js"></script>
+    <script>
+        function testVideo() {
+            const video = document.getElementById('hero-video');
+            const fallback = document.querySelector('.video-fallback');
+            const loading = document.querySelector('.video-loading');
+            
+            console.log('Video readyState:', video.readyState);
+            console.log('Video networkState:', video.networkState);
+            console.log('Video error:', video.error);
+            
+            if (fallback) console.log('Fallback display:', fallback.style.display);
+            if (loading) console.log('Loading display:', loading.style.display);
+        }
+        
+        function retryVideo() {
+            const video = document.getElementById('hero-video');
+            video.load();
+            console.log('Video reloaded');
+        }
+    </script>
+</body>
+</html>

@@ -29,6 +29,61 @@
     display: block;
 }
 
+/* Video fallback styling */
+.video-fallback {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 2rem;
+    flex-direction: column;
+}
+
+.video-fallback::before {
+    content: "🎥";
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Video loading indicator */
+.video-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: none;
+}
+
+.video-loading::before {
+    content: "⏳";
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .hero .overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;

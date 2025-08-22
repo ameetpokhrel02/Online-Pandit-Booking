@@ -3,6 +3,7 @@ class VideoHandler {
     constructor() {
         this.videos = document.querySelectorAll('#hero-video');
         this.fallbacks = document.querySelectorAll('.video-fallback');
+        this.loadingIndicators = document.querySelectorAll('.video-loading');
         this.init();
     }
 
@@ -14,29 +15,38 @@ class VideoHandler {
     setupVideoHandlers() {
         this.videos.forEach((video, index) => {
             const fallback = this.fallbacks[index];
+            const loadingIndicator = this.loadingIndicators[index];
             
             if (video && fallback) {
+                // Show loading indicator initially
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'block';
+                }
+                
                 // Error handling
                 video.addEventListener('error', (e) => {
                     console.log('Video error:', e);
-                    this.showFallback(video, fallback);
+                    this.showFallback(video, fallback, loadingIndicator);
                 });
 
                 // Load success
                 video.addEventListener('loadeddata', () => {
                     console.log('Video loaded successfully');
-                    this.hideFallback(fallback);
+                    this.hideFallback(fallback, loadingIndicator);
                 });
 
                 // Can play
                 video.addEventListener('canplay', () => {
                     console.log('Video can play');
-                    this.hideFallback(fallback);
+                    this.hideFallback(fallback, loadingIndicator);
                 });
 
                 // Load start
                 video.addEventListener('loadstart', () => {
                     console.log('Video loading started');
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'block';
+                    }
                 });
 
                 // Progress
@@ -48,14 +58,14 @@ class VideoHandler {
                 setTimeout(() => {
                     if (video.readyState < 2) { // HAVE_CURRENT_DATA
                         console.log('Video loading timeout, showing fallback');
-                        this.showFallback(video, fallback);
+                        this.showFallback(video, fallback, loadingIndicator);
                     }
                 }, 5000); // 5 second timeout
             }
         });
     }
 
-    showFallback(video, fallback) {
+    showFallback(video, fallback, loadingIndicator) {
         if (fallback) {
             fallback.style.display = 'block';
             fallback.style.zIndex = '1';
@@ -63,11 +73,17 @@ class VideoHandler {
         if (video) {
             video.style.display = 'none';
         }
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+        }
     }
 
-    hideFallback(fallback) {
+    hideFallback(fallback, loadingIndicator) {
         if (fallback) {
             fallback.style.display = 'none';
+        }
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
         }
     }
 
@@ -82,8 +98,9 @@ class VideoHandler {
     }
 
     showAllFallbacks() {
-        this.fallbacks.forEach(fallback => {
-            this.showFallback(null, fallback);
+        this.fallbacks.forEach((fallback, index) => {
+            const loadingIndicator = this.loadingIndicators[index];
+            this.showFallback(null, fallback, loadingIndicator);
         });
     }
 
