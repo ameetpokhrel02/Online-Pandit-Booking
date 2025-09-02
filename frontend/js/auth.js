@@ -12,7 +12,7 @@ class AuthSystem {
         this.updateNavigation();
     }
 
-    // Check if user is logged in
+    // Check if user is logged in on page load
     checkAuthStatus() {
         const token = localStorage.getItem('authToken');
         const user = localStorage.getItem('user');
