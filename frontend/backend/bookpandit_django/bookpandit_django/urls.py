@@ -21,4 +21,15 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('core.urls')),
+    path('api/auth/', include('django.contrib.auth.urls')),
+    path('api/auth/register/', include('djoser.urls')),
+    path('api/auth/register/', include('djoser.urls.authtoken')),
+    path('api/auth/', include('djoser.urls.jwt')),
+    path('api/auth/', include('djoser.social.urls')),
+    path('api/auth/', include('rest_framework.urls')),
+    path('api/auth/', include('rest_framework_simplejwt.urls')),
+    path('api/auth/', include('rest_framework.authtoken.urls')),
+    path('api/auth/', include('allauth.urls')),
+    path('api/auth/', include('rest_auth.urls')),
+    path('api/auth/', include('rest_auth.registration.urls')),
 ]
