@@ -1,4 +1,4 @@
-// Pandit Photo Carousel
+
 class PanditCarousel {
     constructor() {
         this.images = document.querySelectorAll('.pandit-carousel .pandit-image');
