@@ -27,3 +27,7 @@ Dockerfile
 # Coverage reports
 coverage.xml
 *.cover
+
+#  virtual environment
+env/
+.venv/

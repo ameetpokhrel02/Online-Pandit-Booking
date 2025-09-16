@@ -1,0 +1,14 @@
+.booking-wizard { max-width: 500px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 32px 24px; }
+.wizard-steps { display: flex; justify-content: space-between; margin-bottom: 24px; }
+.step { flex: 1; text-align: center; padding: 8px; border-bottom: 2px solid #eee; color: #888; font-weight: 500; transition: color 0.2s, border-color 0.2s; }
+.step.active { border-bottom: 2px solid #ff8000; color: #ff8000; font-weight: bold; }
+.wizard-panel { margin-bottom: 16px; display: none; }
+.wizard-panel.active { display: block; }
+button { padding: 8px 18px; border-radius: 6px; border: none; background: #ff8000; color: #fff; font-weight: 600; margin: 8px 4px; cursor: pointer; transition: background 0.2s; }
+button:hover { background: #d96a00; }
+.error-msg { color: #d32f2f; font-size: 1rem; margin-bottom: 8px; }
+.success-msg { color: #388e3c; font-size: 1rem; margin-bottom: 8px; }
+@media (max-width: 600px) {
+  .booking-wizard { padding: 12px 4px; }
+  .wizard-steps { font-size: 0.95rem; }
+}
