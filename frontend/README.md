@@ -110,8 +110,8 @@ BookPandit/
 - `images/features/support.jpg` - 24/7 support (100x100px)
 
 **Videos**
-- `vidoes/vidoes/astrology vide.mp4` - Astrology background video
-- `vidoes/vidoes/glob.mp4` - Globe earth video for hero section
+- `videos/videos/astrology vide.mp4` - Astrology background video
+- `videos/videos/glob.mp4` - Globe earth video for hero section
 
 ---
 
