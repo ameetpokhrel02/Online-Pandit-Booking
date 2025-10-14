@@ -214,11 +214,12 @@
 
     <script src="js/js/main.js"></script>
     <script src="js/chatbox.js"></script>
-    <script src="js/video-handler.js"></script>
-    <script>
-    // Show ad popup on page load, always above navbar, and never hide or affect navbar
-    window.addEventListener('DOMContentLoaded', function() {
-      var adPopup = document.getElementById('ad-popup');
+        <script src="js/video-handler.js"></script>
+        <script src="js/video-debug.js" defer></script>
+        <script>
+        // Show ad popup on page load, always above navbar, and never hide or affect navbar
+        window.addEventListener('DOMContentLoaded', function() {
+            var adPopup = document.getElementById('ad-popup');
       var adClose = document.getElementById('ad-close-btn');
       if (adPopup && adClose) {
         adPopup.style.display = 'flex';

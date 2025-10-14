@@ -246,4 +246,22 @@ fetch('http://127.0.0.1:8000/api/hello/')
   })
   .catch(err => console.log('Backend not reachable:', err));
 </script>
+<!-- Tawk.to live chat widget: replace 'YOUR_TAWK_PROPERTY_ID' with your actual Tawk.to property ID -->
+<script>
+  function enableTawk() {
+    if (window.__tawkLoaded) return;
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    // Replace the src below with your Tawk property script or use the property key
+    s1.src='https://embed.tawk.to/YOUR_TAWK_PROPERTY_ID/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    window.__tawkLoaded = true;
+  }
+  // Uncomment to auto-enable chat on page load (or call enableTawk() from console)
+  // enableTawk();
+</script>
+
 </html>

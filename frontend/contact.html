@@ -364,21 +364,10 @@
 
     <script src="js/js/main.js"></script>
     <script src="js/chatbox.js"></script>
+    <script src="js/video-debug.js" defer></script>
     <script>
     // Pandit image wipe animation
-<script>
-// Autoplay detection + click-to-play helper (temporary)
-(function(){
-    const video = document.querySelector('.hero-bg-video');
-    const overlay = document.querySelector('.video-debug-overlay');
-    const btn = overlay ? overlay.querySelector('#hero-click-play') : null;
-    function showOverlay() { if (overlay) overlay.style.display = 'flex'; }
-    function hideOverlay() { if (overlay) overlay.style.display = 'none'; }
-    if (!video) return;
-    video.play().then(()=>{ console.log('Autoplay succeeded for', video.currentSrc || video.src); hideOverlay(); }).catch((err)=>{ console.warn('Autoplay blocked or failed for', video.currentSrc || video.src, err); showOverlay(); });
-    if (btn) btn.addEventListener('click', ()=>{ video.muted = false; video.play().catch(e=>console.error('Play after click failed', e)); hideOverlay(); });
-})();
-</script>
+    // Autoplay detection handled by js/video-debug.js
     const images = document.querySelectorAll('.pandit-slider .pandit-img');
     let current = 0;
     setInterval(() => {
