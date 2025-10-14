@@ -63,8 +63,8 @@ BookPandit/
 │   ├── payment/            # Payment logos
 │   ├── pandits/            # Pandit profile images
 │   └── features/           # Feature icons
-├── vidoes/
-│   └── vidoes/             # Video files (e.g. astrology vide.mp4, glob.mp4)
+├── videos/
+│   └── videos/             # Video files (e.g. astrology vide.mp4, glob.mp4)
 ├── lang.json               # Translation file
 ├── backend/                # Backend (Django/Node)
 │   ├── server.js
@@ -111,8 +111,8 @@ BookPandit/
 - `images/features/support.jpg` - 24/7 support (100x100px)
 
 **Videos**
-- `vidoes/vidoes/astrology vide.mp4` - Astrology background video
-- `vidoes/vidoes/glob.mp4` - Globe earth video for hero section
+- `videos/videos/astrology vide.mp4` - Astrology background video
+- `videos/videos/glob.mp4` - Globe earth video for hero section
 
 ---
 

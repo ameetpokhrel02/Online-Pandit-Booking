@@ -62,8 +62,8 @@ BookPandit/
 │   ├── payment/            # Payment logos
 │   ├── pandits/            # Pandit profile images
 │   └── features/           # Feature icons
-├── vidoes/
-│   └── vidoes/             # Video files (e.g. astrology vide.mp4, glob.mp4)
+├── videos/
+│   └── videos/             # Video files (e.g. astrology vide.mp4, glob.mp4)
 ├── lang.json               # Translation file
 ├── backend/                # Backend (Django/Node)
 │   ├── server.js
@@ -180,3 +180,9 @@ This project is licensed under the MIT License.
 
 ## Project Overview
 Book Pandit is a web application that allows users to book pandits for various religious ceremonies. The application features user and admin dashboards, payment integration, and a list of available pandits. It is designed for modern usability, security, and scalability.
+
+
+
+
+
+/list  add real time chat/support and optimize backend performance and security and enable mobile app integration...
