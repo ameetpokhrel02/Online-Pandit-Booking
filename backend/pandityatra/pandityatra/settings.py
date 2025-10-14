@@ -37,9 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Optional: install 'corsheaders' (pip install django-cors-headers) for production CORS handling
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    # If using corsheaders, it should come before CommonMiddleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Project-specific simple security/rate-limit middleware (demo only)
+    'bookpandit_django.core.security_middleware.SimpleRateLimitMiddleware',
 ]
 
 ROOT_URLCONF = 'pandityatra.urls'
@@ -120,3 +126,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS: in production set CORS_ALLOWED_ORIGINS appropriately. For local dev you may allow all:
+CORS_ALLOW_ALL_ORIGINS = True

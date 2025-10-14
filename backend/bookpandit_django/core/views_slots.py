@@ -11,3 +11,8 @@ def available_slots(request):
         {'date': '2025-09-21', 'times': ['09:00', '13:00']},
     ]
     return JsonResponse({'slots': slots})
+
+
+def health(request):
+    """Simple healthcheck endpoint for load-balancers and monitoring."""
+    return JsonResponse({'status': 'ok', 'uptime': 'unknown'})
