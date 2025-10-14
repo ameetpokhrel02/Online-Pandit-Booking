@@ -16,3 +16,9 @@ def available_slots(request):
 def health(request):
     """Simple healthcheck endpoint for load-balancers and monitoring."""
     return JsonResponse({'status': 'ok', 'uptime': 'unknown'})
+
+
+@require_GET
+def hello(request):
+    """Small hello endpoint used by frontend diagnostics."""
+    return JsonResponse({'message': 'Hello from Django! (backend/bookpandit_django)'} )

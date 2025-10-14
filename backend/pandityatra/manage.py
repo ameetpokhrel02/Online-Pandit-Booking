@@ -2,6 +2,10 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from pathlib import Path
+
+# ensure parent folder (repo root) is on sys.path so sibling apps are importable
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
 
 def main():
