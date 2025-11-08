@@ -15,5 +15,7 @@ from django.core.wsgi import get_wsgi_application
 sys.path.append('/app/backend/pandityatra')
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pandityatra.settings')
+os.environ.setdefault('PYTHONPATH', '/app/backend/pandityatra')
 
 application = get_wsgi_application()
+application.debug = True
